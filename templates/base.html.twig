@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset("css/style.css") }}"/>
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+       
+    </head>
+    <body>
+        <header>
+            <h1>MVC - OOPHP</h1>
+            <nav>
+                <a href="{{ url("home") }}">Hem</a> | <a href="{{ path("report") }}">Redovisning</a> | <a href="{{ path("about") }}">Om</a>
+            </nav>
+            
+        </header>
+        {% block body %}{% endblock %}
+        
+    </body>
+    <footer>
+        <strong>gusu20 @VT22 </strong>
+    </footer>
+</html>

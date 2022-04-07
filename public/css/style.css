@@ -1,0 +1,30 @@
+html {
+    background-color: #05a;
+}
+body {
+    width: 700px;
+    margin: 8px auto;
+    background-color: #05a;
+    padding: 2em;
+    border: 6px solid #fff;
+    box-shadow: 6px 6px;
+}
+
+a {
+    text-decoration: underline;
+}
+
+p,h1,h2,a, strong {
+    color: #fff
+}
+
+p {
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+strong {
+    display: block;
+    text-align: center;
+    background-color: #f80;
+    padding: 2em;
+}
