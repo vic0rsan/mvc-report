@@ -9,7 +9,21 @@
         </header>
         <section>
             <h2>Kmom01</h2>
-            <p>Text här...</p>
+            <p>Konceptet om objektorientering är ej något nytt för mig, har använt mig av det i tidigare dbwebb-kurser, både i Python och PHP från den förra mvc-kursen. Skillnaden mellan dessa språk ligger i syntaxen över hur en klass initieras och kan då utan svårigheter pendla mellan dessa språk.</p>
+            <p>
+                Än så länge har vi skapat klasser för controller som hanterar de olika sidorna utan någon konstruktor-metod, vilket är princip nästan som att programmera i den funktionell paradigmen. 
+                Den enda objekt-specificerade syntaxen för utom klass-deklarationen var instansvariabeln $this som representerar en instans av en klass. När man skapar klasser börjar man med självaste deklarationen, sedan bör man skapa en konstruktor för att lagra attribut för varje enskild instans. Slutligen kan man skapa klass-metoder som arbetar direkt med objekten och dess värden. 
+            </p>
+            <p>
+                För att lägga till en undersida i symfony börjar man med att skapa en controller-klass i Controller-mappen om det inte redan finns,  sedan lägger man till klass-metoder som representerar varje enskild route/sida. För att koppla klassmetoden till GET-förfrågan så lägger man till en kommentar ovanför med funktions-anrop till Route med sökvägen och dess namn. 
+                I varje klass-metod bör man åtminstone returnera instansvariabeln med render-funktionen med inparametern för motsvarande twig-fil. Innehållet för samtliga sidor finns i de olika twig-filerna i templates-mappen. I mappen finns en base-twig som innehåller head för samtliga sidorna som innehåller bland annat navbaren, länk till CSS-filen samt uppsättning av karaktärer (UTF-8). Övriga twig-filer ärver base klassen och bygger vidare på body-sektionen. Övrigt innehållet utöver text som bilder och CSS finns tillgänglig public-mappen med varsin mapp. 
+            </p>
+            <p>
+                Jag kikade snabbt över artikeln och alla dess underrubriker, fann sektionen för säkerhet intressant då det är viktigt att kunna rusta upp sina webbapplikationer för cyberattacker/intrång, vilket blir ännu viktigare i framtiden pga den växande digitaliseringen där olika komponenter i samhället är helt beroende av ett digitalt-system för att fungera. 
+            </p>
+            <p>
+                I detta kursmoment har jag lärt mig grunderna för PHP-ramverket Symfony vilket täcker skapandet av Controller, undersidor i twig, samt dess fil-struktur. Dock inga nya kunskaper gällande objektorientering  än så länge då allt kändes bekant. 
+            </p>
         </section>
     </article>
     
