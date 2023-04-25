@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lucky Number{% endblock %}
+
+{% block body %}
+    <h1>Lucky!</h1>
+    <img src="{{ asset('img/random.avif') }}" width="200" alt="Shrek">
+    <h1>{{ number }}</h1>
+{% endblock %}
