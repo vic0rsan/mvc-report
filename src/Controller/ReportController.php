@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controller;
 
@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ReportController extends AbstractController
 {
     /**
-    * @Route("/", name="home")  
+    * @Route("/", name="home")
     */
     public function home(): Response
     {
@@ -27,7 +27,7 @@ class ReportController extends AbstractController
     /**
      * @Route("/about", name="about")
      */
-    public function about(): Response 
+    public function about(): Response
     {
         return $this->render('about.html.twig');
     }
