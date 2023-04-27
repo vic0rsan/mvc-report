@@ -3,10 +3,12 @@
 {% block title %}Card{% endblock %}
 
 {% block body %}
-    {% for card in deck%}
-    <p style="font-size:150px;margin:0;">;
-</p>
-    {% endfor %}
-    <h1>Card</h1>
-    <p>Ett simpelt kortspel som består av olika klasser.</p>
+<h1>Deck</h1>
+<div class="card-wrap">
+    <div class="card-grid">
+        {% for card in deck %}
+            <div class="card">{{card.getCardRep}}</div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

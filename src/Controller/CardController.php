@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use App\Cards\Card;
 use App\Cards\Deck;
+use App\Cards\CardGraphic;
 
 class CardController extends AbstractController
 {
@@ -26,9 +27,6 @@ class CardController extends AbstractController
     {
         $deck = new Deck();
         $deck->createDeck();
-    
-        $data = ['deck' => $deck->getDeck()];
-
-        return $this->render('deck.html.twig', $data);
+        return $this->render('deck.html.twig', ['deck' => $deck->getDeck()]);
     }
 }

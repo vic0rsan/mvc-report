@@ -2,7 +2,7 @@ html {
     background-color: #05a;
 }
 body {
-    width: 700px;
+    width: 60%;
     margin: 8px auto;
     background-color: #05a;
     padding: 2em;
@@ -18,8 +18,16 @@ p,h1,h2,a, strong {
     color: #fff
 }
 
-p {
+p,h1,a {
     font-family:Arial, Helvetica, sans-serif;
+}
+
+p, a {
+    font-size: 2.5vh;
+}
+
+h1 {
+    font-size: 4vh;
 }
 
 strong {
@@ -27,4 +35,16 @@ strong {
     text-align: center;
     background-color: #f80;
     padding: 2em;
+}
+
+.card-grid {
+    color: #fff;
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.card {
+    font-size: 20vh;
+    height: 20vh;
 }

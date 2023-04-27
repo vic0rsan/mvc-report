@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Cards;
-use App\Cards\Card;
+use App\Cards\CardGraphic;
 
 class Deck
 {
     private array $deck;
-    private const suits = ["hearts", "spades", "clubs", "diamonds"];
-    private const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
+    private const suits = ["heart", "spade", "club", "diamond"];
+    private const ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
 
     public function __construct()
     {
@@ -21,7 +21,7 @@ class Deck
         {
             for ($j = 0; $j < count(self::ranks); $j++)
             {
-                $card = new Card(self::suits[$i], self::ranks[$j]);
+                $card = new CardGraphic(self::suits[$i], self::ranks[$j]);
                 array_push($this->deck, $card);
             }
         }
