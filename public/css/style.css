@@ -2,7 +2,7 @@ html {
     background-color: #05a;
 }
 body {
-    width: 60%;
+    width: 75%;
     margin: 8px auto;
     background-color: #05a;
     padding: 2em;
@@ -42,6 +42,7 @@ strong {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(8, 1fr);
+    margin-bottom: 4vh;
 }
 
 .card {

@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block body %}
+    <h1>Card</h1>
+    <p>Ett simpelt kortspel skrivet i objektorienterad PHP.</p>
+    <p>
+        Kortleken består av 3st klasser: Card, Deck och CardGraphic. 
+        Card klassen används för att skapa det enskilda spelkorten och innehar attribut som kortens färg samt rank/värde.
+        Deck klassen representerar självaste kortleken som innehåller samtliga 52st kort-objekt och lagras i decks 'deck'-attribut.
+        Slutligen, i CardGraphic klassen finns samtliga ikoner för korten som är unicode-karaktärer. 
+        CardGraphic är en utbyggnad av Card klassen, vilket innebär även att CardGraphic ärver Card.  
+    </p>
+    <p>Nedan kan du hitta samtliga länker gällande kortleken.</p>
+    <ul>
+        <li>
+            <a href="{{ path("deck") }}">card/deck</a>
+        </li>
+        <li>
+            <a href="{{ path("shuffle") }}">card/deck/shuffle</a>
+        </li>
+        <li>
+            <a href="{{ path("draw") }}">card/deck/draw</a>
+        </li>
+        <li>
+            <a href="{{ path("draw_many", {number:0}) }}">card/deck/draw/:number</a>
+        </li>
+    </ul>
+{% endblock %}

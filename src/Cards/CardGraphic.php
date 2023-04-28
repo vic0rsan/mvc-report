@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Cards;
 
@@ -60,10 +60,9 @@ class CardGraphic extends Card
     ];
 
     public function __construct(
-        string $suite, 
+        string $suite,
         string $rank
-        )
-    {
+    ) {
         parent::__construct($suite, $rank);
     }
 

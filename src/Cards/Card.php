@@ -9,10 +9,9 @@ class Card
 
 
     public function __construct(
-        string $suite, 
+        string $suite,
         string $rank
-        )
-    {
+    ) {
         $this->suite = $suite;
         $this->rank = $rank;
     }

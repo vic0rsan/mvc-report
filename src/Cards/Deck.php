@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Cards;
+
 use App\Cards\CardGraphic;
 
 class Deck
@@ -17,14 +18,25 @@ class Deck
     public function createDeck(): void
     {
         $this->deck = [];
-        for ($i = 0; $i < count(self::suits); $i++)
-        {
-            for ($j = 0; $j < count(self::ranks); $j++)
-            {
+        for ($i = 0; $i < count(self::suits); $i++) {
+            for ($j = 0; $j < count(self::ranks); $j++) {
                 $card = new CardGraphic(self::suits[$i], self::ranks[$j]);
                 array_push($this->deck, $card);
             }
         }
+    }
+
+    public function draw($number = 1): array
+    {
+        $pick = [];
+
+        for ($i = 0; $i < $number; $i++) {
+            $index = rand(0, count($this->deck) - 1);
+            array_push($pick, $this->deck[$index]);
+            array_splice($this->deck, $index, 1);
+        }
+
+        return $pick;
     }
 
     public function shuffleDeck(): void
@@ -35,5 +47,10 @@ class Deck
     public function getDeck(): array
     {
         return $this->deck;
+    }
+
+    public function cardLeft(): int
+    {
+        return count($this->deck);
     }
 }
