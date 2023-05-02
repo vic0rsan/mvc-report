@@ -9,9 +9,12 @@
         Kortleken består av 3st klasser: Card, Deck och CardGraphic. 
         Card klassen används för att skapa det enskilda spelkorten och innehar attribut som kortens färg samt rank/värde.
         Deck klassen representerar självaste kortleken som innehåller samtliga 52st kort-objekt och lagras i decks 'deck'-attribut.
+        Deck klassen har en kompositon relation med Card då ett Deck-objekt förväntas att innehålla en eller flera instanser av ett Card-objekt 
+        för att klassmetoderna skall fungera, däremot kan ett Deck-objekt finnas utan några Card-objekt vilket medför att detta är en kompositon istället för en aggresion. 
         Slutligen, i CardGraphic klassen finns samtliga ikoner för korten som är unicode-karaktärer. 
         CardGraphic är en utbyggnad av Card klassen, vilket innebär även att CardGraphic ärver Card.  
     </p>
+    <img src="{{ asset('img/uml.png') }}" width="500" alt="UML">
     <p>Nedan kan du hitta samtliga länker gällande kortleken.</p>
     <ul>
         <li>
