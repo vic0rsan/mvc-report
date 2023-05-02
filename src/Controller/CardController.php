@@ -45,13 +45,17 @@ class CardController extends AbstractController
     /**
     * @Route("/card/deck/shuffle", name="shuffle")
     */
-    public function shuffled(SessionInterface $session): Response
+    public function shuffle(SessionInterface $session): Response
     {
         $deck = new Deck();
         $deck->createDeck();
         $deck->shuffleDeck();
 
         $session->set('deck', $deck);
+
+        if ($session->get('pick')) {
+            $session->set('pick', []);
+        }
 
         $data = [
             'title' => "Shuffled deck",
@@ -96,6 +100,9 @@ class CardController extends AbstractController
     */
     public function drawMany(SessionInterface $session, int $number): Response
     {
+        if (!$session->get('pick')) {
+            $session->set('pick', []);
+        }
         $deck = $session->get("deck");
         $pick = $session->get("pick");
 

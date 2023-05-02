@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ApiController
 {
     #[Route("/api")]
-    public function jsonApi(): Response 
+    public function jsonApi(): Response
     {
         return $this->render('api.html.twig');
     }

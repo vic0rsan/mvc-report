@@ -2,6 +2,8 @@
 
 namespace App\Cards;
 
+use App\Cards\Card;
+
 class CardHand
 {
     private array $hand;
@@ -9,5 +11,17 @@ class CardHand
     public function __construct()
     {
         $this->hand = [];
+    }
+
+    public function add(Card $card): void
+    {
+        $this->hand[] = $card;
+    }
+
+    public function draw(): void
+    {
+        for ($i = 0; $i < count($this->hand); $i++) {
+            $card-draw();
+        }
     }
 }
