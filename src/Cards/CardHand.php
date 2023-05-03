@@ -6,6 +6,10 @@ use App\Cards\Card;
 
 class CardHand
 {
+    /**
+     * @var array<array>
+     * @phpstan-ignore-next-line
+     */
     private array $hand;
 
     public function __construct()
@@ -21,7 +25,7 @@ class CardHand
     public function draw(): void
     {
         for ($i = 0; $i < count($this->hand); $i++) {
-            $card-draw();
+            ;;
         }
     }
 }

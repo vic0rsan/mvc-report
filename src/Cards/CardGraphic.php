@@ -66,7 +66,7 @@ class CardGraphic extends Card
         parent::__construct($suite, $rank);
     }
 
-    public function getCardRep()
+    public function getCardRep(): string
     {
         return self::cards[$this->suite . "-" . $this->rank];
     }

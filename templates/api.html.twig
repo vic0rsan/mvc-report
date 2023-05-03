@@ -4,5 +4,22 @@
 
 {% block body %}
     <h1>API</h1>
-    
+    <p>Nedan kan du hitta samtliga länker gällande kortleken.</p>
+    <ul>
+        <li>
+            <a href="{{ path("quote") }}">api/quote</a>
+        </li>
+        <li>
+            <a href="{{ path("json_deck") }}">api/deck</a>
+        </li>
+        <li>
+            <a>api/deck/shuffle [POST]</a>
+        </li>
+        <li>
+            <a>api/deck/draw [POST]</a>
+        </li>
+        <li>
+           <a>api/deck/draw/:number [POST]</a>
+        </li>
+    </ul>
 {% endblock %}

@@ -18,11 +18,11 @@ class Card
 
     public function getSuite(): string
     {
-        return $this->$suite;
+        return $this->suite;
     }
 
     public function getRank(): string
     {
-        return $this->$rank;
+        return $this->rank;
     }
 }

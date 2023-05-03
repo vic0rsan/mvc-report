@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,7 +12,7 @@ use App\Cards\Card;
 use App\Cards\Deck;
 use App\Cards\CardGraphic;
 
-class ApiCardController
+class ApiCardController extends AbstractController
 {
     #[Route("/api/deck", name: "json_deck", methods: ['GET'])]
     public function jsonDeck(SessionInterface $session): Response

@@ -2,19 +2,20 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ApiController
+class ApiController extends AbstractController
 {
-    #[Route("/api")]
+    #[Route("/api", name: "api")]
     public function jsonApi(): Response
     {
         return $this->render('api.html.twig');
     }
 
-    #[Route("/api/quote")]
+    #[Route("/api/quote", name: "quote")]
     public function jsonQuote(): Response
     {
         $quotes = array(
