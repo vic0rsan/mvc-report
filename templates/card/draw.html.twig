@@ -8,7 +8,12 @@
 <div class="card-wrap">
     <div class="card-grid">
         {% for card in deck %}
-            <div class="card">{{card.getCardRep}}</div>
+            {% if card.suite == "heart" or card.suite == "diamond" %}
+                <div class="card red-card">{{card.getCardRep}}</div>
+            {% else %}
+                <div class="card black-card">{{card.getCardRep}}</div>
+            {% endif %}
+
         {% endfor %}
     </div>
 </div>

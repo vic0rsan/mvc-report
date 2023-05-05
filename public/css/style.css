@@ -37,12 +37,17 @@ strong {
     padding: 2em;
 }
 
+.card-wrap {
+    background-color: white;
+}
+
 .card-grid {
     color: #fff;
     display: grid;
     text-align: center;
     grid-template-columns: repeat(8, 1fr);
     margin-bottom: 4vh;
+    padding-bottom: 6vh;
 }
 
 .card {
@@ -60,4 +65,12 @@ input {
     text-decoration: underline;
     cursor: pointer;
     color: #fff
-  }
+}
+
+.black-card {
+    color: black;
+}
+
+.red-card {
+    color: red;
+}

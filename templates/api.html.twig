@@ -14,15 +14,15 @@
         </li>
         <form method="POST", action="">
             <li>
-                <input type="submit" name="shuffle" value="api/deck/shuffle"
+                <input type="submit" name="shuffle" value="POST api/deck/shuffle"
                     onclick="this.form.action='{{ path('json_shuffle') }}';">
             </li>
             <li>
-                <input type="submit" name="shuffle" value="api/deck/draw"
+                <input type="submit" name="shuffle" value="POST api/deck/draw"
                     onclick="this.form.action='{{ path('json_draw') }}';">
             </li>
             <li>
-                <input type="submit" name="shuffle" value="api/deck/draw/:number"
+                <input type="submit" name="shuffle" value="POST api/deck/draw/:number"
                     onclick="this.form.action='{{ path('json_draw_many', {number:3}) }}';">
             </li>
         </form>
