@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Card{% endblock %}
+
+{% block body %}
+    <h1>Game 21</h1>
+    <h2>Pseudo kod</h2>
+    <p>1. Spelet startas när användaren klickar på knappen för game21.</p>
+    <p>2. Samtidigts initeras 2st CardHand objekt, en för spelaren och en för banken.</p>
+    <p>3. Spelaren får även ett kort automatiskt tilldelat till sig.</p>
+    <p>4. Spelaren väljer om den vill dra ett till kort eller ej.</p>
+    <p>5. När spelaren stannar ändras $this->dealer till True. Knappen för att dra ett nytt kort försvinner och banken börjar automatiskt att spela.</p>
+    <p>6. Banken kommer dra kort efter kort tills värdet 17 eller högre (if $dealer->points >= 17 and $dealer->points > $player->points) har nåtts samt att kortsumman är större än spelarens.</p>
+    <p>7. Slutligen visas resultatet genom poängställningen och vem som vann.</p>
+    <p>8. En knapp för rematch dyker upp och följande process upprepas.</p>
+
+{% endblock %}

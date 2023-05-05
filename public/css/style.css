@@ -22,7 +22,7 @@ p,h1,a {
     font-family:Arial, Helvetica, sans-serif;
 }
 
-p, a {
+p, a, input {
     font-size: 2.5vh;
 }
 
@@ -49,3 +49,15 @@ strong {
     font-size: 20vh;
     height: 20vh;
 }
+
+input {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    text-decoration: underline;
+    cursor: pointer;
+    color: #fff
+  }

@@ -7,8 +7,7 @@ use App\Cards\Card;
 class CardHand
 {
     /**
-     * @var array<array>
-     * @phpstan-ignore-next-line
+     * @var array<Card>
      */
     private array $hand;
 

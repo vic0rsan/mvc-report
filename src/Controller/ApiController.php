@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
 
 class ApiController extends AbstractController
 {
@@ -24,11 +25,11 @@ class ApiController extends AbstractController
             "Success consists of going from failure to failure without loss of enthusiasm."
         );
         $number = random_int(0, 2);
-        $date = date_create();
+        $genTime = new DateTime();
         $data = [
             'quote of the day' => $quotes[$number],
             'date' => date('Y-m-d'),
-            'generated' => date_timestamp_get($date)
+            'generated' => $genTime->getTimestamp()
         ];
 
         $response = new JsonResponse($data);

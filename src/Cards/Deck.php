@@ -6,6 +6,9 @@ use App\Cards\CardGraphic;
 
 class Deck
 {
+    /**
+     * @var array<Card>
+     */
     private array $deck;
     private const suits = ["heart", "spade", "club", "diamond"];
     private const ranks = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
@@ -26,7 +29,10 @@ class Deck
         }
     }
 
-    public function draw($number = 1): array
+    /**
+     * @return array<Card>
+     */
+    public function draw(int $number = 1): array
     {
         $pick = [];
 
@@ -44,6 +50,9 @@ class Deck
         shuffle($this->deck);
     }
 
+    /**
+     * @return array<Card>
+     */
     public function getDeck(): array
     {
         return $this->deck;

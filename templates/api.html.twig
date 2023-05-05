@@ -12,14 +12,19 @@
         <li>
             <a href="{{ path("json_deck") }}">api/deck</a>
         </li>
-        <li>
-            <a>api/deck/shuffle [POST]</a>
-        </li>
-        <li>
-            <a>api/deck/draw [POST]</a>
-        </li>
-        <li>
-           <a>api/deck/draw/:number [POST]</a>
-        </li>
+        <form method="POST", action="">
+            <li>
+                <input type="submit" name="shuffle" value="api/deck/shuffle"
+                    onclick="this.form.action='{{ path('json_shuffle') }}';">
+            </li>
+            <li>
+                <input type="submit" name="shuffle" value="api/deck/draw"
+                    onclick="this.form.action='{{ path('json_draw') }}';">
+            </li>
+            <li>
+                <input type="submit" name="shuffle" value="api/deck/draw/:number"
+                    onclick="this.form.action='{{ path('json_draw_many', {number:3}) }}';">
+            </li>
+        </form>
     </ul>
 {% endblock %}
