@@ -27,4 +27,13 @@ class CardHand
     {
         return $this->hand;
     }
+
+    public function getSum(): int
+    {
+        $points = 0;
+        foreach ($this->hand as $card) {
+            $points += $card->point;
+        }
+        return $points;
+    }
 }

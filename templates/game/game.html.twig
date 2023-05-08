@@ -6,6 +6,8 @@
 <h1>{{ title }}</h1>
 <div class="card-wrap">
     <h2>Spelaren</h2>
+    <span>{{ message }}</span>
+    <span>{{ player_points }}</span>
     <div class="card-grid">
         {% for card in player %}
             {% if card.suite == "heart" or card.suite == "diamond" %}
@@ -15,15 +17,24 @@
             {% endif %}
         {% endfor %}
     </div>
-    <form method="POST", action="">
+    {% if gameover == FALSE %}
+        <form method="POST", action="">
             <input class="game-button" type="submit" name="draw" value="Nytt kort"
                 onclick="this.form.action='{{ path('game_draw') }}';">
-            <input class="game-button" type="submit" name="draw" value="Stanna"
-                onclick="this.form.action='{{ path('game_draw') }}';">
+            <input class="game-button" type="submit" name="stop" value="Stanna"
+                onclick="this.form.action='{{ path('game_stop') }}';">
+    {% endif %}
     </form>
     <h2>Banken</h2>
+    <span>{{ bank_points }}</span>
     <div class="card-grid">
-        
+        {% for card in bank %}
+            {% if card.suite == "heart" or card.suite == "diamond" %}
+                <div class="card red-card">{{card.getCardRep}}</div>
+            {% else %}
+                <div class="card black-card">{{card.getCardRep}}</div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

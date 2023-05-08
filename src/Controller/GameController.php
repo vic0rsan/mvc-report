@@ -7,10 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-use App\Cards\Card;
-use App\Cards\Deck;
-use App\Cards\CardGraphic;
-use App\Cards\CardHand;
+use App\Cards\Game21;
 
 class GameController extends AbstractController
 {
@@ -23,13 +20,12 @@ class GameController extends AbstractController
     #[Route("/game/init", name: "game_init", methods: ["POST"])]
     public function gameInit(SessionInterface $session): Response
     {
-        $deck = new Deck();
-        $deck->createDeck();
-        $deck->shuffleDeck();
-        $session->set('deck', $deck);
-
-        $session->set('player', []);
-        $session->set('dealer', []);
+        $game = new Game21();
+        $game->getDeck()->createDeck();
+        $game->getDeck()->shuffleDeck();
+        $game->playerDraw();
+        $game->bankDraw();
+        $session->set('game', $game);
 
         return $this->redirectToRoute('game_start');
     }
@@ -37,28 +33,28 @@ class GameController extends AbstractController
     #[Route("/game/start", name:"game_start")]
     public function initGame(SessionInterface $session): Response
     {
-        $deck = $session->get('deck');
-        
-        if (!$session->get('player') || !$session->get('dealer')) {
-            $player_card = $deck->draw();
-            $dealer_card = $deck->draw();
-            $session->set('player', new CardHand($player_card));
-            $session->set('dealer', new CardHand($dealer_card));
-            $session->set('player_points', $player_card[0]->point);
-            $session->set('dealer_points', $dealer_card[0]->point);
+        if (!$session->get('game')) {
+            return $this->redirectToRoute('game_init');
         }
 
-        $player = $session->get('player');
-        $dealer = $session->get('dealer');
-        $player_points = $session->get('player_points');
-        $dealer_points = $session->get('dealer_points');
+        $game = $session->get('game');
+        $player_points = $game->getPlayerPoint();
+        $bank_points = $game->getBankPoint();
+        $gameover = $game->getGameover();
+        $message = "";
+
+        if ($gameover) {
+            $message = $game->comparePoints();
+        }
 
         $data = [
             'title' => "Game 21",
-            'player' => $player->getHand(),
-            'delaer' => $dealer->getHand(),
+            'player' => $game->getPlayer()->getHand(),
+            'bank' => $game->getBank()->getHand(),
+            'gameover' => $gameover,
+            'message' => $message,
             'player_points' => $player_points,
-            'dealer_points' => $dealer_points
+            'bank_points' => $bank_points
         ];
         
         return $this->render('game/game.html.twig', $data);
@@ -67,17 +63,23 @@ class GameController extends AbstractController
     #[Route("/game/draw", name: "game_draw", methods: ['POST'])]
     public function draw(SessionInterface $session): Response
     {
-        $player = $session->get('player');
-        $point = $session->get('player_points');
-        $deck = $session->get('deck');
-        
-        $draw = $deck->draw();
-        $player->add($draw);
+        $game = $session->get('game');
+        $game->playerDraw();
+        $session->set('game', $game);
+        if ($game->getPlayerPoint() >= 21) {
+            $game->setGameover();
+            return $this->redirectToRoute('game_start');
+        }
 
-        $session->set('player_points', $point + $draw[0]->point);
-        $session->set('player', $player);
-        $session->set('deck', $deck);
+        return $this->redirectToRoute('game_start');
+    }
 
+    #[Route("/game/stop", name: "game_stop", methods: ['POST'])]
+    public function stop(SessionInterface $session): Response
+    {
+        $game = $session->get('game');
+        $game->bankTurn();
+        $game->setGameover();
         return $this->redirectToRoute('game_start');
     }
 }
