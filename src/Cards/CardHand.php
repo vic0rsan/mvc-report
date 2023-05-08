@@ -18,7 +18,9 @@ class CardHand
 
     public function add(array $card): void
     {
-        array_push($this->hand, $card);
+        for ($i = 0; $i < count($card); $i++) {
+            array_push($this->hand, $card[$i]);
+        }
     }
 
     public function getHand(): array

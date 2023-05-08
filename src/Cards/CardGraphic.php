@@ -61,9 +61,10 @@ class CardGraphic extends Card
 
     public function __construct(
         string $suite,
-        string $rank
+        string $rank,
+        int $point
     ) {
-        parent::__construct($suite, $rank);
+        parent::__construct($suite, $rank, $point);
     }
 
     public function getCardRep(): string

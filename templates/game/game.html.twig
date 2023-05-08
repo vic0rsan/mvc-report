@@ -5,10 +5,25 @@
 {% block body %}
 <h1>{{ title }}</h1>
 <div class="card-wrap">
+    <h2>Spelaren</h2>
     <div class="card-grid">
-        {% for card in deck %}
-            <div class="card">{{card.getCardRep}}</div>
+        {% for card in player %}
+            {% if card.suite == "heart" or card.suite == "diamond" %}
+                <div class="card red-card">{{card.getCardRep}}</div>
+            {% else %}
+                <div class="card black-card">{{card.getCardRep}}</div>
+            {% endif %}
         {% endfor %}
+    </div>
+    <form method="POST", action="">
+            <input class="game-button" type="submit" name="draw" value="Nytt kort"
+                onclick="this.form.action='{{ path('game_draw') }}';">
+            <input class="game-button" type="submit" name="draw" value="Stanna"
+                onclick="this.form.action='{{ path('game_draw') }}';">
+    </form>
+    <h2>Banken</h2>
+    <div class="card-grid">
+        
     </div>
 </div>
 {% endblock %}

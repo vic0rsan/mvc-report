@@ -41,6 +41,10 @@ strong {
     background-color: white;
 }
 
+.card-wrap h2 {
+    color: black;
+}
+
 .card-grid {
     color: #fff;
     display: grid;
@@ -73,4 +77,8 @@ input {
 
 .red-card {
     color: red;
+}
+
+.game-button {
+    color: blue;
 }

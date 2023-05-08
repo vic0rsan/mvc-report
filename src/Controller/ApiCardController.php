@@ -36,7 +36,7 @@ class ApiCardController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/shuffle", name: "json_shuffle", methods: ['POST'])]
+    #[Route("/api/deck/shuffle", name: "json_shuffle", methods: ['POST', 'GET'])]
     public function jsonShuffle(SessionInterface $session): Response
     {
         $deck = new Deck();
@@ -59,7 +59,7 @@ class ApiCardController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/draw", name: "json_draw", methods: ['POST'])]
+    #[Route("/api/deck/draw", name: "json_draw", methods: ['POST', 'GET'])]
     public function jsonDraw(SessionInterface $session): Response
     {
         if (!$session->get('pick')) {
@@ -90,7 +90,7 @@ class ApiCardController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/draw/{number}", name: "json_draw_many", methods: ['POST'])]
+    #[Route("/api/deck/draw/{number}", name: "json_draw_many", methods: ['POST', 'GET'])]
     public function jsonDrawMany(SessionInterface $session, int $number): Response
     {
         if (!$session->get('pick')) {

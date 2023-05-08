@@ -4,4 +4,13 @@
 
 {% block body %}
 <h1>Game 21</h1>
+<p>
+    Game 21 går ut på att få en summa så närmast 21 som möjligt utan att överstiga 21.
+    Om man skulle få ihop en summa över 21 så är man disskad!
+    I det här spelet kommer du kör mot dealern.
+</p>
+ <form method="POST", action="">
+    <input type="submit" name="draw" value="Klicka här för att starta!"
+        onclick="this.form.action='{{ path('game_init') }}';">
+</form>
 {% endblock %}
