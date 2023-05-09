@@ -11,18 +11,24 @@ class CardHand
      */
     private array $hand;
 
-    public function __construct(array $hand = [])
+    public function __construct()
     {
-        $this->hand = $hand;
+        $this->hand = [];
     }
 
+    /**
+     * @param array<Card> $card
+     */
     public function add(array $card): void
     {
-        for ($i = 0; $i < count($card); $i++) {
-            array_push($this->hand, $card[$i]);
-        }
+        foreach ($card as $item) {
+            array_push($this->hand, $item);
+        }  
     }
 
+    /**
+     * @return array<Card>
+     */
     public function getHand(): array
     {
         return $this->hand;

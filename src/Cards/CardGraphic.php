@@ -4,7 +4,7 @@ namespace App\Cards;
 
 class CardGraphic extends Card
 {
-    private const cards = [
+    private const CARDS = [
         "heart-ace" => "🂱",
         "heart-2" => "🂲",
         "heart-3" => "🂳",
@@ -69,6 +69,6 @@ class CardGraphic extends Card
 
     public function getCardRep(): string
     {
-        return self::cards[$this->suite . "-" . $this->rank];
+        return self::CARDS[$this->suite . "-" . $this->rank];
     }
 }

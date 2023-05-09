@@ -8,6 +8,7 @@ body {
     padding: 2em;
     border: 6px solid #fff;
     box-shadow: 6px 6px;
+    min-height: 600px;
 }
 
 a {
@@ -56,7 +57,7 @@ strong {
 
 .card {
     font-size: 20vh;
-    height: 20vh;
+    height: 18vh;
 }
 
 input {
@@ -68,7 +69,8 @@ input {
     /*input has OS specific font-family*/
     text-decoration: underline;
     cursor: pointer;
-    color: #fff
+    color: #fff;
+    margin-bottom: 2vh;
 }
 
 .black-card {

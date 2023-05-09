@@ -6,8 +6,7 @@
 <h1>{{ title }}</h1>
 <div class="card-wrap">
     <h2>Spelaren</h2>
-    <span>{{ message }}</span>
-    <span>{{ player_points }}</span>
+    <h4>{{ player_points }} poäng</h4>
     <div class="card-grid">
         {% for card in player %}
             {% if card.suite == "heart" or card.suite == "diamond" %}
@@ -23,10 +22,16 @@
                 onclick="this.form.action='{{ path('game_draw') }}';">
             <input class="game-button" type="submit" name="stop" value="Stanna"
                 onclick="this.form.action='{{ path('game_stop') }}';">
+    {% else %}
+        <h3>{{ message }}</h3>
+        <form method="POST", action="">
+            <input class="game-button" type="submit" name="draw" value="Spela igen!"
+                onclick="this.form.action='{{ path('game_init') }}';">
+        </form>
     {% endif %}
     </form>
     <h2>Banken</h2>
-    <span>{{ bank_points }}</span>
+    <h4>{{ bank_points }} poäng</h4>
     <div class="card-grid">
         {% for card in bank %}
             {% if card.suite == "heart" or card.suite == "diamond" %}

@@ -6,15 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use App\Cards\Game21;
 
 class GameController extends AbstractController
 {
     #[Route("/game", name: "game_index")]
-    public function game21(SessionInterface $session): Response
+    public function game21(): Response
     {
-        return $this->render('game/index.html.twig', $data = ['title' => "Game Index"]);
+        return $this->render('game/index.html.twig', ['title' => "Game Index"]);
     }
 
     #[Route("/game/init", name: "game_init", methods: ["POST"])]
@@ -26,6 +27,7 @@ class GameController extends AbstractController
         $game->playerDraw();
         $game->bankDraw();
         $session->set('game', $game);
+        $session->set('status', "Ongoing match");
 
         return $this->redirectToRoute('game_start');
     }
@@ -38,13 +40,14 @@ class GameController extends AbstractController
         }
 
         $game = $session->get('game');
-        $player_points = $game->getPlayerPoint();
-        $bank_points = $game->getBankPoint();
+        $playerPoints = $game->getPlayerPoint();
+        $bankPoints = $game->getBankPoint();
         $gameover = $game->getGameover();
         $message = "";
 
         if ($gameover) {
             $message = $game->comparePoints();
+            $session->set('status', $message);
         }
 
         $data = [
@@ -53,10 +56,10 @@ class GameController extends AbstractController
             'bank' => $game->getBank()->getHand(),
             'gameover' => $gameover,
             'message' => $message,
-            'player_points' => $player_points,
-            'bank_points' => $bank_points
+            'player_points' => $playerPoints,
+            'bank_points' => $bankPoints
         ];
-        
+
         return $this->render('game/game.html.twig', $data);
     }
 
@@ -80,6 +83,34 @@ class GameController extends AbstractController
         $game = $session->get('game');
         $game->bankTurn();
         $game->setGameover();
+
         return $this->redirectToRoute('game_start');
+    }
+
+    #[Route("/game/doc", name: "game_doc")]
+    public function doc(): Response
+    {
+        return $this->render('game/doc.html.twig', ["title" => "Game Doc"]);
+    }
+
+    #[Route("/api/game", name: "game_api")]
+    public function api(SessionInterface $session): Response
+    {
+        $player = $session->get('game')->getPlayerPoint();
+        $bank = $session->get('game')->getBankPoint();
+        $status = $session->get('status');
+
+        $data = [
+            'player' => $player,
+            'bank' => $bank,
+            'status' => $status
+        ];
+
+        $response = new JsonResponse($data);
+        $response->setEncodingOptions(
+            $response->getEncodingOptions() | JSON_PRETTY_PRINT
+        );
+
+        return $response;
     }
 }

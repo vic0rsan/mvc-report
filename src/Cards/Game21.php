@@ -14,7 +14,7 @@ class Game21
         $this->player = new CardHand();
         $this->bank = new CardHand();
         $this->deck = new Deck();
-        $this->gameover = FALSE;
+        $this->gameover = false;
     }
 
     public function getPlayer(): CardHand
@@ -49,7 +49,7 @@ class Game21
 
     public function setGameover(): void
     {
-        $this->gameover = TRUE;
+        $this->gameover = true;
     }
 
     public function playerDraw(): void
@@ -77,11 +77,11 @@ class Game21
     {
         if ($this->player->getSum() > 21) {
             return "Banken vann!";
-        } else if ($this->bank->getSum() > 21) {
+        } elseif ($this->bank->getSum() > 21) {
             return "Spelaren vann!";
-        } else if ($this->player->getSum() > $this->bank->getSum()) {
+        } elseif ($this->player->getSum() > $this->bank->getSum()) {
             return "Spelaren vann!";
-        } else if ($this->player->getSum() < $this->bank->getSum()) {
+        } elseif ($this->player->getSum() < $this->bank->getSum()) {
             return "Banken vann!";
         }
 
