@@ -4,9 +4,14 @@ namespace App\Cards;
 
 use App\Cards\CardGraphic;
 
+/**
+ * Klassen för att skapa ett kortspel av 52st kort.
+ */
 class Deck
 {
     /**
+     * Arayerna innehåller alla attribut för färg, 
+     * rang och poäng ett kort kan anta. 
      * @var array<Card>
      */
     private array $deck;
@@ -27,11 +32,19 @@ class Deck
         "ace" => 14,
     ];
 
+    /**
+     * Konstrukturn för att skapa ett kortdeck.
+     * Deck instansattribut initierar med en tom array.
+     */
     public function __construct()
     {
         $this->deck = [];
     }
 
+    /**
+     * Metod för att skapa samtliga 52 kort i kortleken.
+     * Den ny skapta kortleken lagra i instansattributet $deck
+     */
     public function createDeck(): void
     {
         $this->deck = [];
@@ -44,6 +57,9 @@ class Deck
     }
 
     /**
+     * Metoden för att dra ett eller flera kort från kortleken.
+     * Kortet väljs slumpmäsigt och pushas till den nya array $pick.
+     * Metoden returnerar array $pick, dvs de valda korten.
      * @return array<Card>
      */
     public function draw(int $number = 1): array
@@ -59,12 +75,16 @@ class Deck
         return $pick;
     }
 
+    /**
+     * Metoden för att blanda kortleken.
+     */
     public function shuffleDeck(): void
     {
         shuffle($this->deck);
     }
 
     /**
+     * Metoden returnerar kortleken.
      * @return array<Card>
      */
     public function getDeck(): array
@@ -72,6 +92,9 @@ class Deck
         return $this->deck;
     }
 
+    /**
+     * Metoden returnerar antalet kort kvar i kortleken.
+     */
     public function cardLeft(): int
     {
         return count($this->deck);

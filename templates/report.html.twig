@@ -28,19 +28,34 @@
             <p>
                 Arv inom objektorientering är när en klass ärver klassmetoder och attribut från en föräldrar klass. Ett exempel skulle kunna vara en bass klass för djur där man väljer att skapa en barnklass för attribut som gäller för hundar. Man bygger helt enkelt vidare på bass klassen med nya metoder och attribut som gäller för specifika ändamål utan att påverka självaste föräldrar klassen. 
                 En kompositions relation inom objektorientering menar man en relation som ena klassen är beroende av för att skapa dessa egna objekt. 
-                Ett exempel skulle kunna vara ett rum i huset där ett rum kan inte existera utan ett hus, men ett hus behöver inte inneha några rum för att existera. En interface inom PHP-sammanhang  är ett sätt att definiera klass metoder utan att direkt implementation. Interface är mer ett sätt för att spediera metoder som bör förekomma för klassen. 
-                Slutligen traits är ett sätt att underlätta/undvika multipla ärv av klasser,  då PHP saknar stöd för detta samt är det en bättre vanna att inte skapa klasser med multipla ärv. Traits är en uppsättning av klassmetoder som en eller flera klasser kan används sig utav utan att förbinda ett parent-child förhållande. 
+                Ett exempel skulle kunna vara ett rum i huset där ett rum kan inte existera utan ett hus, men ett hus behöver inte inneha några rum för att existera. En interface inom PHP-sammanhang är ett sätt att definiera klass metoder utan att direkt implementation. Interface är mer ett sätt för att spediera metoder som bör förekomma för klassen. 
+                Slutligen traits är ett sätt att underlätta/undvika multipla ärv av klasser, då PHP saknar stöd för detta samt är det en bättre vanna att inte skapa klasser med multipla ärv. Traits är en uppsättning av klassmetoder som en eller flera klasser kan används sig utav utan att förbinda ett parent-child förhållande.
             </p>
             <p>
             Jag började med att skapa det grundläggande klasserna; Card och Deck med godtyckliga attributvärden och klassmetoder. Sedan skapade jag en ny controller för samtliga card-klasser för att testa initiering av objekt för att se om det fungerar som tänkt. Nästa steg var att skapa routes och twig-templates enligt kravspecen. Jag valde här näst en metod för att representera de olika spelkorten där min lösning var ett skapa en CardGraphic klass bestående av unicode-karaktärer och ärver Card klassen. 
             CardGraphics returnera motsvarande värde genom dess rang och färg motsvarare en specifik nyckel för unicode-arrayen som den anroppar och returneras unicode-värdet. Slutligen vissas samtliga spelkort genom en for-loop där CardGraphic metoden "getCardRep" anroppas. 
-            Jag känner mig nöjd än så länge. En förbättringsförslag skulle möjligtvis var att dela upp klassmetoder från Deck till CardHand som relaterar till draw-funktionerna. En annan förbättring skulle kunna vara dokumentering/kommentera koden för att underlätta läsligheten för andra och mig själv. 
+            Jag känner mig nöjd än så länge. En förbättringsförslag skulle möjligtvis var att dela upp klassmetoder från Deck till CardHand som relaterar till draw-funktionerna. En annan förbättring skulle kunna vara dokumentering/kommentera koden för att underlätta läsligheten för andra och mig själv.
             </p>
             <p>
                 Än så länge känns allt tydligt och klart med Symfony och MVC-konceptet. Jag har arbetat i liknande utvecklingsmiljöer sedan tidigare.
             </p>
             <p>
                 Min TIL handlar om det introducerade PHP-koncepten som Interface och Traits som verkar var bra ersättningar för ärv-relationer, vilket kan komma till nytta när man vill använda en uppsättning metoder utan att skapa ett beroende/förhållande med en klass.
+            </p>
+            <h2>Kmom03</h2>
+            <p>
+                Fördelen med att modellera ett projekt innan man börjar med implementationer är att man kan överföra tanker och idéer från huvudet till pappret vilket medför att man kan få en checklista att boka av genom utvecklingsstadiet, vilket medför en smidigare utvecklingsprocess. 
+                För mig får jag även en form av validation om tankarna finns rakt framför mig i fysiskt form och kan då enklare bryta ned dem för att se om det håller i "verkligheten". En annan fördel med flödesdiagram och pseudokod skulle vara för att redovisa sina tankar inom ex ett utvecklingsteam där det är mer eller mindre obligatorisk då övriga skall kunna förstå samt validera dina tankar för projektet.
+            </p>
+            <p>
+                Jag började med att skapa klassen för spel-kontroller. Nästa steg var att skapa de templates för sidorna enligt kravspecen. Sedan implementerad jag resterade metoder stegvist och validerade utmatningen av objekten med hjälp av "var_dump".  När jag kommit halvvägs genom projektet noterade jag att kontroller började bli en aning  massiv och beslutade då enligt uppmaningen från kravspecen att refaktoriserar koden med hjälp av en separat klass för spelet och dess metoder/funktionalitet. 
+                I slutändan sparade jag minskade jag kontroller med ca 30 rader kod. För att få motsvarande poäng för samtliga spelkort modifierade jag Card-klassen med ett nytt instansattribut "point" och en get-metod i HandCard-klassen (representerar spelarnas kort i handen) för att summera spelarnas kortsumma för varje runda. Jag är överlag nöjd med mitt kortspel när det kommer till funktionaliteten. Däremot kan gränssnittet poleras då den är för stunden relativt simpel/primitiv då jag har inte lagt en större del kring stylingen.
+            </p>
+            <p>
+                Jag har inte haft några svårigheter att komma igång med Symfony då ramverket skiljer sig inte speciellt mycket från övriga ramverk som jag har jobbat med. Tycker konceptet med kontroller och templates är tydliga.
+            </p>
+            <p>
+                Min TIL är hur självaste utvecklingsprocessen för ett mindre projekt inom Symfony kan ske.
             </p>
         </section>
     </article>

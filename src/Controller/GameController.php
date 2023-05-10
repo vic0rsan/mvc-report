@@ -96,10 +96,15 @@ class GameController extends AbstractController
     #[Route("/api/game", name: "game_api")]
     public function api(SessionInterface $session): Response
     {
-        $player = $session->get('game')->getPlayerPoint();
-        $bank = $session->get('game')->getBankPoint();
-        $status = $session->get('status');
+        $player = null;
+        $bank = null;
 
+        if ($session->get('game')) {
+            $player = $session->get('game')->getPlayerPoint();
+            $bank = $session->get('game')->getBankPoint();
+        } 
+
+        $status = $session->get('status');
         $data = [
             'player' => $player,
             'bank' => $bank,

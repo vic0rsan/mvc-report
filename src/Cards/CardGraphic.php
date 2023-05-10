@@ -59,6 +59,10 @@ class CardGraphic extends Card
         "club-king" => "🃞",
     ];
 
+    /**
+     * Konstruktorn för CardGraphic som ärver Card.
+     * Instansattributen är då identiskt med föräldrarklassen.
+     */
     public function __construct(
         string $suite,
         string $rank,
@@ -67,6 +71,10 @@ class CardGraphic extends Card
         parent::__construct($suite, $rank, $point);
     }
 
+    /**
+     * Metoden returneras en unicode-karaktär 
+     * som representerar kortets färg och rang.
+     */
     public function getCardRep(): string
     {
         return self::CARDS[$this->suite . "-" . $this->rank];
