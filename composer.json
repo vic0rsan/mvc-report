@@ -95,7 +95,13 @@
         "lint": [
             "@phpmd",
             "@phpstan"
-        ]
+        ],
+        "clean": "rm -rf build .phpunit.result.cache",
+        "clean-all": [
+            "@clean",
+            "rm -rf vendor composer.lock"
+        ],
+        "phpunit": "XDEBUG_MODE=coverage vendor/bin/phpunit"
     },
     "conflict": {
         "symfony/symfony": "*"

@@ -13,17 +13,17 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Cards\\Card\u003A\u003AgetSuite\u0028\u0029",
             "name": "getSuite",
-            "summary": "",
+            "summary": "Returnerar\u0020kortets\u0020tillh\u00F6rande\u0020f\u00E4rg.",
             "url": "classes/App-Cards-Card.html#method_getSuite"
         },                {
             "fqsen": "\\App\\Cards\\Card\u003A\u003AgetRank\u0028\u0029",
             "name": "getRank",
-            "summary": "",
+            "summary": "Returnerar\u0020kortets\u0020rang.",
             "url": "classes/App-Cards-Card.html#method_getRank"
         },                {
             "fqsen": "\\App\\Cards\\Card\u003A\u003AgetPoint\u0028\u0029",
             "name": "getPoint",
-            "summary": "",
+            "summary": "Returnerar\u0020kortets\u0020v\u00E4rde\u0020\u0028i\u0020ex\u0020Game\u002021\u0029.",
             "url": "classes/App-Cards-Card.html#method_getPoint"
         },                {
             "fqsen": "\\App\\Cards\\Card\u003A\u003A\u0024suite",
@@ -93,7 +93,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Cards\\Deck",
             "name": "Deck",
-            "summary": "",
+            "summary": "Klassen\u0020f\u00F6r\u0020att\u0020skapa\u0020ett\u0020kortspel\u0020av\u002052st\u0020kort.",
             "url": "classes/App-Cards-Deck.html"
         },                {
             "fqsen": "\\App\\Cards\\Deck\u003A\u003A__construct\u0028\u0029",
@@ -118,7 +118,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Cards\\Deck\u003A\u003AgetDeck\u0028\u0029",
             "name": "getDeck",
-            "summary": "",
+            "summary": "Metoden\u0020returnerar\u0020kortleken.",
             "url": "classes/App-Cards-Deck.html#method_getDeck"
         },                {
             "fqsen": "\\App\\Cards\\Deck\u003A\u003AcardLeft\u0028\u0029",
@@ -138,7 +138,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\App\\Cards\\Deck\u003A\u003A\u0024deck",
             "name": "deck",
-            "summary": "",
+            "summary": "Arayerna\u0020inneh\u00E5ller\u0020alla\u0020attribut\u0020f\u00F6r\u0020f\u00E4rg,\nrang\u0020och\u0020po\u00E4ng\u0020ett\u0020kort\u0020kan\u0020anta.",
             "url": "classes/App-Cards-Deck.html#property_deck"
         },                {
             "fqsen": "\\App\\Cards\\Game21",
