@@ -47,11 +47,17 @@ class Game21
         return $this->bank->getSum();
     }
 
+    /**
+     * @param array<Card> $cards
+     */
     public function setPlayerHand(array $cards): void
     {
         $this->player->add($cards);
     }
 
+    /**
+     * @param array<Card> $cards
+     */
     public function setBankHand(array $cards): void
     {
         $this->bank->add($cards);

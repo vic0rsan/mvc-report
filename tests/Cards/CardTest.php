@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
  */
 class CardTest extends TestCase
 {
+    /**
+     * @var Card
+     */
     private $card;
 
     public function setUp(): void

@@ -171,6 +171,21 @@ Search.appendIndex(
             "summary": "Metoden\u0020returnerar\u0020po\u00E4ngen\u0020f\u00F6r\u0020Datorns\/Bankens\u0020st\u00E4llning.",
             "url": "classes/App-Cards-Game21.html#method_getBankPoint"
         },                {
+            "fqsen": "\\App\\Cards\\Game21\u003A\u003AsetPlayerHand\u0028\u0029",
+            "name": "setPlayerHand",
+            "summary": "",
+            "url": "classes/App-Cards-Game21.html#method_setPlayerHand"
+        },                {
+            "fqsen": "\\App\\Cards\\Game21\u003A\u003AsetBankHand\u0028\u0029",
+            "name": "setBankHand",
+            "summary": "",
+            "url": "classes/App-Cards-Game21.html#method_setBankHand"
+        },                {
+            "fqsen": "\\App\\Cards\\Game21\u003A\u003AresetHand\u0028\u0029",
+            "name": "resetHand",
+            "summary": "",
+            "url": "classes/App-Cards-Game21.html#method_resetHand"
+        },                {
             "fqsen": "\\App\\Cards\\Game21\u003A\u003AgetGameover\u0028\u0029",
             "name": "getGameover",
             "summary": "Metoden\u0020returnerar\u0020true\/false\u0020beroende\u0020om\u0020spelet\u0020\u00E4r\u0020\u00F6ver\u0020eller\u0020ej.",

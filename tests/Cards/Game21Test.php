@@ -73,7 +73,7 @@ class TestGame21 extends TestCase
             new Card("spade", "3", 3),
             new Card("diamond", "jack", 11)
         ]);
-       
+
         $this->assertSame("Spelaren vann!", $game->comparePoints());
         $game->resetHand();
 
@@ -88,7 +88,7 @@ class TestGame21 extends TestCase
         $this->assertSame("Spelaren vann!", $game->comparePoints());
         $game->resetHand();
 
-        //Set bank's cards sum to 17 or greater 
+        //Set bank's cards sum to 17 or greater
         //Set player's sum to below 17
         //The bank should win.
         $game->setBankHand([
