@@ -102,7 +102,7 @@ class GameController extends AbstractController
         if ($session->get('game')) {
             $player = $session->get('game')->getPlayerPoint();
             $bank = $session->get('game')->getBankPoint();
-        } 
+        }
 
         $status = $session->get('status');
         $data = [

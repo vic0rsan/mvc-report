@@ -72,7 +72,7 @@ class CardGraphic extends Card
     }
 
     /**
-     * Metoden returneras en unicode-karaktär 
+     * Metoden returneras en unicode-karaktär
      * som representerar kortets färg och rang.
      */
     public function getCardRep(): string

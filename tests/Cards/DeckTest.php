@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
  * Test cases for class Deck.
 */
 
-class DeckTest extends TestCase 
+class DeckTest extends TestCase
 {
     public function testCreateDeck(): void
     {

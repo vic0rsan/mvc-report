@@ -47,6 +47,22 @@ class Game21
         return $this->bank->getSum();
     }
 
+    public function setPlayerHand(array $cards): void
+    {
+        $this->player->add($cards);
+    }
+
+    public function setBankHand(array $cards): void
+    {
+        $this->bank->add($cards);
+    }
+
+    public function resetHand(): void
+    {
+        $this->player = new CardHand();
+        $this->bank = new CardHand();
+    }
+
     /**
      * Metoden returnerar true/false beroende om spelet är över eller ej.
      */

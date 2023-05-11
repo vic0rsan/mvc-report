@@ -28,7 +28,7 @@ class CardHand
     {
         foreach ($card as $item) {
             array_push($this->hand, $item);
-        }  
+        }
     }
 
     /**

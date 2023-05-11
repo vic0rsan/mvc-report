@@ -15,7 +15,7 @@ class CardGraphicTest extends TestCase
     {
         $this->card = new CardGraphic("spade", "ace", 14);
     }
-  
+
     public function testGetCardRep(): void
     {
         $this->assertSame("🂡", $this->card->getCardRep());

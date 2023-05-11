@@ -15,7 +15,7 @@ class CardTest extends TestCase
     {
         $this->card = new Card("spade", "ace", 14);
     }
-  
+
     public function testGetSuite(): void
     {
         $this->assertSame('spade', $this->card->getSuite());

@@ -10,8 +10,8 @@ use App\Cards\CardGraphic;
 class Deck
 {
     /**
-     * Arayerna innehåller alla attribut för färg, 
-     * rang och poäng ett kort kan anta. 
+     * Arayerna innehåller alla attribut för färg,
+     * rang och poäng ett kort kan anta.
      * @var array<Card>
      */
     private array $deck;

@@ -3,7 +3,7 @@
 namespace App\Cards;
 
 /**
- * Card klassen för att skapa kort. 
+ * Card klassen för att skapa kort.
  * Ett kort-objekt har attribut för dess färg, rang och poäng.
  */
 class Card
@@ -16,7 +16,7 @@ class Card
      * Konstruktorn för att skapa ett kort.
      * Metoden tar 3st inparametrar;
      * $suite för färgen, $rank för rangen
-     * och $point för poängen som kortet representerar. 
+     * och $point för poängen som kortet representerar.
      */
     public function __construct(
         string $suite,
