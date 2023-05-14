@@ -8,7 +8,7 @@
             <h1>Redovisning av kursmoment i kursen vlinux</h1>
         </header>
         <section>
-            <h2>Kmom01</h2>
+            <h2 id="kmom01">Kmom01</h2>
             <p>Konceptet om objektorientering är ej något nytt för mig, har använt mig av det i tidigare dbwebb-kurser, både i Python och PHP från den förra mvc-kursen. Skillnaden mellan dessa språk ligger i syntaxen över hur en klass initieras och kan då utan svårigheter pendla mellan dessa språk.</p>
             <p>
                 Än så länge har vi skapat klasser för controller som hanterar de olika sidorna utan någon konstruktor-metod, vilket är princip nästan som att programmera i den funktionell paradigmen. 
@@ -24,7 +24,8 @@
             <p>
                 I detta kursmoment har jag lärt mig grunderna för PHP-ramverket Symfony vilket täcker skapandet av Controller, undersidor i twig, samt dess fil-struktur. Dock inga nya kunskaper gällande objektorientering  än så länge då allt kändes bekant. 
             </p>
-            <h2>Kmom02</h2>
+
+            <h2 id="kmom02">Kmom02</h2>
             <p>
                 Arv inom objektorientering är när en klass ärver klassmetoder och attribut från en föräldrar klass. Ett exempel skulle kunna vara en bass klass för djur där man väljer att skapa en barnklass för attribut som gäller för hundar. Man bygger helt enkelt vidare på bass klassen med nya metoder och attribut som gäller för specifika ändamål utan att påverka självaste föräldrar klassen. 
                 En kompositions relation inom objektorientering menar man en relation som ena klassen är beroende av för att skapa dessa egna objekt. 
@@ -42,7 +43,8 @@
             <p>
                 Min TIL handlar om det introducerade PHP-koncepten som Interface och Traits som verkar var bra ersättningar för ärv-relationer, vilket kan komma till nytta när man vill använda en uppsättning metoder utan att skapa ett beroende/förhållande med en klass.
             </p>
-            <h2>Kmom03</h2>
+
+            <h2 id="kmom03">Kmom03</h2>
             <p>
                 Fördelen med att modellera ett projekt innan man börjar med implementationer är att man kan överföra tanker och idéer från huvudet till pappret vilket medför att man kan få en checklista att boka av genom utvecklingsstadiet, vilket medför en smidigare utvecklingsprocess. 
                 För mig får jag även en form av validation om tankarna finns rakt framför mig i fysiskt form och kan då enklare bryta ned dem för att se om det håller i "verkligheten". En annan fördel med flödesdiagram och pseudokod skulle vara för att redovisa sina tankar inom ex ett utvecklingsteam där det är mer eller mindre obligatorisk då övriga skall kunna förstå samt validera dina tankar för projektet.
@@ -56,6 +58,27 @@
             </p>
             <p>
                 Min TIL är hur självaste utvecklingsprocessen för ett mindre projekt inom Symfony kan ske.
+            </p>
+
+            <h2 id="kmom04">Kmom04</h2>
+            <p>
+                Jag har tidigare jobbat med enhetstester i andra programmeringsspråk som Python och JavaScript och noterade inga speciella skillnader med att skriva tester i PHPUnit. När det kom till att testa model-klasserna för min mvc-report gick det bra och behövde endast göra minimala ändringar i koden för att få den mer testbar. Ex i Game21-klassen vill jag testa en metod som avgör vem som vinner beroende på vilka kort i handen motståndaren har. 
+                Eftersom korten tilldelas slumpmässigt behöver jag på något sätt skapa en lösning där man kan definiera en korthand. I mitt fall valde jag att skapa nya setters för vardera spelare där man kan skapa en korthand med specifika kort. Ett annan sätt att lösa ovanstående problem skulle kunna vara att mocka random-funktionen i metoden som tilldelar kort.
+            </p>
+            <p>
+                Tycker jag lyckades väl med kodtäckningen av modell-klasserna där jag fick en täckning på hela 100% för totalt 5st klasser.
+            </p>
+            <p>
+                Jag upplevde min kod för grundklasserna att var mer eller mindre testbara. Det enda klassen jag blev tvungen att fixa till var klassen som redogör en omgång av kortspelet, mer specifikt för att testa de olika sätten ett spel kan avslutas. Då poäng för spelets motståndare sker på slumpen, blir det då svårt att skriva testfall där den ger olika värden för varje anrop. Min lösning var att skapa setter-metoder för att ange det önskvärda värdet som triggar igång en av utfallen för ett spelets summering.
+            </p>
+            <p>
+                Jag valde att addera klass-metoder istället för att skriva om existerande kod då jag vill ej riskera att något går sönder vid refaktoriseringen. De metoder jag la till var klass-setters vilket jag anser vara "lätta" på resurserna och tar upp få kodrader, vilket gjorde att jag kunde implementera dem utan dåligt samvete.
+            </p>
+            <p>
+                Testbar kod är definitivt något som jag ser som en god kodkaraktäristik då det underlättar utförandet vid teststadiet. Tester är i sin tur ett sätt att garantera en viss kvalité av funktionalitet för programmet och för att säkerställa att metoderna har ett önskvärd beteende.
+            </p>
+            <p>
+                Min TIL för detta kmom var hur man kan generera ett dokument för kodkommentarer med phpdoc och en täckningsrapport via phpunit.
             </p>
         </section>
     </article>
