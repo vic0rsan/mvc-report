@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Lägg till en bok{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Lägg till en ny bok i registret</h1>
+    <form class="book" action="{{ path("add_book_form") }}" method="post">
+        <label for="title">Titel:</label><br>
+        <input type="text" name="title"><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="number" name="isbn" min="0000000001" max="9999999999"><br>
+        <label for="author">Författare:</label><br>
+        <input type="text" name="author"><br>
+        <label for="cover">Cover</label><br>
+        <input type="text" name="cover"><br>
+        <input type="submit" value="Lägg till">
+    </form>
+</div>
+
+{% endblock %}

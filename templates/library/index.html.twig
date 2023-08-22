@@ -1,7 +1,16 @@
 {% extends "base.html.twig" %}
 
-{% block title %}API{% endblock %}
+{% block title %}Bibliotek{% endblock %}
 
 {% block body %}
+
+<div class="example-wrapper">
+    <h1>Biblioteket</h1>
+    <ul>
+        <li>
+            <a href="{{ path("library") }}">Lista över samtliga böker</a>
+        </li>
+    </ul>
+</div>
 
 {% endblock %}
