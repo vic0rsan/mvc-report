@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{book.title}}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Radera {{book.title}}</h1>
+    <table>
+        <tr>
+            <th>ISBN</th>
+            <th>Titel</th>
+            <th>Författare</th>
+            <th>Cover</th>
+        </tr>
+            <tr>
+                <td>{{book.isbn}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.cover}}</td>
+            </tr>
+    </table>
+    <form action="{{ path("delete_book")}}" method="post">
+        <input type="hidden" name="id" value="{{book.id}}">
+        <input type="submit" value="Radera">
+    </form>
+</div>
+
+{% endblock %}

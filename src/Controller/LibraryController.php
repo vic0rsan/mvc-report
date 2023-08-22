@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Controller;
 
@@ -24,20 +24,20 @@ class LibraryController extends AbstractController
     {
         return $this->render('library/add.html.twig');
     }
-    
+
     #[Route('/library/add', name: 'add_book', methods: ['POST'])]
     public function addBook(
         ManagerRegistry $doctrine,
         Request $request
     ): Response {
-        $entityManager = $doctrine->getManager(); 
-        
+        $entityManager = $doctrine->getManager();
+
         $library = new Library();
 
-        $library->setTitle($request->request->get('title'));
-        $library->setIsbn($request->request->get('isbn'));
-        $library->setAuthor($request->request->get('author'));
-        $library->setCover($request->request->get('cover'));
+        $library->setTitle((string) $request->request->get('title'));
+        $library->setIsbn((int) $request->request->get('isbn'));
+        $library->setAuthor((string) $request->request->get('author'));
+        $library->setCover((string) $request->request->get('cover'));
 
         // tell Doctrine you want to (eventually) save the Product
         // (no queries yet)
@@ -62,10 +62,10 @@ class LibraryController extends AbstractController
     #[Route('/library/book/detail/{id}', name: 'book_detail')]
     public function oneBook(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
         $book = $libraryRepository
-            ->find($id);
+            ->find($bookId);
 
         return $this->render('library/detail.html.twig', ['book' => $book]);
     }
@@ -73,10 +73,10 @@ class LibraryController extends AbstractController
     #[Route('/library/book/update/{id}', name: 'update_book_form')]
     public function updateBookForm(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
         $book = $libraryRepository
-            ->find($id);
+            ->find($bookId);
 
         return $this->render('library/update.html.twig', ['book' => $book]);
     }
@@ -86,7 +86,31 @@ class LibraryController extends AbstractController
         Request $request,
         LibraryRepository $libraryRepository
     ): Response {
-        $book = $libraryRepository->find($request->request->get('id'));
+        $bookId = $request->request->get('id');
+        $book = $libraryRepository->find($bookId);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book by specified id: '.$bookId
+            );
+        }
+
+        $book->setTitle((string) $request->request->get('title'))
+            ->setIsbn((int) $request->request->get('isbn'))
+            ->setAuthor((string) $request->request->get('author'))
+            ->setCover((string) $request->request->get('cover'));
+
+        $libraryRepository->save($book, true);
+
+        return $this->redirectToRoute('book_index');
+    }
+
+    #[Route('/library/book/delete/{id}', name: 'delete_book_confirm')]
+    public function deleteBookConfirm(
+        LibraryRepository $libraryRepository,
+        int $id
+    ): Response {
+        $book = $libraryRepository->find($id);
 
         if (!$book) {
             throw $this->createNotFoundException(
@@ -94,12 +118,24 @@ class LibraryController extends AbstractController
             );
         }
 
-        $book->setTitle($request->request->get('title'))
-            ->setIsbn($request->request->get('isbn'))
-            ->setAuthor($request->request->get('author'))
-            ->setCover($request->request->get('cover'));
+        return $this->render('library/delete.html.twig', ['book' => $book]);
+    }
 
-        $libraryRepository->save($book, true);
+    #[Route('/library/book/delete', name: 'delete_book', methods: ['POST'])]
+    public function deleteBook(
+        Request $request,
+        LibraryRepository $libraryRepository,
+    ): Response {
+        $id = $request->request->get('id');
+        $book = $libraryRepository->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book by specified id: '.$id
+            );
+        }
+
+        $libraryRepository->remove($book, true);
 
         return $this->redirectToRoute('book_index');
     }

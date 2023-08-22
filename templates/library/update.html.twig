@@ -7,7 +7,7 @@
 <div class="example-wrapper">
     <h1>Redigera {{book.title}}</h1>
     <form class="book" action="{{ path("update_book") }}" method="post">
-        <input type="number" name="id" value="{{book.id}}" hidden>
+        <input type="hidden" name="id" value="{{book.id}}">
         <label for="title">Titel:</label><br>
         <input type="text" name="title" value="{{book.title}}"><br>
         <label for="isbn">ISBN:</label><br>
