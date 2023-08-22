@@ -6,8 +6,10 @@
 
 <div class="example-wrapper">
     <h1>Böker i registret</h1>
+    <a href="{{ path("add_book") }}">Lägg till bok</a>
     <table>
         <tr>
+            <th></th>
             <th>ISBN</th>
             <th>Titel</th>
             <th>Författare</th>
@@ -15,8 +17,9 @@
         </tr>
         {% for book in books %}
             <tr>
+                <td><a href="{{path("update_book_form", {'id': book.id}) }}">Redigera</a> | <a>Radera</a></td>
                 <td>{{book.isbn}}</td>
-                <td>{{book.title}}</td>
+                <td><a href="{{path("book_detail", {'id': book.id}) }}">{{book.title}}</a></td>
                 <td>{{book.author}}</td>
                 <td>{{book.cover}}</td>
             </tr>

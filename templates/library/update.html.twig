@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Redigera bok{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Redigera {{book.title}}</h1>
+    <form class="book" action="{{ path("update_book") }}" method="post">
+        <input type="number" name="id" value="{{book.id}}" hidden>
+        <label for="title">Titel:</label><br>
+        <input type="text" name="title" value="{{book.title}}"><br>
+        <label for="isbn">ISBN:</label><br>
+        <input type="number" name="isbn" min="0000000001" max="9999999999" value="{{book.isbn}}"><br>
+        <label for="author">Författare:</label><br>
+        <input type="text" name="author" value="{{book.author}}"><br>
+        <label for="cover">Cover</label><br>
+        <input type="text" name="cover" value="{{book.cover}}"><br>
+        <input type="submit" value="Spara">
+    </form>
+</div>
+
+{% endblock %}

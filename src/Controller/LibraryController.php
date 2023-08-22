@@ -49,13 +49,58 @@ class LibraryController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
 
-    #[Route('/library/books', name: 'book_index')]
-    public function book(
+    #[Route('/library/book', name: 'book_index')]
+    public function manyBook(
         LibraryRepository $libraryRepository
     ): Response {
         $books = $libraryRepository
             ->findAll();
 
         return $this->render('library/book.html.twig', ['books' => $books]);
+    }
+
+    #[Route('/library/book/detail/{id}', name: 'book_detail')]
+    public function oneBook(
+        LibraryRepository $libraryRepository,
+        int $id
+    ): Response {
+        $book = $libraryRepository
+            ->find($id);
+
+        return $this->render('library/detail.html.twig', ['book' => $book]);
+    }
+
+    #[Route('/library/book/update/{id}', name: 'update_book_form')]
+    public function updateBookForm(
+        LibraryRepository $libraryRepository,
+        int $id
+    ): Response {
+        $book = $libraryRepository
+            ->find($id);
+
+        return $this->render('library/update.html.twig', ['book' => $book]);
+    }
+
+    #[Route('/library/book/update', name: 'update_book', methods: ['POST'])]
+    public function updateBook(
+        Request $request,
+        LibraryRepository $libraryRepository
+    ): Response {
+        $book = $libraryRepository->find($request->request->get('id'));
+
+        if (!$book) {
+            throw $this->createNotFoundException(
+                'No book by specified id: '.$id
+            );
+        }
+
+        $book->setTitle($request->request->get('title'))
+            ->setIsbn($request->request->get('isbn'))
+            ->setAuthor($request->request->get('author'))
+            ->setCover($request->request->get('cover'));
+
+        $libraryRepository->save($book, true);
+
+        return $this->redirectToRoute('book_index');
     }
 }
