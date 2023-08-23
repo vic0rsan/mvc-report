@@ -631,6 +631,21 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Repository-ProductRepository.html#method_remove"
         },                {
+            "fqsen": "\\App\\Controller\\ApiLibraryController",
+            "name": "ApiLibraryController",
+            "summary": "",
+            "url": "classes/App-Controller-ApiLibraryController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiLibraryController\u003A\u003AjsonBook\u0028\u0029",
+            "name": "jsonBook",
+            "summary": "",
+            "url": "classes/App-Controller-ApiLibraryController.html#method_jsonBook"
+        },                {
+            "fqsen": "\\App\\Controller\\ApiLibraryController\u003A\u003AjsonOneBook\u0028\u0029",
+            "name": "jsonOneBook",
+            "summary": "",
+            "url": "classes/App-Controller-ApiLibraryController.html#method_jsonOneBook"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",

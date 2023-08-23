@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>API</h1>
-    <p>Nedan kan du hitta samtliga länker gällande kortleken.</p>
+    <p>Nedan kan du hitta samtliga länker för webbsidans API</p>
     <ul>
         <li>
             <a href="{{ path("quote") }}">api/quote</a>
@@ -12,7 +12,16 @@
         <li>
             <a href="{{ path("json_deck") }}">api/deck</a>
         </li>
-        <form method="POST", action="">
+        <li>
+            <a href="{{ path("game_api") }}">api/game</a>
+        </li>
+        <li>
+            <a href="{{ path("json_book") }}">api/library/books</a>
+        </li>
+        <li>
+            <a href="{{ path("json_one_book", {isbn:1234567890}) }}">api/library/book/:isbn</a>
+        </li>
+        <form class="api-form" method="POST", action="">
             <li>
                 <input type="submit" name="shuffle" value="POST api/deck/shuffle"
                     onclick="this.form.action='{{ path('json_shuffle') }}';">
@@ -26,8 +35,5 @@
                     onclick="this.form.action='{{ path('json_draw_many', {number:3}) }}';">
             </li>
         </form>
-        <li>
-            <a href="{{ path("game_api") }}">api/game</a>
-        </li>
     </ul>
 {% endblock %}

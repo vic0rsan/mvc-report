@@ -59,7 +59,7 @@ class LibraryController extends AbstractController
         return $this->render('library/book.html.twig', ['books' => $books]);
     }
 
-    #[Route('/library/book/detail/{id}', name: 'book_detail')]
+    #[Route('/library/book/detail/{bookId}', name: 'book_detail')]
     public function oneBook(
         LibraryRepository $libraryRepository,
         int $bookId
@@ -70,7 +70,7 @@ class LibraryController extends AbstractController
         return $this->render('library/detail.html.twig', ['book' => $book]);
     }
 
-    #[Route('/library/book/update/{id}', name: 'update_book_form')]
+    #[Route('/library/book/update/{bookId}', name: 'update_book_form')]
     public function updateBookForm(
         LibraryRepository $libraryRepository,
         int $bookId
@@ -105,16 +105,16 @@ class LibraryController extends AbstractController
         return $this->redirectToRoute('book_index');
     }
 
-    #[Route('/library/book/delete/{id}', name: 'delete_book_confirm')]
+    #[Route('/library/book/delete/{bookId}', name: 'delete_book_confirm')]
     public function deleteBookConfirm(
         LibraryRepository $libraryRepository,
-        int $id
+        int $bookId
     ): Response {
-        $book = $libraryRepository->find($id);
+        $book = $libraryRepository->find($bookId);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book by specified id: '.$id
+                'No book by specified id: '.$bookId
             );
         }
 

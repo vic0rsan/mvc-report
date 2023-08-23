@@ -17,9 +17,9 @@
         </tr>
         {% for book in books %}
             <tr>
-                <td><a href="{{path("update_book_form", {'id': book.id}) }}">Redigera</a> | <a href="{{path("delete_book_confirm", {'id': book.id})}}">Radera</a></td>
+                <td><a href="{{path("update_book_form", {'bookId': book.id}) }}">Redigera</a> | <a href="{{path("delete_book_confirm", {'bookId': book.id})}}">Radera</a></td>
                 <td>{{book.isbn}}</td>
-                <td><a href="{{path("book_detail", {'id': book.id}) }}">{{book.title}}</a></td>
+                <td><a href="{{path("book_detail", {'bookId': book.id}) }}">{{book.title}}</a></td>
                 <td>{{book.author}}</td>
                 <td>{{book.cover}}</td>
             </tr>

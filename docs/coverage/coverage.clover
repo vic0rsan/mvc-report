@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1692741694">
-  <project timestamp="1692741694">
+<coverage generated="1692791339">
+  <project timestamp="1692791339">
     <file name="/home/miraju/git/dbwebb-kurser/mvc/me/report/src/Cards/Card.php">
       <class name="App\Cards\Card" namespace="global">
         <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
@@ -225,6 +225,32 @@
       <line num="38" type="stmt" count="0"/>
       <line num="40" type="stmt" count="0"/>
       <metrics loc="43" ncloc="43" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="20" coveredelements="0"/>
+    </file>
+    <file name="/home/miraju/git/dbwebb-kurser/mvc/me/report/src/Controller/ApiLibraryController.php">
+      <class name="App\Controller\ApiLibraryController" namespace="global">
+        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="20" coveredelements="0"/>
+      </class>
+      <line num="14" type="method" name="jsonBook" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="18" type="stmt" count="0"/>
+      <line num="19" type="stmt" count="0"/>
+      <line num="21" type="stmt" count="0"/>
+      <line num="22" type="stmt" count="0"/>
+      <line num="23" type="stmt" count="0"/>
+      <line num="24" type="stmt" count="0"/>
+      <line num="26" type="stmt" count="0"/>
+      <line num="29" type="method" name="jsonOneBook" visibility="public" complexity="2" crap="6" count="0"/>
+      <line num="34" type="stmt" count="0"/>
+      <line num="35" type="stmt" count="0"/>
+      <line num="37" type="stmt" count="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <line num="40" type="stmt" count="0"/>
+      <line num="43" type="stmt" count="0"/>
+      <line num="44" type="stmt" count="0"/>
+      <line num="45" type="stmt" count="0"/>
+      <line num="46" type="stmt" count="0"/>
+      <line num="48" type="stmt" count="0"/>
+      <metrics loc="51" ncloc="51" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="0" elements="20" coveredelements="0"/>
     </file>
     <file name="/home/miraju/git/dbwebb-kurser/mvc/me/report/src/Controller/CardController.php">
       <class name="App\Controller\CardController" namespace="global">
@@ -576,6 +602,6 @@
       <line num="43" type="stmt" count="0"/>
       <metrics loc="72" ncloc="36" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="7" coveredstatements="0" elements="10" coveredelements="0"/>
     </file>
-    <metrics files="18" loc="1446" ncloc="1233" classes="17" methods="88" coveredmethods="31" conditionals="0" coveredconditionals="0" statements="379" coveredstatements="63" elements="467" coveredelements="94"/>
+    <metrics files="19" loc="1497" ncloc="1284" classes="18" methods="90" coveredmethods="31" conditionals="0" coveredconditionals="0" statements="397" coveredstatements="63" elements="487" coveredelements="94"/>
   </project>
 </coverage>
