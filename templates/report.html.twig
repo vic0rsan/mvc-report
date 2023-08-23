@@ -80,6 +80,23 @@
             <p>
                 Min TIL för detta kmom var hur man kan generera ett dokument för kodkommentarer med phpdoc och en täckningsrapport via phpunit.
             </p>
+
+            <h2 id="kmom04">Kmom05</h2>
+            <p>
+                Det gick bra att komma igång med Doctrine för Symfony. Guiden förklarade stegvist för hur komponenterna fungerar samt gav exempelkod som underlättade vid den ursprungliga implementationen. Mina tankar kring ORM och Symfony var hur väl dessa verktyg var implementerad för att samarbeta med varandra. Tex kan man smidigt auto-generera en databas tabell utan att skriva en enda sql-lina. En annan egenskap med ORM/Symfony var dess medföljda script för versionshanteringar av tabeller.
+            </p>
+            <p>
+                Mitt gränssnitt för webbappen kännetecknas av en simpel design med färger av högkontrast. jag valde att grunda mitt färgtema utifrån användargränssnitt från skrivbordsmiljöer 80-90-talet då dessa har god kontrast samt rent utav smaksak. Självaste navigationen samt aktivering av funktioner för sidan (ex lägga till, radera eller redigera) görs via länkar som tar användaren till en separat sida med formulär.
+            </p>
+            <p>
+                Det gick bra med att komma igång med CRUD inom ORM. Jag upplevde ingen större skillnad än en traditionell relationsdatabas mer än att samtliga funktioner och rader sker via klass-metoder och instanser. För att lägga till, uppdatera eller radera en rad i tabellen görs via ett "ManagerRegister"-objekt. För att ex addera eller uppdatera användes klassmetoden "persist" som talar om att ett objekt är på väg in i databasen, sedan anges objektets attributer med set. För att spara ned ändringarna gör man en anrop till "flush"-klassmetoden.  Helt enkelt skiljer sig ORM med att man jobbar mot objekt där traditionella databaser används SQL-stränger för att kommunicera.
+            </p>
+            <p>
+                ORM är ett alternativt sätt att processers data från databas tabeller där istället för SQL används objekt för att representera olika tabellrader. En fördel med ORM är att man skapa egna funktioner som kommunicerar med databasen inom valfritt programmeringsspråk utan en enda rad SQL.
+            </p>
+            <p>
+                Jag har lärt mig en ny databas koncept där man jobbar med objekt istället för SQL samt hur man använder denna teknik inom ett Symfony-projekt.
+            </p>
         </section>
     </article>
     
