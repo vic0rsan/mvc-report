@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Metrics{% endblock %}
+
+{% block body %}
+    <h1>Analys av kodkvalitet</h1>
+    <h2>1. Introduktion</h2>
+    <h3>1.1 Det 6st C:n</h3>
+
+    <h4>Codestyle</h4>
+    <p>
+        Codestyle är en uppsättning av riktlinjer för hur proper kod skall se ut. Dessa riktlinjer varierar för olika programmeringsspråk, det kan exempelvist gälla hur man avskärmar ett kodblock för en enskild funktion. 
+        Det flesta programmeringsspråk ex JavaScript, C, PHP använder klammerparenterser {} som markörer medans Python brukar sig av antalet indragningar för att markera kodblock.
+        Ett annat exempel på kodstil är formatering för variablar som består av flera ord i namnet. Tex finns "Camel Case": variableName, "Snake Case": variable_name, "Pascal Case": VariableName mm.
+        Gemensamt har samtliga programmeringsspråk vissa riktlinjer för formateringen av kod och dess huvudsakliga syfte är att dirigera till att skriva en lättläslighet och konsekvent kod.</p>
+    <p>
+        Vid utvecklingen av webbsidan använde jag 3st valideringsverktyg för att förbättra min kodstil och läslighet. Dessa verktyg är PHPMD och PHPStan.
+        PHPMD och PHPStan är en så kallad "Mess Detector" som kollar igenom koden efter buggar, ineffektiva samt oanvända uttryck, variablar, metoder mm. 
+        I mitt projekt har jag dessa verktyg inkluderade som composer-paket och kan då smidigt via deklarerade kortkommandon exekvera dessa validator.
+    </p>
+
+    <h4>Coverage</h4>
+    <p>
+        Kodtäckning är en kvalitetsindikator för andelen kodrader, klasser, metoder som har berörts vid en eller flera testfall. Dessto högre procentuella värden för kodtäckning, dessto bättre kvalitetssäkring innehar koden.
+        En låg kodtäckning kan ställa till med oväntad resultat då exempelvis en metod fallerar eller returneras ett inkorrekt värde inom ett visst fall.
+    </p>
+    <p>
+        I mitt projekt använde jag verktyget PHPUnit för att skriva och exekvera testfall mot mina klass-metoder. Likt kodvalidatorerna har jag PHPUnit inkluderad i min composer.json fil som ett kommando.
+    </p>
+
+    <h4>Complexity</h4>
+
+
+
+{% endblock %}
