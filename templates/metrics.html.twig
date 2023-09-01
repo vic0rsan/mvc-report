@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Analys av kodkvalitet</h1>
     <h2>1. Introduktion</h2>
-    <h3>1.1 Det 6st C:n</h3>
+    <h2>1.1 Det 6st C:n</h2>
 
-    <h4>Codestyle</h4>
+    <h3>1.1.1 Codestyle</h3>
     <p>
         Codestyle är en uppsättning av riktlinjer för hur proper kod skall se ut. Dessa riktlinjer varierar för olika programmeringsspråk, det kan exempelvist gälla hur man avskärmar ett kodblock för en enskild funktion. 
         Det flesta programmeringsspråk ex JavaScript, C, PHP använder klammerparenterser {} som markörer medans Python brukar sig av antalet indragningar för att markera kodblock.
@@ -19,17 +19,86 @@
         I mitt projekt har jag dessa verktyg inkluderade som composer-paket och kan då smidigt via deklarerade kortkommandon exekvera dessa validator.
     </p>
 
-    <h4>Coverage</h4>
+    <h3>1.1.2 Coverage</h3>
     <p>
-        Kodtäckning är en kvalitetsindikator för andelen kodrader, klasser, metoder som har berörts vid en eller flera testfall. Dessto högre procentuella värden för kodtäckning, dessto bättre kvalitetssäkring innehar koden.
-        En låg kodtäckning kan ställa till med oväntad resultat då exempelvis en metod fallerar eller returneras ett inkorrekt värde inom ett visst fall.
+        Kodtäckning är en kvalitetsindikator för andelen kodrader, klasser, metoder som omfattas vid en eller flera testfall. Dessto högre procentuella värden för kodtäckning, dessto bättre kvalitetssäkring innehar koden.
+        En låg kodtäckning kan ställa till med oväntad resultat för den slutgitliga applikationen då exempelvis en metod fallerar eller returneras ett inkorrekt värde inom ett visst fall.
+        När man skall utföra tester så är det därför viktigt att testa samtliga värden som triggar det olika utfallen för en metod/klass.
     </p>
     <p>
         I mitt projekt använde jag verktyget PHPUnit för att skriva och exekvera testfall mot mina klass-metoder. Likt kodvalidatorerna har jag PHPUnit inkluderad i min composer.json fil som ett kommando.
     </p>
+    <figure>
+        <img src="{{ asset('img/coverage.png') }}" width="800" alt="Code Coverage">
+        <figcaption>Kodtäckning för Card-klasserna i mitt projekt.</figcaption>
+    </figure>
 
-    <h4>Complexity</h4>
+    <h3>1.1.3 Complexity</h3>
+    <p>
+        Kodkomplexitet eller cyklomatisk komplexitet handlar om antalet möjliga vägar en funktion kan ta beroende av olika parametrar samt vilkor likt vägskäl.
+        If-else, switch eller for/while-loopar är exempel på vägskäl för riktningar en funktion kan ta. En låg kodkomplexitet bidrar till en god underhållbarhet, testbarhet och lättläslighet medans en hög kodkomplexitet
+        med flera inkapslade if-else-sattser och loopar ökar antalet tester som bör genomföras då flera vägar introduceras vilket gör det även svårare för utvecklaren att förstå koden i sin helhet då varje enskild väg måste analyseras.
+        När man utför en kodkomplexitets analys kan utvecklaren få en indikation över vilka kodblock som behöver omfaktoriseras för att minska komplexiteten vilket i sin tur minskar risken för buggar samt antalet tester som krävs 
+        för att säkerställa kodkvaliten.
+    </p>
+    <p>
+        I mitt fall använde jag PHPMetrics för att analyser kodkomplexiteten av mitt projekt.
+    </p>
+    <figure>
+        <img src="{{ asset('img/complex.png') }}" width="400" alt="Code Coverage">
+        <figcaption>Visuell representation över kodkomplexiteten för olika klasser/controllers. De gröna cirklarna motsvarar en låg kodkomplexitet medans de röda syftar på en hög kodkomplexitet.</figcaption>
+    </figure>
+    <figure>
+        <img src="{{ asset('img/top_complex.png') }}" width="800" alt="Code Coverage">
+        <figcaption>Lista över det klasser med högst kodkomplexitets värde.</figcaption>
+    </figure>
 
+    <h3>1.1.4 Cohesion</h3>
+    <p>
+        Cohesion är en kvalitetsfaktor som täcker metoders sammanhållning inom en klass. Det handlar helt enkelt hur väl metoder passar in i en klass. 
+        För att avgöra hur väl metoden är integrerad i klassen kollar man efter om metoden följer klassens funktionella syfte samt använding av instans attributer.
+        Cohesion antar antigen värdet "high cohesion" om metoden pass väl in i klassen eller tvärtom blir det "low cohesion" om metoden har en svag anknyting inut i klassen.
+        En hög sammanhållningar har goda egenskaper inom testbarhet, minskad modulär komplexitet (färre modular som klassen är beroende av), lättläslighet då man behöver endast göra ändring i en enda klass-fil. 
+        Man brukar mäta cohesion i Lack of Cohesion (LCOM) där låga värden innebär en hög cohesion medans höga LCOM värden indikerar på en låg cohesion. 
+    </p>
+    <p>
+        Jag använde PHPMetrics för att mäta LCOM-värderna för card-klasserna. Mitt genomsnittliga värde låg på 1.42 LCOM vilket syfter på en relativt hög sammanhållning.
+    </p>
+    <figure>
+        <img src="{{ asset('img/cohesion.png') }}" width="1300" alt="Code Coverage">
+        <figcaption>Lista över det klasser med högst LCOM-värde.</figcaption>
+    </figure>
 
+    <h3>1.1.5 Coupling</h3>
+    <p>
+        Coupling talar om vilken grad som klasser och moduler är beroende kontra självständiga från varandra.
+        Man brukar mäta coupling inom två värden; Afferent Coupling (AC) och Efferent Coupling (EC). 
+        Afferent Coupling syfter på antalet utgående anslutningar som påverkar externa klasser.
+        Efferent Coupling är antal inkommande anslutningar från externa klasser som har effekt för den bestämda klassen.
+        En klass som innehar ett högt AC-värde betyder den är beroende av andra klasser däremot en klass med ett högt EC-värde har många andra klasser som är beroende av klassen i fråga.
+        Klasser som har låga värden för både AC och EC anses var en självständig klass. 
+    </p>
+    <p>
+        Coupling-värdena för mitt projekt fick jag via PHPMetrics.
+    </p>
+    <figure>
+        <img src="{{ asset('img/coupling.png') }}" width="1300" alt="Code Coverage">
+        <figcaption>Lista över det klasser med flest ingående/utgående-anslutningar.</figcaption>
+    </figure>
+
+    <h3>1.1.6 CRAP</h3>
+    <p>
+        CRAP står för Change Risk Analyzer and Predictor och är en estimering som talar om sannolikheten att nya defekter introduceras vid ändring av koden.
+        Värdet för CRAP beräknas genom komplexiteten av metoden kontra antalet testfall som täcker metoden. Ju högre CRAP-värde dessto större risk för nya buggar. 
+        För att sänka CRAP-värdet kan man antigen skriva flera testfall för metoden eller refaktorisera metoden till en mindre komplex (färre kodrader, neslingar) kodblock.
+    </p>
+    <figure>
+        <img src="{{ asset('img/crap.png') }}" width="800" alt="Code Coverage">
+        <figcaption>Den klass med troligen högst CRAP-värde (högst komplexvärde med minimal antal tester).</figcaption>
+    </figure>
+
+    <h2>2. Phpmetrics</h2>
+    <h3>2.1 Svaga punkter</h3>
+    <p></p>
 
 {% endblock %}
