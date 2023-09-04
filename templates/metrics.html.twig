@@ -98,7 +98,60 @@
     </figure>
 
     <h2>2. Phpmetrics</h2>
-    <h3>2.1 Svaga punkter</h3>
-    <p></p>
+    <p>
+        Jag kommer jobba med klasserna som har högst cyklomatiska komplexitets värden vilket resulterade till Game21, ApiCardController och CardController.
+        Som mest har klasserna ApiCardController och CardControll med värdet 7, vilket är fortfarande relativt låg i helheten då 1-10 anses inneha god testbarhet med låga risker för buggar och där värden över 50 anses vara otestbar kod, där efter höga risker för buggar.
+        Genom att sänka den cyklomatiska värdena kan läsligheten samt testbarheten öka då ju lägre cyklomatisk kodkomplexitet metoden har dessto färre vägar finns det att beröra. 
+        Dessto simplare kod, dessto lägre risk för buggar.
+    </p>
+    <figure>
+        <img src="{{ asset('img/oop.png') }}" width="1200" alt="Code Coverage">
+        <figcaption>Rader för klasserna med högst klass cyklomatisk komplexitet.</figcaption>
+    </figure>
+    <p>
+        Enligt PHPmetrics rapporten saknar klasserna där ovan någon form av tester trotts dess relativt höga kodkomplexitet i förhållande till det övriga klasserna i projekt. 
+        Vilket innebär även att dessa klasser har högst risk för buggar enligt "Assertions in tests"-sektionen i PHPMetrics. 
+        Nästa förbättringssteg blir givetvist att skriva tester för det nämnda klasser för att minimera riskerna för buggar.
+    </p>
+    <figure>
+        <img src="{{ asset('img/assertion.png') }}" width="1200" alt="Code Coverage">
+        <figcaption>Klasser som saknar någon form av kodtäckning.</figcaption>
+    </figure>
+    <p>
+        En annan punkt som PHPMetrics tog upp handlar om kodvolymen där bland annat GameController, LibraryController och CardGraphics hamnade i topp 3 för klasser med flest kodrader.
+        Med tanke på att en större kodbas har större risk för buggar än en kompaktare så är det något som jag bör förbättre. Lösningen blir att refaktorisera metoder för att minska raderna.
+    </p>
+     <figure>
+        <img src="{{ asset('img/volume.png') }}" width="1200" alt="Code Coverage">
+        <figcaption>Klasser med störst volym.</figcaption>
+    </figure>
+
+    <h2>3. Scrutinizer</h2>
+    <figure>
+        <img src="https://scrutinizer-ci.com/g/vic0rsan/mvc-report/badges/quality-score.png?b=master" width="130" alt="quality-score">
+        <img src="https://scrutinizer-ci.com/g/vic0rsan/mvc-report/badges/coverage.png?b=master" width="130" alt="coverage-badge">
+        <img src="https://scrutinizer-ci.com/g/vic0rsan/mvc-report/badges/build.png?b=master" width="110" alt="build">
+    </figure>
+    <p>
+        Scrutinizer bedömde mitt projekt som mycket bra med poängsumman 10.00 vilket är det högsta betyget. Däremot finns det fortfarande ett antal punkter som börs förbättras.
+        Bland annat kodtäckning som ligger vid tillfället på 19 procent där 60 procent enligt Scrutinizer sägs vara minimumgränsen för god kodtäckning. 
+    </p>
+    <p>
+        I issues-fliken inom Scrutnizer så uppmärksammas 3st filer, där en utav dem är från projektets src-mapp (src/Controller/ApiLibraryController.php) och resterande är config-filer tillhörande Symphony paketet.
+        I ApiLibraryController finns det en potentiell bug som gäller en variabel som lagrar rader från ett Library-objekt.
+    </p>
+    <figure>
+        <img src="{{ asset('img/bug.png') }}" width="800" alt="Code Coverage">
+        <figcaption>En bug som Scrutinizer upptäckte inom ApiLibraryController.</figcaption>
+    </figure>
+    <p>
+        Nästa punkt jag noterade i Scrutinizer var CRAP poängen för samtliga klass-metoder där metoderna inom klasserna CardController, GameController, ApiCardController har högst CRAP poäng (störst risk för buggar).
+    </p>
+     <figure>
+        <img src="{{ asset('img/scrut-crap.png') }}" width="500" alt="Code Coverage">
+        <figcaption>Lista över samtliga klass-metoder och dess CRAP-poäng.</figcaption>
+    </figure>
+
+    <h2>4. Förbättringar</h2>
 
 {% endblock %}
