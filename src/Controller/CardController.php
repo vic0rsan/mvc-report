@@ -80,11 +80,7 @@ class CardController extends AbstractController
         $session->set("deck", $deck);
         $session->set("pick", $newPick);
 
-        $data = [
-            'deck' => $newPick,
-            'remain' => $deck->cardLeft(),
-            'title' => "Drawed cards"
-        ];
+        $data = [ 'deck' => $newPick, 'remain' => $deck->cardLeft(), 'title' => "Drawed cards" ];
 
         return $this->render('card/draw.html.twig', $data);
     }

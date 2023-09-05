@@ -160,12 +160,12 @@
     </p>
 
     <p>
-        Den andra förbättringsåtgärdet blir att minska cyklomatiska kodkomplexitetet för ApiCardController, klassen som hade bland det högsta värdet av klasserna.
-        Lösningen blir att skriva om bland annat if-else-statements, eventuell en omfaktorisering av klassmetoderna. Detta för att cyklomatiska kodkomplexiteten men även CRAP-värdena.
+        Den andra förbättringsåtgärdet blir att minska kodkomplexiteten för klassmetoder som hanterar kortleken (ApiCardController, CardController, GameController) då dessa har en marginalt högre CRAP-poäng än övriga.
+        Lösningen blir att omfaktorisera och eventuell slå ihop metoder om möjligt tex draw, drawMany som har samma grundsyft är goda kanidater. 
     </p>
     <p>
-        Den tredje förbättringen blir att skriva flera tester som saknar kodtäckning. 
-        Enligt Scrutinizers lista med högst CRAP-värde så bör Card-klasserna ge störst effekt med en ökad kodtäckning.
+        Den tredje förbättringen blir att skriva nya tester för klass-metoder som har en bristande kodtäckning. 
+        Jag väljer att skriva tester för Controller-klasserna Card och Game då dessa klasser har flest kodrader samt saknar andel för kodtäckning.
     </p>
 
     <h2>4.1 Resultat</h2>
