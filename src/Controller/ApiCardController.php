@@ -59,56 +59,24 @@ class ApiCardController extends AbstractController
         return $response;
     }
 
-    #[Route("/api/deck/draw", name: "json_draw", methods: ['POST', 'GET'])]
-    public function jsonDraw(SessionInterface $session): Response
+    #[Route("/api/deck/draw/{number}", name: "json_draw", methods: ['POST', 'GET'])]
+    public function jsonDraw(SessionInterface $session, int $number = 1): Response
     {
         $deck = $session->get("deck");
         $pick = $session->get("pick");
         $newCard = [];
 
-        if ($deck->cardLeft() != 0) {
-            $newCard = $deck->draw();
-        }
-
-        $newPick = array_merge($pick, $newCard);
-        $session->set("deck", $deck);
-        $session->set("pick", $newPick);
-
-        $data = [
-            'deck' => $newPick, 'remain' => $deck->cardLeft() ];
-        $response = new JsonResponse($data);
-        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
-
-        return $response;
-    }
-
-    #[Route("/api/deck/draw/{number}", name: "json_draw_many", methods: ['POST', 'GET'])]
-    public function jsonDrawMany(SessionInterface $session, int $number): Response
-    {
-        if (!$session->get('pick')) {
-            $session->set('pick', []);
-        }
-        $deck = $session->get("deck");
-        $pick = $session->get("pick");
-
-        $newCard = [];
-        if ($deck->cardLeft() >= 1) {
+        if ($deck->cardLeft() >= $number && $number > 0) {
             $newCard = $deck->draw($number);
         }
 
         $newPick = array_merge($pick, $newCard);
-
         $session->set("deck", $deck);
         $session->set("pick", $newPick);
 
-        $data = [
-            'deck' => $newPick,
-            'remain' => $deck->cardLeft()
-        ];
+        $data = [ 'deck' => $newPick, 'remain' => $deck->cardLeft() ];
         $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
+        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
 
         return $response;
     }

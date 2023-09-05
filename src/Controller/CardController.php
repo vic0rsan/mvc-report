@@ -65,54 +65,18 @@ class CardController extends AbstractController
         return $this->render('card/deck.html.twig', $data);
     }
 
-    /**
-    * @Route("/card/deck/draw", name="draw")
-    */
-    public function draw(SessionInterface $session): Response
+    #[Route("/api/deck/draw/{number}", name: "draw", methods: ['POST', 'GET'])]
+    public function draw(SessionInterface $session, int $number = 1): Response
     {
-        if (!$session->get('pick')) {
-            $session->set('pick', []);
-        }
         $deck = $session->get("deck");
         $pick = $session->get("pick");
-
         $newCard = [];
-        if ($deck->cardLeft() >= 1) {
-            $newCard = $deck->draw();
-        }
 
-        $newPick = array_merge($pick, $newCard);
-
-        $session->set("deck", $deck);
-        $session->set("pick", $newPick);
-
-        $data = [
-            'deck' => $newPick,
-            'remain' => $deck->cardLeft(),
-            'title' => "Drawed cards"
-        ];
-
-        return $this->render('card/draw.html.twig', $data);
-    }
-
-    /**
-    * @Route("/card/deck/draw/{number}", name="draw_many")
-    */
-    public function drawMany(SessionInterface $session, int $number): Response
-    {
-        if (!$session->get('pick')) {
-            $session->set('pick', []);
-        }
-        $deck = $session->get("deck");
-        $pick = $session->get("pick");
-
-        $newCard = [];
-        if ($deck->cardLeft() >= $number) {
+        if ($deck->cardLeft() >= $number && $number > 0) {
             $newCard = $deck->draw($number);
         }
 
         $newPick = array_merge($pick, $newCard);
-
         $session->set("deck", $deck);
         $session->set("pick", $newPick);
 
