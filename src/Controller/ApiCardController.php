@@ -66,7 +66,7 @@ class ApiCardController extends AbstractController
         $pick = $session->get("pick");
         $newCard = [];
 
-        if ($deck->cardLeft() >= $number && $number > 0) {
+        if ($deck->cardLeft() >= $number) {
             $newCard = $deck->draw($number);
         }
 
