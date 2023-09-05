@@ -62,30 +62,22 @@ class ApiCardController extends AbstractController
     #[Route("/api/deck/draw", name: "json_draw", methods: ['POST', 'GET'])]
     public function jsonDraw(SessionInterface $session): Response
     {
-        if (!$session->get('pick')) {
-            $session->set('pick', []);
-        }
         $deck = $session->get("deck");
         $pick = $session->get("pick");
-
         $newCard = [];
-        if ($deck->cardLeft() >= 1) {
+
+        if ($deck->cardLeft() != 0) {
             $newCard = $deck->draw();
         }
 
         $newPick = array_merge($pick, $newCard);
-
         $session->set("deck", $deck);
         $session->set("pick", $newPick);
 
         $data = [
-            'deck' => $newPick,
-            'remain' => $deck->cardLeft()
-        ];
+            'deck' => $newPick, 'remain' => $deck->cardLeft() ];
         $response = new JsonResponse($data);
-        $response->setEncodingOptions(
-            $response->getEncodingOptions() | JSON_PRETTY_PRINT
-        );
+        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT);
 
         return $response;
     }
