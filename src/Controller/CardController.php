@@ -72,8 +72,8 @@ class CardController extends AbstractController
         $pick = $session->get("pick");
         $newCard = [];
 
-        if ($deck->cardLeft() >= $number && $number > 0) {
-            $newCard = $deck->draw($number);
+        if ($deck->cardLeft() >= $number) {
+            $newCard = $deck->draw(abs($number));
         }
 
         $newPick = array_merge($pick, $newCard);

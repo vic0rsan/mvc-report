@@ -67,9 +67,7 @@ class ApiCardController extends AbstractController
         $newCard = [];
 
         if ($deck->cardLeft() >= $number) {
-            if ($number > 0) {
-                $newCard = $deck->draw($number);
-            }
+            $newCard = $deck->draw(abs($number));
         }
 
         $newPick = array_merge($pick, $newCard);
