@@ -45,20 +45,9 @@ class GameController extends AbstractController
         $gameover = $game->getGameover();
         $message = "";
 
-        if ($gameover) {
-            $message = $game->comparePoints();
-            $session->set('status', $message);
-        }
-
-        $data = [
-            'title' => "Game 21",
-            'player' => $game->getPlayer()->getHand(),
-            'bank' => $game->getBank()->getHand(),
-            'gameover' => $gameover,
-            'message' => $message,
-            'player_points' => $playerPoints,
-            'bank_points' => $bankPoints
-        ];
+        $data = [ 'title' => "Game 21", 'player' => $game->getPlayer()->getHand(),
+            'bank' => $game->getBank()->getHand(), 'gameover' => $gameover,
+            'message' => $message, 'player_points' => $playerPoints, 'bank_points' => $bankPoints ];
 
         return $this->render('game/game.html.twig', $data);
     }
