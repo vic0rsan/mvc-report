@@ -32,6 +32,17 @@ class GameController extends AbstractController
         return $this->redirectToRoute('game_start');
     }
 
+    public function gameover(bool $gameover, game21 $game): string
+    {
+        $message = "";
+        
+        if ($gameover) {
+            $message = $game->comparePoints();
+        }
+
+        return $message;
+    }
+
     #[Route("/game/start", name:"game_start")]
     public function initGame(SessionInterface $session): Response
     {
@@ -42,12 +53,17 @@ class GameController extends AbstractController
         $game = $session->get('game');
         $playerPoints = $game->getPlayerPoint();
         $bankPoints = $game->getBankPoint();
-        $gameover = $game->getGameover();
-        $message = "";
+        $gameover = $game->getGameover();        
+        $message = $this->gameover($gameover, $game);
 
-        $data = [ 'title' => "Game 21", 'player' => $game->getPlayer()->getHand(),
-            'bank' => $game->getBank()->getHand(), 'gameover' => $gameover,
-            'message' => $message, 'player_points' => $playerPoints, 'bank_points' => $bankPoints ];
+        $data = [ 
+            'title' => "Game 21", 
+            'player' => $game->getPlayer()->getHand(),
+            'bank' => $game->getBank()->getHand(), 
+            'gameover' => $gameover,
+            'message' => $message, 
+            'player_points' => $playerPoints, 
+            'bank_points' => $bankPoints ];
 
         return $this->render('game/game.html.twig', $data);
     }
