@@ -34,7 +34,7 @@ class ApiLibraryController extends AbstractController
         $book = $libraryRepository
             ->findBy([ 'isbn' => $isbn ]);
 
-        if (!$book) {
+        if (empty($book)) {
             throw $this->createNotFoundException(
                 'No book by specified isbn: '.$isbn
             );
