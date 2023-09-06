@@ -44,9 +44,7 @@ class ApiCardController extends AbstractController
         $deck->shuffleDeck();
 
         $session->set('deck', $deck);
-        if ($session->get('pick')) {
-            $session->set('pick', []);
-        }
+        $session->set('pick', []);
 
         $data = [
             'deck' => $deck->getDeck()
