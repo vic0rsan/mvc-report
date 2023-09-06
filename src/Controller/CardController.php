@@ -52,10 +52,7 @@ class CardController extends AbstractController
         $deck->shuffleDeck();
 
         $session->set('deck', $deck);
-
-        if ($session->get('pick')) {
-            $session->set('pick', []);
-        }
+        $session->set('pick', []);
 
         $data = [
             'title' => "Shuffled deck",
@@ -65,7 +62,7 @@ class CardController extends AbstractController
         return $this->render('card/deck.html.twig', $data);
     }
 
-    #[Route("/api/deck/draw/{number}", name: "draw", methods: ['POST', 'GET'])]
+    #[Route("/card/deck/draw/{number}", name: "draw", methods: ['POST', 'GET'])]
     public function draw(SessionInterface $session, int $number = 1): Response
     {
         $deck = $session->get("deck");

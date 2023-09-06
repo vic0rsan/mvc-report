@@ -24,4 +24,8 @@
     <logging>
       <junit outputFile="docs/junit.xml" />
     </logging>
+    <php>
+      <env name="KERNEL_CLASS" value="App\Kernel"/>
+      <env name="APP_ENV" value="test" force="true"/>
+    </php>
 </phpunit>
