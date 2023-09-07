@@ -49,7 +49,7 @@
 <div class="page">
     <div class="content content-first">
         <div class="report-details">
-            Created at 2023-09-05 14:36:29        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
+            Created at 2023-09-07 12:29:52        , with PHPMetrics v2.8.2 (<a href="https://twitter.com/Halleck45">Jean-François Lépine</a>).
         </div>
 
         
@@ -60,14 +60,14 @@
         <div class="bloc bloc-number">
             <div class="label">Test suites</div>
             <div class="number">
-                5            </div>
+                8            </div>
         </div>
     </div>
     <div class="column">
         <div class="bloc bloc-number">
             <div class="label">Assertions</div>
             <div class="number">
-                31            </div>
+                62            </div>
         </div>
     </div>
     <div class="column">
@@ -186,8 +186,8 @@
                                         5                                        </span>
                                     </td>
                                                                     <td>
-                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.3);">
-                                        0.3                                        </span>
+                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.31);">
+                                        0.31                                        </span>
                                     </td>
                                                             </tr>
                                                         <tr>
@@ -204,8 +204,8 @@
                                                         <tr>
                                 <td><span class="path">App\Controller\CardController</span></td>
                                                                     <td>
-                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.6);">
-                                        4                                        </span>
+                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.4);">
+                                        3                                        </span>
                                     </td>
                                                                     <td>
                                         <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.15);">
@@ -215,8 +215,8 @@
                                                         <tr>
                                 <td><span class="path">App\Controller\ApiCardController</span></td>
                                                                     <td>
-                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.6);">
-                                        4                                        </span>
+                                        <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.4);">
+                                        3                                        </span>
                                     </td>
                                                                     <td>
                                         <span class="badge"  style="background-color: hsla(203, 82%, 76%, 0.16);">
@@ -349,6 +349,39 @@
                                                                             <br>                                        <span class="badge" title="Cyclomatic complexity of class">
                                             1                                        </span>
                                         <span class="path">App\Cards\Card</span>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <td valign="top"><span class="path">App\Controller\ApiCardControllerTest</span></td>
+                                <td style="padding-bottom: 1em;">
+                                                                                                                    <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">Symfony\Bundle\FrameworkBundle\Test\WebTestCase</span>
+                                                                            <br>                                        <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">static</span>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <td valign="top"><span class="path">App\Controller\CardControllerTest</span></td>
+                                <td style="padding-bottom: 1em;">
+                                                                                                                    <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">Symfony\Bundle\FrameworkBundle\Test\WebTestCase</span>
+                                                                            <br>                                        <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">static</span>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <td valign="top"><span class="path">App\Controller\GameControllerTest</span></td>
+                                <td style="padding-bottom: 1em;">
+                                                                                                                    <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">Symfony\Bundle\FrameworkBundle\Test\WebTestCase</span>
+                                                                            <br>                                        <span class="badge" title="Cyclomatic complexity of class">
+                                            -                                        </span>
+                                        <span class="path">static</span>
                                                                     </td>
                             </tr>
                                             </table>
@@ -595,7 +628,7 @@
 
 
             
-            var json = {"name":"Execution time","children":[{"name":"App\\Cards\\CardGraphicTest","time":0.002833},{"name":"App\\Cards\\CardHandTest","time":0.001282},{"name":"App\\Cards\\CardTest","time":0.001583},{"name":"App\\Cards\\DeckTest","time":0.004037},{"name":"App\\Cards\\TestGame21","time":0.005473}]};
+            var json = {"name":"Execution time","children":[{"name":"App\\Cards\\CardGraphicTest","time":0.002624},{"name":"App\\Cards\\CardHandTest","time":0.001174},{"name":"App\\Cards\\CardTest","time":0.001603},{"name":"App\\Cards\\DeckTest","time":0.00514},{"name":"App\\Cards\\TestGame21","time":0.005628},{"name":"App\\Controller\\ApiCardControllerTest","time":0.247635},{"name":"App\\Controller\\CardControllerTest","time":0.0839},{"name":"App\\Controller\\GameControllerTest","time":0.074182}]};
             root = json;
             var nodes = treemap.nodes(json)
                 .filter(function (d) {

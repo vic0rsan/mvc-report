@@ -17,7 +17,7 @@ class GameControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('h1', 'Game 21');
-        $this->assertSelectorExists('ul');        
+        $this->assertSelectorExists('ul');
     }
 
     public function testGameStartFromLandingPage(): void

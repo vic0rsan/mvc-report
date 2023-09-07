@@ -35,7 +35,7 @@ class GameController extends AbstractController
     public function gameover(bool $gameover, game21 $game): string
     {
         $message = "";
-        
+
         if ($gameover) {
             $message = $game->comparePoints();
         }
@@ -53,17 +53,17 @@ class GameController extends AbstractController
         $game = $session->get('game');
         $playerPoints = $game->getPlayerPoint();
         $bankPoints = $game->getBankPoint();
-        $gameover = $game->getGameover();      
+        $gameover = $game->getGameover();
 
         $message = $this->gameover($gameover, $game);
 
-        $data = [ 
-            'title' => "Game 21", 
+        $data = [
+            'title' => "Game 21",
             'player' => $game->getPlayer()->getHand(),
-            'bank' => $game->getBank()->getHand(), 
+            'bank' => $game->getBank()->getHand(),
             'gameover' => $gameover,
-            'message' => $message, 
-            'player_points' => $playerPoints, 
+            'message' => $message,
+            'player_points' => $playerPoints,
             'bank_points' => $bankPoints ];
 
         return $this->render('game/game.html.twig', $data);

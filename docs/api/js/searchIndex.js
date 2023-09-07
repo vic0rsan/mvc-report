@@ -261,11 +261,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ApiCardController.html#method_jsonDraw"
         },                {
-            "fqsen": "\\App\\Controller\\ApiCardController\u003A\u003AjsonDrawMany\u0028\u0029",
-            "name": "jsonDrawMany",
-            "summary": "",
-            "url": "classes/App-Controller-ApiCardController.html#method_jsonDrawMany"
-        },                {
             "fqsen": "\\App\\Controller\\ApiController",
             "name": "ApiController",
             "summary": "",
@@ -306,11 +301,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-CardController.html#method_draw"
         },                {
-            "fqsen": "\\App\\Controller\\CardController\u003A\u003AdrawMany\u0028\u0029",
-            "name": "drawMany",
-            "summary": "",
-            "url": "classes/App-Controller-CardController.html#method_drawMany"
-        },                {
             "fqsen": "\\App\\Controller\\GameController",
             "name": "GameController",
             "summary": "",
@@ -325,6 +315,11 @@ Search.appendIndex(
             "name": "gameInit",
             "summary": "",
             "url": "classes/App-Controller-GameController.html#method_gameInit"
+        },                {
+            "fqsen": "\\App\\Controller\\GameController\u003A\u003Agameover\u0028\u0029",
+            "name": "gameover",
+            "summary": "",
+            "url": "classes/App-Controller-GameController.html#method_gameover"
         },                {
             "fqsen": "\\App\\Controller\\GameController\u003A\u003AinitGame\u0028\u0029",
             "name": "initGame",
@@ -380,6 +375,11 @@ Search.appendIndex(
             "name": "about",
             "summary": "",
             "url": "classes/App-Controller-ReportController.html#method_about"
+        },                {
+            "fqsen": "\\App\\Controller\\ReportController\u003A\u003Ametrics\u0028\u0029",
+            "name": "metrics",
+            "summary": "",
+            "url": "classes/App-Controller-ReportController.html#method_metrics"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",

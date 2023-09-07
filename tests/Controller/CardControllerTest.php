@@ -11,7 +11,6 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  */
 class CardControllerTest extends WebTestCase
 {
-
     public function testLandingPage(): void
     {
         $client = static::createClient();
@@ -21,7 +20,7 @@ class CardControllerTest extends WebTestCase
         $this->assertSelectorExists('ul');
     }
 
-    public function testDeck(): void 
+    public function testDeck(): void
     {
         $client = static::createClient();
         $response = $client->request('GET', '/card/deck');
@@ -47,5 +46,5 @@ class CardControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertCount(3, $response->filter('.card'));
-    } 
+    }
 }
