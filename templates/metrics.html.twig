@@ -165,9 +165,17 @@
     </p>
     <p>
         Den tredje förbättringen blir att skriva nya tester för klass-metoder som har en bristande kodtäckning. 
-        Jag väljer att skriva tester för Controller-klasserna Card och Game då dessa klasser har ett större antal kodrader samt saknar kodtäckning.
+        Jag väljer att skriva tester för Controller-klasserna Card då dessa klasser har ett större antal kodrader samt saknar kodtäckning.
     </p>
 
     <h3>4.1 Resultat</h3>
+    <p>
+        Jag fixade buggen som Scrutinizer rapporterade där lösningen var att använda den inbyggda empty-funktion för book-array variabeln, istället för att använda bool-operatorn
+        för att kolla om arrayen är tom eller ej. Denna åtgärde minskade antalet buggar med 1 och jag noterade inga större följder efter löst buggen.
+    </p>
+    <figure>
+        <img src="{{ asset('img/bugfix.png') }}" width="400" alt="Code Coverage">
+        <figcaption>Scrutinizer rapport efter korrigering av buggen.</figcaption>
+    </figure>
 
 {% endblock %}

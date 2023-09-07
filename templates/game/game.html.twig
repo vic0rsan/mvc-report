@@ -31,7 +31,7 @@
     {% endif %}
     </form>
     <h2>Banken</h2>
-    <h4>{{ bank_points }} poäng</h4>
+    <h4 class="status">{{ bank_points }} poäng</h4>
     <div class="card-grid">
         {% for card in bank %}
             {% if card.suite == "heart" or card.suite == "diamond" %}

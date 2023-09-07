@@ -1,42 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="" tests="22" assertions="48" errors="0" warnings="0" failures="0" skipped="0" time="0.232365">
-    <testsuite name="Report Test Suite" tests="22" assertions="48" errors="0" warnings="0" failures="0" skipped="0" time="0.232365">
-      <testsuite name="App\Cards\CardGraphicTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardGraphicTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.002144">
-        <testcase name="testGetCardRep" class="App\Cards\CardGraphicTest" classname="App.Cards.CardGraphicTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardGraphicTest.php" line="22" assertions="1" time="0.002144"/>
+  <testsuite name="" tests="26" assertions="62" errors="1" warnings="0" failures="0" skipped="0" time="0.377825">
+    <testsuite name="Report Test Suite" tests="26" assertions="62" errors="1" warnings="0" failures="0" skipped="0" time="0.377825">
+      <testsuite name="App\Cards\CardGraphicTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardGraphicTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.003042">
+        <testcase name="testGetCardRep" class="App\Cards\CardGraphicTest" classname="App.Cards.CardGraphicTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardGraphicTest.php" line="22" assertions="1" time="0.003042"/>
       </testsuite>
-      <testsuite name="App\Cards\CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.001155">
-        <testcase name="testAdd" class="App\Cards\CardHandTest" classname="App.Cards.CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" line="13" assertions="2" time="0.000748"/>
-        <testcase name="testGetSum" class="App\Cards\CardHandTest" classname="App.Cards.CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" line="27" assertions="1" time="0.000408"/>
+      <testsuite name="App\Cards\CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.001051">
+        <testcase name="testAdd" class="App\Cards\CardHandTest" classname="App.Cards.CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" line="13" assertions="2" time="0.000600"/>
+        <testcase name="testGetSum" class="App\Cards\CardHandTest" classname="App.Cards.CardHandTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardHandTest.php" line="27" assertions="1" time="0.000452"/>
       </testsuite>
-      <testsuite name="App\Cards\CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.001295">
-        <testcase name="testGetSuite" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="22" assertions="1" time="0.000444"/>
-        <testcase name="testGetRank" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="27" assertions="1" time="0.000426"/>
-        <testcase name="testGetPoint" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="32" assertions="1" time="0.000425"/>
+      <testsuite name="App\Cards\CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" tests="3" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.001459">
+        <testcase name="testGetSuite" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="22" assertions="1" time="0.000461"/>
+        <testcase name="testGetRank" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="27" assertions="1" time="0.000477"/>
+        <testcase name="testGetPoint" class="App\Cards\CardTest" classname="App.Cards.CardTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/CardTest.php" line="32" assertions="1" time="0.000521"/>
       </testsuite>
-      <testsuite name="App\Cards\DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.005254">
-        <testcase name="testCreateDeck" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="13" assertions="2" time="0.000960"/>
-        <testcase name="testDraw" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="22" assertions="3" time="0.000825"/>
-        <testcase name="testCardLeft" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="34" assertions="2" time="0.000942"/>
-        <testcase name="testShuffleDeck" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="44" assertions="1" time="0.002528"/>
+      <testsuite name="App\Cards\DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.005851">
+        <testcase name="testCreateDeck" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="13" assertions="2" time="0.001201"/>
+        <testcase name="testDraw" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="22" assertions="3" time="0.001591"/>
+        <testcase name="testCardLeft" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="34" assertions="2" time="0.001221"/>
+        <testcase name="testShuffleDeck" class="App\Cards\DeckTest" classname="App.Cards.DeckTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/DeckTest.php" line="44" assertions="1" time="0.001838"/>
       </testsuite>
-      <testsuite name="App\Cards\TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" tests="5" assertions="16" errors="0" warnings="0" failures="0" skipped="0" time="0.005562">
-        <testcase name="testPlayerDraw" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="13" assertions="3" time="0.001299"/>
-        <testcase name="testBankDraw" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="24" assertions="3" time="0.000843"/>
-        <testcase name="testSetGameover" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="35" assertions="2" time="0.000643"/>
-        <testcase name="testBankTurn" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="44" assertions="3" time="0.001986"/>
-        <testcase name="testComparePoints" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="54" assertions="5" time="0.000791"/>
+      <testsuite name="App\Cards\TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" tests="5" assertions="16" errors="0" warnings="0" failures="0" skipped="0" time="0.005244">
+        <testcase name="testPlayerDraw" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="13" assertions="3" time="0.001068"/>
+        <testcase name="testBankDraw" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="24" assertions="3" time="0.000866"/>
+        <testcase name="testSetGameover" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="35" assertions="2" time="0.000733"/>
+        <testcase name="testBankTurn" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="44" assertions="3" time="0.001773"/>
+        <testcase name="testComparePoints" class="App\Cards\TestGame21" classname="App.Cards.TestGame21" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Cards/Game21Test.php" line="54" assertions="5" time="0.000805"/>
       </testsuite>
-      <testsuite name="App\Controller\ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" tests="3" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.142557">
-        <testcase name="testJsonDeck" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="12" assertions="3" time="0.105425"/>
-        <testcase name="testJsonShuffle" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="23" assertions="3" time="0.011572"/>
-        <testcase name="testJsonDraw" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="34" assertions="3" time="0.025559"/>
+      <testsuite name="App\Controller\ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" tests="3" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.144824">
+        <testcase name="testJsonDeck" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="12" assertions="3" time="0.107893"/>
+        <testcase name="testJsonShuffle" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="23" assertions="3" time="0.011447"/>
+        <testcase name="testJsonDraw" class="App\Controller\ApiCardControllerTest" classname="App.Controller.ApiCardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/ApiCardControllerTest.php" line="34" assertions="3" time="0.025484"/>
       </testsuite>
-      <testsuite name="App\Controller\CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.074397">
-        <testcase name="testLandingPage" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="13" assertions="3" time="0.015265"/>
-        <testcase name="testDeck" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="23" assertions="2" time="0.018281"/>
-        <testcase name="testShuffle" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="31" assertions="2" time="0.014292"/>
-        <testcase name="testDraw" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="39" assertions="1" time="0.026560"/>
+      <testsuite name="App\Controller\CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" tests="4" assertions="8" errors="0" warnings="0" failures="0" skipped="0" time="0.075188">
+        <testcase name="testLandingPage" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="15" assertions="2" time="0.015126"/>
+        <testcase name="testDeck" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="24" assertions="2" time="0.019029"/>
+        <testcase name="testShuffle" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="33" assertions="2" time="0.014464"/>
+        <testcase name="testDraw" class="App\Controller\CardControllerTest" classname="App.Controller.CardControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/CardControllerTest.php" line="42" assertions="2" time="0.026569"/>
+      </testsuite>
+      <testsuite name="App\Controller\GameControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php" tests="4" assertions="14" errors="1" warnings="0" failures="0" skipped="0" time="0.141165">
+        <testcase name="testLandingPage" class="App\Controller\GameControllerTest" classname="App.Controller.GameControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php" line="13" assertions="3" time="0.013124"/>
+        <testcase name="testGameStartFromLandingPage" class="App\Controller\GameControllerTest" classname="App.Controller.GameControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php" line="23" assertions="5" time="0.025089"/>
+        <testcase name="testGameStartDirectly" class="App\Controller\GameControllerTest" classname="App.Controller.GameControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php" line="35" assertions="6" time="0.033002"/>
+        <testcase name="testGameOver" class="App\Controller\GameControllerTest" classname="App.Controller.GameControllerTest" file="/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php" line="48" assertions="0" time="0.069950">
+          <error type="PHPUnit\Framework\RiskyTestError">App\Controller\GameControllerTest::testGameOver
+This test did not perform any assertions
+
+/home/miraju/git/dbwebb-kurser/mvc/me/report/tests/Controller/GameControllerTest.php:48</error>
+        </testcase>
       </testsuite>
     </testsuite>
   </testsuite>

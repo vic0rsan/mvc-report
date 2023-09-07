@@ -18,7 +18,7 @@ class GameController extends AbstractController
         return $this->render('game/index.html.twig', ['title' => "Game Index"]);
     }
 
-    #[Route("/game/init", name: "game_init", methods: ["POST"])]
+    #[Route("/game/init", name: "game_init", methods: ["GET", "POST"])]
     public function gameInit(SessionInterface $session): Response
     {
         $game = new Game21();
@@ -53,7 +53,8 @@ class GameController extends AbstractController
         $game = $session->get('game');
         $playerPoints = $game->getPlayerPoint();
         $bankPoints = $game->getBankPoint();
-        $gameover = $game->getGameover();        
+        $gameover = $game->getGameover();      
+
         $message = $this->gameover($gameover, $game);
 
         $data = [ 
