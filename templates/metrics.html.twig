@@ -177,5 +177,42 @@
         <img src="{{ asset('img/bugfix.png') }}" width="400" alt="Code Coverage">
         <figcaption>Scrutinizer rapport efter korrigering av buggen.</figcaption>
     </figure>
+    <p>
+        Den andra åtgärden jag utförde var att minska den cyklomatiska kodkomplexiteten för Card/Game-klasser. För ApiCardController och CardController var lösningen att slå ihop metoder för att dra ett eller flera kort (draw, draw_many) till en enda funktion.
+        Jag gjorde så att om man anger länken "/card/draw/{number}" utan att specifiera ett nummer så antar metoden värdet 1 genom standardvärdet i inparamtern number. För Game-klass separerade jag if-else-satts i metoden "initGame" till en separat metod "gameover" som returnerar vem som vann.
+        Efter implementationerna så noterade jag att kodkomplexitet hade minskat enligt Scrutinizer men även att kodtäckning hade stigit från 19% till 21%. 
+        Detta beror på att antalet metoder har minskats, vilket innebär att andelen för metoder som saknar tester har minskats och på så sätt ökar kodtäckningen.
+    </p>
+    <figure>
+        <img src="{{ asset('img/coveinc.png') }}" width="500" alt="Code Coverage">
+        <figcaption>Kodtäckningen ökade med 2% efter minskning av antalet metoder/kodrader.</figcaption>
+        <img src="{{ asset('img/new_complex.png') }}" width="1200" alt="Code Coverage">
+        <figcaption>Nya värden för kodkomplexitet för Game/Card-klasserna.</figcaption>
+        <img src="{{ asset('img/newcrap.png') }}" width="600" alt="Code Coverage">
+        <figcaption>Nya värden för CRAP för Game/Card-klasserna där värdet har minskats med hälften.</figcaption>
+    </figure>
+    <p>
+        Den sista åtgärden jag gjorde var skriva nya tester för kontroller klasserna för App\Cards. 
+        Jag använde mig utav Symfonys WebTestCase då för controller-klasser är beroende av en webbsession för att fungera (ex lagra data i sessionsvariablar).
+        Jag stötte på inga större svårigheter när jag skrev dessa tester. När jag var färdig med testerna noterade jag att kodtäckningen hade ökat från 21% till 46%, en ökning med hela 25%.
+    </p>
+    <figure>
+        <img src="{{ asset('img/maxcoverage.png') }}" width="300" alt="Code Coverage">
+        <figcaption>Den nya kodtäckning efter det tillagda testerna.</figcaption>
+    </figure>
 
+    <h2>5. Diskussion</h2>
+    <p>
+        Jag anser definitivt att man kan jobba med kodtäckning och "clean code" med verktyg som PHPMetrics och Scrutinizer.
+        Man kan smidigt få reda på potentiella buggar, kodkomplexitet, kodtäckning mm. Det viktiga är att man förstår mätvärderna som dessa verktyg matar ut och hur värdena framställs för att kunna göra förbättringar.
+    </p>
+    <p>
+        Fördelen att jobba med automatiserade verktyg är att man kan få brister av koden utpekad och kan på så sätt åtgärda det på ett effektivt sätt.
+        Däremot behöver inte alltid problemen som dessa verktyg rapportera vara gynsamma eller ge en noterbar förbättring för ett specifikt projekt då dessa verktyg utgår efter generella "best practices" vid bedömningen. 
+        Man bör alltid se över förslagen till projektets ändamål. Sen kan det uppstå svårigheter att nå goda nivå vid samtliga punkter som då dessa påverkar varandra och blir oftast att visa punkter prioriteras än övriga. 
+    </p>
+    <p>
+        Jag ser absolut möjligheter med att jobba mot "clean code" för framtida projekt. Det kan vara en uppförsbacke i början med att tolka alla olika mätvärden ex Coupling, LCOM, coherent mm var nya koncept för mig. 
+        Men i slutändand anser jag det är värt det, speciellt om man jobbar med ett projekt i teams där det blir ännu viktigare att koden håller en god läslighet för att kunna förstå och utveckla projektet effektivt.
+    </p>
 {% endblock %}
