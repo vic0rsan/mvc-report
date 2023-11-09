@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<h1>{{ title }}</h1>
+<h2>Byten: {{ round }}</h2>
+<form class="card-grid" action="/proj/game/swap" method="POST">
+    {% for key, card in player %}
+        <div>
+            {% if card.suite == "heart" or card.suite == "diamond" %}
+                <div class="card red-card">{{card.getCardRep}}</div>
+            {% else %}
+                <div class="card black-card">{{card.getCardRep}}</div>
+            {% endif %}
+            <input type="checkbox" name={{key}} value={{key}}>
+        </div>
+    {% endfor %}
+    <input type="submit" value="Byt kort">
+</form>
+<div class="card-grid">
+    {% for card in com %}
+        {% if card.suite == "heart" or card.suite == "diamond" %}
+            <div>
+                <div class="card red-card">{{card.getCardRep}}</div>
+            </div>
+        {% else %}
+            <div>
+                <div class="card black-card">{{card.getCardRep}}</div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

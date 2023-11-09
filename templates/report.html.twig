@@ -81,7 +81,7 @@
                 Min TIL för detta kmom var hur man kan generera ett dokument för kodkommentarer med phpdoc och en täckningsrapport via phpunit.
             </p>
 
-            <h2 id="kmom04">Kmom05</h2>
+            <h2 id="kmom05">Kmom05</h2>
             <p>
                 Det gick bra att komma igång med Doctrine för Symfony. Guiden förklarade stegvist för hur komponenterna fungerar samt gav exempelkod som underlättade vid den ursprungliga implementationen. Mina tankar kring ORM och Symfony var hur väl dessa verktyg var implementerad för att samarbeta med varandra. Tex kan man smidigt auto-generera en databas tabell utan att skriva en enda sql-lina. En annan egenskap med ORM/Symfony var dess medföljda script för versionshanteringar av tabeller.
             </p>
@@ -96,6 +96,24 @@
             </p>
             <p>
                 Jag har lärt mig en ny databas koncept där man jobbar med objekt istället för SQL samt hur man använder denna teknik inom ett Symfony-projekt.
+            </p>
+
+            <h2 id="kmom06">Kmom06</h2>
+            <p>
+                Jag tycker PHPMetrics är ett bra verktyg även om det kunde vara överväldigade i början med alla dess mätvärden och hur man skall tolka dem. Det var en del enheter jag hade svårigheter över vad det ger uttryck för. Det jag gillade med PHPMetrics var några grafer, 
+                bland annat klass kod komplexiteten  som redovisades som en spiral cirklar i olika färger för graden av komplexiteten. Det fanns även en graf där man kunde se kopplingar för samtliga klasser, vilket gav en tydliga överblick över klassrelationerna. 
+            </p>
+            <p>
+                Det gick bra att komma igång med Scrutinizer, det fungerade felfritt direkt efter kopplingen. Jag tycker Scrutinizer har ett tydligt och simpelt gränssnitt vid presentation av data.  Tycker Badges är ett bra sätt att presentera projektets kodkvalitet. 
+                Det verkar smidigt att ha klickbara badges för att i detalj se det olika kvalitetsaspekterna för projektet i fråga. Efter den första kopplingen fick jag en kodtäckning på 19% som jag fick sedan upp till 46% efter tillagt tester för olika controllers. 
+            </p>
+            <p>
+                Kodkvaliten enligt mig är en viktigt grund för att projekt skall vara underhållbar och prestera bra. En tydlig kod anser jag ger även projektet ett gott första intryck för utomstående utvecklare och en större chans till engagement vid tex ett OpenSource projekt vilket kan gynna projektet i längden om flera utvecklare bidrar till dess utveckling. 
+                Badges behöver inte alltid garantera att projektet är välskriven då automatiserade verktyg som Scrutinizer bedömer projektet utifrån en algoritm och kan därefter ha svårigheter att bedöma projektets funktionalitet i sin helhet och kan då ge en felaktig bedömning. 
+                Enligt mig så bör man granska koden manuellt och försöka att se koden för projektet som en utomstående då vissa implementationer som är självklart för sig själv är inte alltid det för andra. 
+            </p>
+            <p>
+                Min TIL handlar om hur man kan jobba med automatiserade kodvalidatorer för att förbättra kvalitén för sitt projekt. Samt att det finns ett brett spektrum av aspekter som tillsammans bidrar till det huvudsakliga kodkvaliten för ett projekt.
             </p>
         </section>
     </article>

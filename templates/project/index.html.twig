@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Project{% endblock %}
+
+{% block body %}
+<h1>Projekt - Femkortspoker</h1>
+<ul>
+    <li>
+        <a href="{{ path("game_doc") }}">Spelet</a>
+    </li>
+    <li>
+        <a href="{{ path("game_doc") }}">Dokumentation</a>
+    </li>
+</ul>
+{% endblock %}

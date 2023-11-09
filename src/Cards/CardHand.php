@@ -31,6 +31,16 @@ class CardHand
         }
     }
 
+    public function addAtIndex(array $swap, array $card): void
+    {
+        if (sizeof($swap) == sizeof($card)) {
+            $cardIndex = array_combine($swap, $card);
+            foreach ($cardIndex as $key => $value) {
+                $this->hand[(int) $key] = $value;
+            }
+        }
+    }
+
     /**
      * @return array<Card>
      */
