@@ -2,8 +2,11 @@
 
 {% block body %}
 <h1>{{ title }}</h1>
-<h2>Byten: {{ round }}</h2>
-<form class="card-grid" action="/proj/game/swap" method="POST">
+<h2>Runda: {{ round }}</h2>
+<h2>Pott: {{ playerPot }} SEK</h2>
+<h2>{{ status }}</h2>
+<form class="poker" action="/proj/game/swap" method="POST">
+    <div class="card-grid">
     {% for key, card in player %}
         <div>
             {% if card.suite == "heart" or card.suite == "diamond" %}
@@ -11,22 +14,47 @@
             {% else %}
                 <div class="card black-card">{{card.getCardRep}}</div>
             {% endif %}
-            <input type="checkbox" name={{key}} value={{key}}>
+            {% if gameover == false %}
+                {% if bet == false %}
+                    <input type="checkbox" name={{key}} value={{key}}>
+                {% endif %}
+            {% endif %}
         </div>
     {% endfor %}
-    <input type="submit" value="Byt kort">
-</form>
-<div class="card-grid">
-    {% for card in com %}
-        {% if card.suite == "heart" or card.suite == "diamond" %}
-            <div>
-                <div class="card red-card">{{card.getCardRep}}</div>
-            </div>
-        {% else %}
-            <div>
-                <div class="card black-card">{{card.getCardRep}}</div>
-            </div>
+    </div>
+    {% if gameover == false %}
+        {% if bet == false %}
+        <div class="poker-input">
+            <input class="poker-button" type="submit" value="Byt">
+        </div>
         {% endif %}
-    {% endfor %}
+    {% endif %}
+</form>
+{% if bet == true %}
+    <form class="poker" action="/proj/game/pot" method="POST">
+        <input class="poker-button" type="submit" value="Sätt in">
+        <input class="pot" type="number" name="pot" min="50" max="1000" value="50">
+    </form>
+{% endif %}
+<div class="poker">
+    <div class="card-grid">
+        {% if gameover == false %}
+            {% for card in com %}
+                <div class="card cover-card">🂠</div>
+            {% endfor %}
+        {% else %}
+            {% for card in com %}
+                {% if card.suite == "heart" or card.suite == "diamond" %}
+                    <div>
+                        <div class="card red-card">{{card.getCardRep}}</div>
+                    </div>
+                {% else %}
+                    <div>
+                        <div class="card black-card">{{card.getCardRep}}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

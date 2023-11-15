@@ -61,4 +61,14 @@ class CardHand
         }
         return $points;
     }
+
+    public function getHandRank(): array
+    {
+        $rank = [];
+        for ($i = 0; $i < sizeof($this->hand); $i++) {
+            $rank[$i] = $this->hand[$i]->getPoint();
+        }
+
+        return $rank;
+    }
 }
