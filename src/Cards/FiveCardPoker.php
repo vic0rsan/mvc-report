@@ -95,22 +95,31 @@ class FiveCardPoker
         $this->turn += 1;
     }
 
-    public function swapCard(array $swap)
+    public function swapCard(array $swap, bool $com)
     {
         $card = $this->deck->draw(sizeof($swap));
-        $this->player->addAtIndex($swap, $card);
-    }
 
-    private function nextCard($card) {
-        return substr($card, -1);
+        if ($com) {
+            $this->com->addAtIndex($swap, $card);
+        } else {
+            $this->player->addAtIndex($swap, $card);
+        }
     }
 
     public function getPokerRank(array $hand)
     {
         $handCount = array_count_values($hand);
 
+        if (array_sum($hand) == 60) {
+            return "Straight Flush";
+        }
+
         if (in_array(4, $handCount)) {
             return "Four of a Kind";
+        }
+
+        if (in_array(3, $handCount) && in_array(2, $handCount)) {
+            return "Full House";
         }
 
         if (in_array(3, $handCount)) {
@@ -129,9 +138,9 @@ class FiveCardPoker
             return "Straight";
         }
 
-        if (count(array_unique(array_map('nextCard', $hand))) == 1) {
+        /*if (count(array_unique(array_map('nextCard', $hand))) == 1) {
             return "Flush";
-        }
+        }*/
 
         if (max($hand) == 14 && min($hand) == 10 && count($handCount) == 5) {
             return "Royal Flush";
@@ -154,5 +163,34 @@ class FiveCardPoker
         }
 
         return "Datorn vann";
+    }
+
+    public function comLogic()
+    {
+        $hand = $this->com->getHandRank();
+        $count = array_count_values($hand);
+        $rank = self::getPokerRank($hand);
+
+        switch ($rank) {
+            case $rank == "Three of a Kind":
+                $card = array_search(3, $count);
+                return array_keys(array_filter($hand, function ($item) use ($card) {
+                    return $item !== $card;
+                }));
+            case $rank == "One Pair":
+                $card = array_search(2, $count);
+                return array_keys(array_filter($hand, function ($item) use ($card) {
+                    return $item !== $card;
+                }));
+            case $rank == "Two Pair":
+                $card = array_search(1, $count);
+                return array_keys(array_filter($hand, function ($item) use ($card) {
+                    return $item == $card;
+                }));
+            case $rank == "High Card":
+                return [0, 1, 2, 3, 4];
+        }
+
+        return [];
     }
 }

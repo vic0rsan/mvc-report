@@ -21,9 +21,7 @@ class ProjectController extends AbstractController
     #[Route("/proj/game", name: "project_game")]
     public function ProjectGame(SessionInterface $session): Response
     {
-        var_dump($session->get("swap"));
         $game = $session->get("game");
-        $gameover = false;
         $status = null;
 
         if (!$game) {
@@ -34,11 +32,6 @@ class ProjectController extends AbstractController
             $session->set("game", $game);
         }
 
-        if ($game->getTurn() == 4) {
-            $status = $game->compareHand();
-            $gameover = true;
-        }
-
         return $this->render('project/fivecard.html.twig', [
             "title" => "Five Card Poker",
             "player" => $game->getPlayerHand(),
@@ -46,8 +39,8 @@ class ProjectController extends AbstractController
             "round" => $game->getTurn(),
             "bet" => $session->get("bet"),
             "playerPot" => $game->getPlayerPot(),
-            "gameover" => $gameover,
-            "status" => $status
+            "gameover" => $session->get("gameover"),
+            "status" => $session->get("status")
         ]);
     }
 
@@ -57,7 +50,8 @@ class ProjectController extends AbstractController
         $game = $session->get("game");
         $swap = $body->request->all();
 
-        $game->swapCard($swap);
+        $game->swapCard($swap, false);
+        $game->SwapCard($game->comLogic(), true);
         $session->set("bet", true);
 
         return $this->redirectToRoute("project_game");
@@ -69,8 +63,13 @@ class ProjectController extends AbstractController
         $game = $session->get("game");
         $pot = $body->request->get('pot');
         $game->incPlayerPot($pot);
-        $game->incTurn();
         $session->set("bet", false);
+        $game->incTurn();
+
+        if ($game->getTurn() == 4) {
+            $session->set("status", $game->compareHand());
+            $session->set("gameover", true);
+        }
 
         return $this->redirectToRoute("project_game");
     }

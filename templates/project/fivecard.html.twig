@@ -2,7 +2,9 @@
 
 {% block body %}
 <h1>{{ title }}</h1>
-<h2>Runda: {{ round }}</h2>
+{% if gameover == false %}
+    <h2>Runda: {{ round }}</h2>
+{% endif %}
 <h2>Pott: {{ playerPot }} SEK</h2>
 <h2>{{ status }}</h2>
 <form class="poker" action="/proj/game/swap" method="POST">
@@ -30,7 +32,7 @@
         {% endif %}
     {% endif %}
 </form>
-{% if bet == true %}
+{% if bet == true and gameover == false %}
     <form class="poker" action="/proj/game/pot" method="POST">
         <input class="poker-button" type="submit" value="Sätt in">
         <input class="pot" type="number" name="pot" min="50" max="1000" value="50">
