@@ -65,8 +65,11 @@ class CardHand
     public function getHandRank(): array
     {
         $rank = [];
-        for ($i = 0; $i < sizeof($this->hand); $i++) {
-            $rank[$i] = $this->hand[$i]->getPoint();
+        for ($i = 0; $i < count($this->hand); $i++) {
+            $rank[$i] = [
+                "rank" => $this->hand[$i]->getPoint(),
+                "suit" => $this->hand[$i]->getSuite()
+            ];
         }
 
         return $rank;

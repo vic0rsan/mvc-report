@@ -38,7 +38,7 @@ class ProjectController extends AbstractController
             "com" => $game->getComHand(),
             "round" => $game->getTurn(),
             "bet" => $session->get("bet"),
-            "playerPot" => $game->getPlayerPot(),
+            "pot" => $game->getPot(),
             "gameover" => $session->get("gameover"),
             "status" => $session->get("status")
         ]);
@@ -62,15 +62,31 @@ class ProjectController extends AbstractController
     {
         $game = $session->get("game");
         $pot = $body->request->get('pot');
-        $game->incPlayerPot($pot);
+        $game->incPot($pot);
         $session->set("bet", false);
         $game->incTurn();
 
         if ($game->getTurn() == 4) {
-            $session->set("status", $game->compareHand());
+            $session->set("status", $game->compareHand() . " (" . $game->getPokerRank($game->getPlayer()->getHandRank()). ")");
             $session->set("gameover", true);
         }
 
         return $this->redirectToRoute("project_game");
+    }
+
+    #[Route("/proj/game/reset", name: "game_reset", methods: ['POST'])]
+    public function GameReset(SessionInterface $session): Response
+    {
+        $session->set("gameover", false);
+        $session->set("game", null);
+        $session->set("status", null);
+
+        return $this->redirectToRoute("project_game");
+    }
+
+    #[Route("/proj/about", name: "project_about")]
+    public function ProjectAbout()
+    {
+        return $this->render('project/about.html.twig');
     }
 }

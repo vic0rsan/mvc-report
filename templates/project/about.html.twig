@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<nav class="project-nav">
+    <a href="{{ url("project_index") }}">Hem</a> | <a href="{{ url("project_game") }}">Spelet</a> | <a href="{{ path("project_about") }}">Om</a>
+</nav>
+<h1>Projekt - Femkortspoker</h1>
+<p>
+    Jag valde att skapa spelet Femkortspoker för mitt slutprojekt.
+    Man kan spela en omgång Fem korts poker mot datorn. I spelet kan man byta ett valfri antal kort inom tre rundor. Bytet sker genom att användaren markerar kortens checkbox som ska bytas.
+    Efter varje byte ska spelaren och datorn sätta in en summa för minst 50kr och max 1000kr.
+    Datorn har en spelalgoritm/svårgihetsgrad för att avgöra vilka kort som den skall behålla/byta ut baserad på sin nuvarande korthand tex två par, full house, high card mm. 
+    När tre rundor har passerats visas datorns korthand för spelaren och poängen för korthändarna räknas. 
+    I ett statusmeddelande kan man se vem som vann och med vilken hand samt den totala vinstpotten.
+</p>
+{% endblock %}

@@ -1,11 +1,14 @@
 html {
-    background-color: green;
+    background-color: lightgrey;
+}
+
+header {
+    padding-bottom: 4em;
 }
 
 header, article, footer {
     width: 80%;
-    margin: 8px auto;
-    padding: 2em;
+    margin: 0 auto;
 }
 
 header, footer {
@@ -13,8 +16,12 @@ header, footer {
 }
 
 article {
-    min-height: 600px;
+    min-height: 800px;
     background-color: #fff;
+}
+
+article p, h1, h2, h3, ul, img {
+    margin-inline: 50px;
 }
 
 footer {
@@ -22,16 +29,25 @@ footer {
     padding: 4em 0em 4em 0em;
 }
 
+header h1 {
+    margin-left: 0.5em;
+}
+
+nav {
+   display: block;
+   margin-left: 1em;
+}
+
 a {
     text-decoration: underline;
 }
 
 p,h1,h2,h3,figcaption,a,strong,label,table {
-    color: #111
+    color: #111;
 }
 
 p,h1,a {
-    font-family:Arial, Helvetica, sans-serif;
+    margin-top: 0;
 }
 
 p, a, input, label {
@@ -39,12 +55,20 @@ p, a, input, label {
 }
 
 h1 {
-    font-size: 4vh;
+    font-size: 3em;
 }
 
 strong {    
     display: block;
     text-align: center;
+}
+
+.project-nav {
+    background-color: gold;
+    text-align: center;
+    margin: 0;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .card-wrap {
@@ -124,6 +148,10 @@ input[type=checkbox] {
 .book input {
     color: black;
     background-color: white;
+}
+
+.sf-toolbar {
+    height: 0;
 }
 
 table {

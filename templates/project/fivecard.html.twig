@@ -1,11 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
+<nav class="project-nav">
+    <a href="{{ url("project_index") }}">Hem</a> | <a href="{{ url("project_game") }}">Spelet</a> | <a href="{{ path("project_about") }}">Om</a>
+</nav>
 <h1>{{ title }}</h1>
 {% if gameover == false %}
     <h2>Runda: {{ round }}</h2>
 {% endif %}
-<h2>Pott: {{ playerPot }} SEK</h2>
+<h2>Pott: {{ pot }} SEK</h2>
 <h2>{{ status }}</h2>
 <form class="poker" action="/proj/game/swap" method="POST">
     <div class="card-grid">
@@ -36,6 +39,11 @@
     <form class="poker" action="/proj/game/pot" method="POST">
         <input class="poker-button" type="submit" value="Sätt in">
         <input class="pot" type="number" name="pot" min="50" max="1000" value="50">
+    </form>
+{% endif %}
+{% if gameover == true %}
+    <form class="poker" action="/proj/game/reset" method="POST">
+        <input class="poker-button" type="submit" value="Nytt">
     </form>
 {% endif %}
 <div class="poker">

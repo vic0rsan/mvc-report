@@ -17,12 +17,13 @@ class FiveCardPoker
         'Royal Flush' => 10,
     ];
 
+    private const MAXPOT = 1000;
+
     protected CardHand $player;
     protected CardHand $com;
     protected Deck $deck;
     protected int $turn;
-    protected int $playerPot;
-    protected int $comPot;
+    protected int $pot;
 
     public function __construct()
     {
@@ -30,8 +31,7 @@ class FiveCardPoker
         $this->com = new CardHand();
         $this->deck = new Deck();
         $this->turn = 1;
-        $this->playerPot = 0;
-        $this->comPot = 0;
+        $this->pot = 0;
     }
 
     public function dealHand()
@@ -75,9 +75,9 @@ class FiveCardPoker
         return $this->turn;
     }
 
-    public function getPlayerPot()
+    public function getPot()
     {
-        return $this->playerPot;
+        return $this->pot;
     }
 
     public function setTurn(int $turn)
@@ -85,9 +85,9 @@ class FiveCardPoker
         $this->turn = $turn;
     }
 
-    public function incPlayerPot(int $pot)
+    public function incPot(int $pot)
     {
-        $this->playerPot += $pot;
+        $this->pot += $pot;
     }
 
     public function incTurn()
@@ -106,46 +106,64 @@ class FiveCardPoker
         }
     }
 
-    public function getPokerRank(array $hand)
+    private function isStraight(array $hand)
     {
-        $handCount = array_count_values($hand);
-
-        if (array_sum($hand) == 60) {
-            return "Straight Flush";
+        usort($hand, function($a, $b) {
+            return $a['rank'] - $b['rank'];
+        });
+        
+        for ($i = 0; $i < count($hand) - 1; $i++) {
+            if ($hand[$i + 1]['rank'] -  $hand[$i]['rank'] != 1) {
+                return false;
+            }
         }
 
+        return true;
+    }
+    
+    public function getPokerRank(array $hand)
+    {
+        $handCount = array_count_values(array_column($hand, 'rank'));
+        $handUnique = count(array_unique(array_column($hand, 'suit'))) == 1;
+
+        $isStraight = self::isStraight($hand);
+    
+        if (array_sum(array_column($hand, 'rank')) == 60 && $handUnique) {
+            return "Royal Flush";
+        }
+    
+        if ($isStraight && $handUnique) {
+            return "Straight Flush";
+        }
+    
+        if ($handUnique) {
+            return "Flush";
+        }
+    
+        if ($isStraight) {
+            return "Straight";
+        }
+    
         if (in_array(4, $handCount)) {
             return "Four of a Kind";
         }
-
+    
         if (in_array(3, $handCount) && in_array(2, $handCount)) {
             return "Full House";
         }
-
+    
         if (in_array(3, $handCount)) {
             return "Three of a Kind";
         }
-        
+            
         if (count(array_keys($handCount, 2)) == 2) {
             return "Two Pair";
         }
-
+    
         if (in_array(2, $handCount)) {
             return "One Pair";
         }
-
-        if (max($hand) - min($hand) == 4 && count($handCount) == 5) {
-            return "Straight";
-        }
-
-        /*if (count(array_unique(array_map('nextCard', $hand))) == 1) {
-            return "Flush";
-        }*/
-
-        if (max($hand) == 14 && min($hand) == 10 && count($handCount) == 5) {
-            return "Royal Flush";
-        }
-
+    
         return "High Card";
     }
 
@@ -167,9 +185,24 @@ class FiveCardPoker
 
     public function comLogic()
     {
+        $pot = [
+            'High Card' => 50,
+            'One Pair' => 100,
+            'Two Pair' => 200,
+            'Three of a Kind' => 300,
+            'Straight' => 500,
+            'Flush' => 500,
+            'Full House' => 600,
+            'Four of a Kind' => 700,
+            'Straight Flush' => 800,
+            'Royal Flush' => 900,
+        ];
+
         $hand = $this->com->getHandRank();
-        $count = array_count_values($hand);
+        $count = array_count_values(array_column($hand, 'rank'));
         $rank = self::getPokerRank($hand);
+
+        self::incPot(rand($pot[$rank], self::MAXPOT));
 
         switch ($rank) {
             case $rank == "Three of a Kind":
