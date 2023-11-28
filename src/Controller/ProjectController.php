@@ -13,16 +13,15 @@ use App\Cards\FiveCardPoker;
 class ProjectController extends AbstractController
 {
     #[Route("/proj", name: "project_index")]
-    public function ProjectIndex()
+    public function projectIndex(): Response
     {
         return $this->render('project/index.html.twig');
     }
 
     #[Route("/proj/game", name: "project_game")]
-    public function ProjectGame(SessionInterface $session): Response
+    public function projectGame(SessionInterface $session): Response
     {
         $game = $session->get("game");
-        $status = null;
 
         if (!$game) {
             $game = new FiveCardPoker();
@@ -45,20 +44,20 @@ class ProjectController extends AbstractController
     }
 
     #[Route("/proj/game/swap", name: "swap_card", methods: ['POST'])]
-    public function SwapCard(SessionInterface $session, Request $body): Response
+    public function swapCard(SessionInterface $session, Request $body): Response
     {
         $game = $session->get("game");
         $swap = $body->request->all();
 
-        $game->swapCard($swap, false);
-        $game->SwapCard($game->comLogic(), true);
+        $game->swapCard($swap);
+        $game->SwapCard($game->comLogic());
         $session->set("bet", true);
 
         return $this->redirectToRoute("project_game");
     }
 
     #[Route("/proj/game/pot", name: "add_pot", methods: ['POST'])]
-    public function AddPot(SessionInterface $session, Request $body): Response
+    public function addPot(SessionInterface $session, Request $body): Response
     {
         $game = $session->get("game");
         $pot = $body->request->get('pot');
@@ -75,7 +74,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route("/proj/game/reset", name: "game_reset", methods: ['POST'])]
-    public function GameReset(SessionInterface $session): Response
+    public function gameReset(SessionInterface $session): Response
     {
         $session->set("gameover", false);
         $session->set("game", null);
@@ -85,7 +84,7 @@ class ProjectController extends AbstractController
     }
 
     #[Route("/proj/about", name: "project_about")]
-    public function ProjectAbout()
+    public function projectAbout(): Response
     {
         return $this->render('project/about.html.twig');
     }

@@ -34,7 +34,7 @@ class FiveCardPoker
         $this->pot = 0;
     }
 
-    public function dealHand()
+    public function dealHand(): void
     {
         $this->turn = 1;
 
@@ -45,145 +45,162 @@ class FiveCardPoker
         $this->com->add($card);
     }
 
-    public function getPlayerHand()
+    /**
+     * @return array<Card>
+     */
+    public function getPlayerHand(): array
     {
         return $this->player->getHand();
     }
 
-    public function getComHand()
+    /**
+     * @return array<Card>
+     */
+    public function getComHand(): array
     {
         return $this->com->getHand();
     }
 
-    public function getPlayer()
+    public function getPlayer(): CardHand
     {
         return $this->player;
     }
 
-    public function getCom()
+    public function getCom(): CardHand
     {
         return $this->com;
     }
 
-    public function getDeck()
+    public function getDeck(): Deck
     {
         return $this->deck;
     }
 
-    public function getTurn()
+    public function getTurn(): int
     {
         return $this->turn;
     }
 
-    public function getPot()
+    public function getPot(): int
     {
         return $this->pot;
     }
 
-    public function setTurn(int $turn)
+    public function setTurn(int $turn): void
     {
         $this->turn = $turn;
     }
 
-    public function incPot(int $pot)
+    public function incPot(int $pot): void
     {
         $this->pot += $pot;
     }
 
-    public function incTurn()
+    public function incTurn(): void
     {
         $this->turn += 1;
     }
 
-    public function swapCard(array $swap, bool $com)
+    /**
+     * @param array<int> $swap
+     */
+    public function swapCard(array $swap): void
     {
-        $card = $this->deck->draw(sizeof($swap));
+        $card = $this->deck->draw(count($swap));
 
-        if ($com) {
-            $this->com->addAtIndex($swap, $card);
-        } else {
-            $this->player->addAtIndex($swap, $card);
-        }
+        $this->com->addAtIndex($swap, $card);
+        $this->player->addAtIndex($swap, $card);
     }
 
-    private function isStraight(array $hand)
+    /**
+     * @param array<int<0,max>,array<int|string>> $hand
+     */
+    private function isStraight(array $hand): bool
     {
-        usort($hand, function($a, $b) {
-            return $a['rank'] - $b['rank'];
+        usort($hand, function ($current, $next) {
+            return (int)$current['rank'] - (int)$next['rank'];
         });
-        
-        for ($i = 0; $i < count($hand) - 1; $i++) {
-            if ($hand[$i + 1]['rank'] -  $hand[$i]['rank'] != 1) {
+
+        $max = count($hand);
+        for ($i = 0; $i < $max - 1; $i++) {
+            if ((int)$hand[$i + 1]['rank'] -  (int)$hand[$i]['rank'] != 1) {
                 return false;
             }
         }
 
         return true;
     }
-    
-    public function getPokerRank(array $hand)
+
+    /**
+     * @param array<int<0,max>,array<int|string>> $hand
+     */
+    public function getPokerRank(array $hand): string
     {
         $handCount = array_count_values(array_column($hand, 'rank'));
         $handUnique = count(array_unique(array_column($hand, 'suit'))) == 1;
 
         $isStraight = self::isStraight($hand);
-    
+
         if (array_sum(array_column($hand, 'rank')) == 60 && $handUnique) {
             return "Royal Flush";
         }
-    
+
         if ($isStraight && $handUnique) {
             return "Straight Flush";
         }
-    
+
         if ($handUnique) {
             return "Flush";
         }
-    
+
         if ($isStraight) {
             return "Straight";
         }
-    
+
         if (in_array(4, $handCount)) {
             return "Four of a Kind";
         }
-    
+
         if (in_array(3, $handCount) && in_array(2, $handCount)) {
             return "Full House";
         }
-    
+
         if (in_array(3, $handCount)) {
             return "Three of a Kind";
         }
-            
+
         if (count(array_keys($handCount, 2)) == 2) {
             return "Two Pair";
         }
-    
+
         if (in_array(2, $handCount)) {
             return "One Pair";
         }
-    
+
         return "High Card";
     }
 
-    public function compareHand() {
+    public function compareHand(): string
+    {
         if (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] == self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
             if ($this->player->getSum() == $this->com->getSum()) {
                 return "Oavgjort";
-            } else if ($this->player->getSum() > $this->com->getSum()) {
+            } elseif ($this->player->getSum() > $this->com->getSum()) {
                 return "Spelaren vann";
             }
 
             return "Datorn vann";
-        } else if (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] > self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
+        } elseif (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] > self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
             return "Spelaren vann";
         }
 
         return "Datorn vann";
     }
 
-    public function comLogic()
+    /**
+     * @return array<int>
+     */
+    public function comLogic(): array
     {
         $pot = [
             'High Card' => 50,
@@ -218,7 +235,7 @@ class FiveCardPoker
             case $rank == "Two Pair":
                 $card = array_search(1, $count);
                 return array_keys(array_filter($hand, function ($item) use ($card) {
-                    return $item == $card;
+                    return (int)$item == (int)$card;
                 }));
             case $rank == "High Card":
                 return [0, 1, 2, 3, 4];

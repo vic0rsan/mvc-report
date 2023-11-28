@@ -126,12 +126,12 @@ class LibraryController extends AbstractController
         Request $request,
         LibraryRepository $libraryRepository,
     ): Response {
-        $id = $request->request->get('id');
-        $book = $libraryRepository->find($id);
+        $bookId = $request->request->get('id');
+        $book = $libraryRepository->find($bookId);
 
         if (!$book) {
             throw $this->createNotFoundException(
-                'No book by specified id: '.$id
+                'No book by specified id: '.$bookId
             );
         }
 

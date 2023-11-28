@@ -31,6 +31,10 @@ class CardHand
         }
     }
 
+    /**
+     * @param array<int> $swap
+     * @param array<Card> $card
+     */
     public function addAtIndex(array $swap, array $card): void
     {
         if (sizeof($swap) == sizeof($card)) {
@@ -62,10 +66,14 @@ class CardHand
         return $points;
     }
 
+    /**
+     * @return array<int<0,max>,array<string,int|string>>
+     */
     public function getHandRank(): array
     {
         $rank = [];
-        for ($i = 0; $i < count($this->hand); $i++) {
+        $max = count($this->hand);
+        for ($i = 0; $i < $max; $i++) {
             $rank[$i] = [
                 "rank" => $this->hand[$i]->getPoint(),
                 "suit" => $this->hand[$i]->getSuite()
