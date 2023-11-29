@@ -61,36 +61,6 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Cards-CardGraphic.html#constant_CARDS"
         },                {
-            "fqsen": "\\App\\Cards\\CardHand",
-            "name": "CardHand",
-            "summary": "",
-            "url": "classes/App-Cards-CardHand.html"
-        },                {
-            "fqsen": "\\App\\Cards\\CardHand\u003A\u003A__construct\u0028\u0029",
-            "name": "__construct",
-            "summary": "Konstruktorn\u0020f\u00F6r\u0020att\u0020skapa\u0020ett\u0020CardHand\u002Dobjekt.",
-            "url": "classes/App-Cards-CardHand.html#method___construct"
-        },                {
-            "fqsen": "\\App\\Cards\\CardHand\u003A\u003Aadd\u0028\u0029",
-            "name": "add",
-            "summary": "Metoden\u0020l\u00E4gger\u0020till\u0020en\u0020eller\u0020flera\u0020kort\u0020i\u0020handen\u0020f\u00F6r\u0020spelaren.",
-            "url": "classes/App-Cards-CardHand.html#method_add"
-        },                {
-            "fqsen": "\\App\\Cards\\CardHand\u003A\u003AgetHand\u0028\u0029",
-            "name": "getHand",
-            "summary": "",
-            "url": "classes/App-Cards-CardHand.html#method_getHand"
-        },                {
-            "fqsen": "\\App\\Cards\\CardHand\u003A\u003AgetSum\u0028\u0029",
-            "name": "getSum",
-            "summary": "Metoden\u0020summerar\u0020kortens\u0020v\u00E4rde\u0020f\u00F6r\u0020en\u0020hand.",
-            "url": "classes/App-Cards-CardHand.html#method_getSum"
-        },                {
-            "fqsen": "\\App\\Cards\\CardHand\u003A\u003A\u0024hand",
-            "name": "hand",
-            "summary": "",
-            "url": "classes/App-Cards-CardHand.html#property_hand"
-        },                {
             "fqsen": "\\App\\Cards\\Deck",
             "name": "Deck",
             "summary": "Klassen\u0020f\u00F6r\u0020att\u0020skapa\u0020ett\u0020kortspel\u0020av\u002052st\u0020kort.",
@@ -645,6 +615,41 @@ Search.appendIndex(
             "name": "jsonOneBook",
             "summary": "",
             "url": "classes/App-Controller-ApiLibraryController.html#method_jsonOneBook"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController",
+            "name": "ProjectController",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectIndex\u0028\u0029",
+            "name": "projectIndex",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_projectIndex"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectGame\u0028\u0029",
+            "name": "projectGame",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_projectGame"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AswapCard\u0028\u0029",
+            "name": "swapCard",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_swapCard"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AaddPot\u0028\u0029",
+            "name": "addPot",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_addPot"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AgameReset\u0028\u0029",
+            "name": "gameReset",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_gameReset"
+        },                {
+            "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectAbout\u0028\u0029",
+            "name": "projectAbout",
+            "summary": "",
+            "url": "classes/App-Controller-ProjectController.html#method_projectAbout"
         },                {
             "fqsen": "\\",
             "name": "\\",

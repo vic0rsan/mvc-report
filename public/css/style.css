@@ -84,7 +84,6 @@ strong {
     display: grid;
     text-align: center;
     grid-template-columns: repeat(8, 1fr);
-    margin-bottom: 2vh;
     padding-bottom: 6vh;
 }
 
@@ -96,6 +95,7 @@ strong {
 input[type=checkbox] {
     height: 25px;
     width: 25px;
+    margin: 0;
 }
 
 .black-card {

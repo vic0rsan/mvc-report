@@ -50,7 +50,7 @@ class ProjectController extends AbstractController
         $swap = $body->request->all();
 
         $game->swapCard($swap);
-        $game->SwapCard($game->comLogic());
+        $game->comLogic();
         $session->set("bet", true);
 
         return $this->redirectToRoute("project_game");
@@ -66,7 +66,7 @@ class ProjectController extends AbstractController
         $game->incTurn();
 
         if ($game->getTurn() == 4) {
-            $session->set("status", $game->compareHand() . " (" . $game->getPokerRank($game->getPlayer()->getHandRank()). ")");
+            $session->set("status", $game->compareHand());
             $session->set("gameover", true);
         }
 

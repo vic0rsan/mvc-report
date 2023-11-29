@@ -17,8 +17,6 @@ class FiveCardPoker
         'Royal Flush' => 10,
     ];
 
-    private const MAXPOT = 1000;
-
     protected CardHand $player;
     protected CardHand $com;
     protected Deck $deck;
@@ -107,28 +105,7 @@ class FiveCardPoker
     public function swapCard(array $swap): void
     {
         $card = $this->deck->draw(count($swap));
-
-        $this->com->addAtIndex($swap, $card);
         $this->player->addAtIndex($swap, $card);
-    }
-
-    /**
-     * @param array<int<0,max>,array<int|string>> $hand
-     */
-    private function isStraight(array $hand): bool
-    {
-        usort($hand, function ($current, $next) {
-            return (int)$current['rank'] - (int)$next['rank'];
-        });
-
-        $max = count($hand);
-        for ($i = 0; $i < $max - 1; $i++) {
-            if ((int)$hand[$i + 1]['rank'] -  (int)$hand[$i]['rank'] != 1) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     /**
@@ -137,15 +114,50 @@ class FiveCardPoker
     public function getPokerRank(array $hand): string
     {
         $handCount = array_count_values(array_column($hand, 'rank'));
+
+        if ($this->getFlush($hand)) {
+            return (string)$this->getFlush($hand);
+        }
+
+        if (isStraight($hand)) {
+            return "Straight";
+        }
+
+        if (isFourOfAKind($handCount)) {
+            return "Four of a Kind";
+        }
+
+        if (isFullHouse($handCount)) {
+            return "Full House";
+        }
+
+        if (isThreeOfAKind($handCount)) {
+            return "Three of a Kind";
+        }
+
+        if (isTwoPair($handCount)) {
+            return "Two Pair";
+        }
+
+        if (isOnePair($handCount)) {
+            return "One Pair";
+        }
+
+        return "High Card";
+    }
+
+    /**
+     * @param array<int<0,max>,array<int|string>> $hand
+     */
+    private function getFlush(array $hand): string|bool
+    {
         $handUnique = count(array_unique(array_column($hand, 'suit'))) == 1;
 
-        $isStraight = self::isStraight($hand);
-
-        if (array_sum(array_column($hand, 'rank')) == 60 && $handUnique) {
+        if (isRoyalFlush($hand, $handUnique)) {
             return "Royal Flush";
         }
 
-        if ($isStraight && $handUnique) {
+        if (isStraightFlush(isStraight($hand), $handUnique)) {
             return "Straight Flush";
         }
 
@@ -153,43 +165,45 @@ class FiveCardPoker
             return "Flush";
         }
 
-        if ($isStraight) {
-            return "Straight";
+        return false;
+    }
+
+    private function compareRank(): string
+    {
+        $player = array_column($this->player->getHandRank(), 'rank');
+        $com = array_column($this->com->getHandRank(), 'rank');
+        $playerCount = array_count_values($player);
+        $comCount = array_count_values($com);
+        $rank = self::getPokerRank($this->player->getHandRank());
+
+        asort($player);
+        asort($com);
+
+        switch ($rank) {
+            case "High Card":
+            case "Straight":
+            case "Flush":
+                return compareHighCard($player, $com);
+            case "One Pair":
+                return compareOnePair($playerCount, $comCount);
+            case "Two Pair":
+                return compareTwoPair($playerCount, $comCount);
+            case "Three of a Kind":
+                return compareThreeOfAKind($playerCount, $comCount);
+            case "Full House":
+                return compareFullHouse($playerCount, $comCount);
+            case "Four of a Kind":
+                return compareFourOfAKind($playerCount, $comCount);
         }
 
-        if (in_array(4, $handCount)) {
-            return "Four of a Kind";
-        }
-
-        if (in_array(3, $handCount) && in_array(2, $handCount)) {
-            return "Full House";
-        }
-
-        if (in_array(3, $handCount)) {
-            return "Three of a Kind";
-        }
-
-        if (count(array_keys($handCount, 2)) == 2) {
-            return "Two Pair";
-        }
-
-        if (in_array(2, $handCount)) {
-            return "One Pair";
-        }
-
-        return "High Card";
+        return "Oavgjort";
     }
 
     public function compareHand(): string
     {
-        if (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] == self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
-            if ($this->player->getSum() == $this->com->getSum()) {
-                return "Oavgjort";
-            } elseif ($this->player->getSum() > $this->com->getSum()) {
-                return "Spelaren vann";
-            }
-
-            return "Datorn vann";
+        $rank = self::POKERRANK[self::getPokerRank($this->player->getHandRank())];
+        if ($rank == self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
+            return $this->compareRank();
         } elseif (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] > self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
             return "Spelaren vann";
         }
@@ -197,50 +211,48 @@ class FiveCardPoker
         return "Datorn vann";
     }
 
-    /**
-     * @return array<int>
-     */
-    public function comLogic(): array
+    public function comLogic(): void
     {
         $pot = [
             'High Card' => 50,
             'One Pair' => 100,
-            'Two Pair' => 200,
-            'Three of a Kind' => 300,
-            'Straight' => 500,
-            'Flush' => 500,
-            'Full House' => 600,
-            'Four of a Kind' => 700,
-            'Straight Flush' => 800,
-            'Royal Flush' => 900,
+            'Two Pair' => 150,
+            'Three of a Kind' => 200,
+            'Straight' => 250,
+            'Flush' => 300,
+            'Full House' => 350,
+            'Four of a Kind' => 400,
+            'Straight Flush' => 450,
+            'Royal Flush' => 500,
         ];
 
         $hand = $this->com->getHandRank();
         $count = array_count_values(array_column($hand, 'rank'));
         $rank = self::getPokerRank($hand);
 
-        self::incPot(rand($pot[$rank], self::MAXPOT));
+        self::incPot(rand($pot[$rank], 2 * $pot[$rank]));
 
+        $swap = [];
         switch ($rank) {
             case $rank == "Three of a Kind":
                 $card = array_search(3, $count);
-                return array_keys(array_filter($hand, function ($item) use ($card) {
+                $swap = array_keys(array_filter($hand, function ($item) use ($card) {
                     return $item !== $card;
                 }));
             case $rank == "One Pair":
                 $card = array_search(2, $count);
-                return array_keys(array_filter($hand, function ($item) use ($card) {
+                $swap = array_keys(array_filter($hand, function ($item) use ($card) {
                     return $item !== $card;
                 }));
             case $rank == "Two Pair":
                 $card = array_search(1, $count);
-                return array_keys(array_filter($hand, function ($item) use ($card) {
+                $swap = array_keys(array_filter($hand, function ($item) use ($card) {
                     return (int)$item == (int)$card;
                 }));
             case $rank == "High Card":
-                return [0, 1, 2, 3, 4];
+                $swap = [0, 1, 2, 3, 4];
         }
-
-        return [];
+        $card = $this->deck->draw(count($swap));
+        $this->com->addAtIndex($swap, $card);
     }
 }
