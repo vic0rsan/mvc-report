@@ -2,6 +2,8 @@
 
 namespace App\Cards;
 
+use App\Cards\CompareRank;
+
 class FiveCardPoker
 {
     private const POKERRANK = [
@@ -114,32 +116,33 @@ class FiveCardPoker
     public function getPokerRank(array $hand): string
     {
         $handCount = array_count_values(array_column($hand, 'rank'));
+        $compare = new CompareRank();
 
         if ($this->getFlush($hand)) {
             return (string)$this->getFlush($hand);
         }
 
-        if (isStraight($hand)) {
+        if ($compare->isStraight($hand)) {
             return "Straight";
         }
 
-        if (isFourOfAKind($handCount)) {
+        if ($compare->isFourOfAKind($handCount)) {
             return "Four of a Kind";
         }
 
-        if (isFullHouse($handCount)) {
+        if ($compare->isFullHouse($handCount)) {
             return "Full House";
         }
 
-        if (isThreeOfAKind($handCount)) {
+        if ($compare->isThreeOfAKind($handCount)) {
             return "Three of a Kind";
         }
 
-        if (isTwoPair($handCount)) {
+        if ($compare->isTwoPair($handCount)) {
             return "Two Pair";
         }
 
-        if (isOnePair($handCount)) {
+        if ($compare->isOnePair($handCount)) {
             return "One Pair";
         }
 
@@ -152,12 +155,13 @@ class FiveCardPoker
     private function getFlush(array $hand): string|bool
     {
         $handUnique = count(array_unique(array_column($hand, 'suit'))) == 1;
+        $compare = new CompareRank();
 
-        if (isRoyalFlush($hand, $handUnique)) {
+        if ($compare->isRoyalFlush($hand, $handUnique)) {
             return "Royal Flush";
         }
 
-        if (isStraightFlush(isStraight($hand), $handUnique)) {
+        if ($compare->isStraightFlush($compare->isStraight($hand), $handUnique)) {
             return "Straight Flush";
         }
 
@@ -175,6 +179,7 @@ class FiveCardPoker
         $playerCount = array_count_values($player);
         $comCount = array_count_values($com);
         $rank = self::getPokerRank($this->player->getHandRank());
+        $compare = new CompareRank();
 
         asort($player);
         asort($com);
@@ -183,17 +188,17 @@ class FiveCardPoker
             case "High Card":
             case "Straight":
             case "Flush":
-                return compareHighCard($player, $com);
+                return $compare->compareHighCard($player, $com);
             case "One Pair":
-                return compareOnePair($playerCount, $comCount);
+                return $compare->compareOnePair($playerCount, $comCount);
             case "Two Pair":
-                return compareTwoPair($playerCount, $comCount);
+                return $compare->compareTwoPair($playerCount, $comCount);
             case "Three of a Kind":
-                return compareThreeOfAKind($playerCount, $comCount);
+                return $compare->compareThreeOfAKind($playerCount, $comCount);
             case "Full House":
-                return compareFullHouse($playerCount, $comCount);
+                return $compare->compareFullHouse($playerCount, $comCount);
             case "Four of a Kind":
-                return compareFourOfAKind($playerCount, $comCount);
+                return $compare->compareFourOfAKind($playerCount, $comCount);
         }
 
         return "Oavgjort";
