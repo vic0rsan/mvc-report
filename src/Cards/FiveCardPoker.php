@@ -36,7 +36,8 @@ class FiveCardPoker
 
     public function dealHand(): void
     {
-        $this->turn = 1;
+        $this->deck->createDeck();
+        $this->deck->shuffleDeck();
 
         $card = $this->deck->draw(5);
         $this->player->add($card);
@@ -66,14 +67,15 @@ class FiveCardPoker
         return $this->player;
     }
 
-    public function getCom(): CardHand
+    public function setPlayerHand(array $card): void
     {
-        return $this->com;
-    }
-
-    public function getDeck(): Deck
-    {
-        return $this->deck;
+        $this->player = new CardHand();
+        $hand = [];
+        $count = count($card);
+        for ($i = 0; $i < $count; $i++) {
+            array_push($hand, new Card($card[$i]["suit"], "", $card[$i]["rank"]));
+        }
+        $this->player->add($hand);
     }
 
     public function getTurn(): int
@@ -84,11 +86,6 @@ class FiveCardPoker
     public function getPot(): int
     {
         return $this->pot;
-    }
-
-    public function setTurn(int $turn): void
-    {
-        $this->turn = $turn;
     }
 
     public function incPot(int $pot): void

@@ -25,8 +25,6 @@ class ProjectController extends AbstractController
 
         if (!$game) {
             $game = new FiveCardPoker();
-            $game->getDeck()->createDeck();
-            $game->getDeck()->shuffleDeck();
             $game->dealHand();
             $session->set("game", $game);
         }

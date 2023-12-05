@@ -17,6 +17,8 @@
         <!-- <directory suffix=".php">src</directory> -->
         <file>src/Cards/FiveCardPoker.php</file>
         <file>src/Cards/CompareRank.php</file>
+        <file>src/Cards/CardHand.php</file>
+        <file>src/Cards/Deck.php</file>
         <file>src/Controller/ProjectController.php</file>
       </include>
       <report>

@@ -8,7 +8,7 @@ class CompareRank
     /**
      * @param array<int<0,max>,array<int|string>> $hand
      */
-    function isStraight(array $hand): bool
+    public function isStraight(array $hand): bool
     {
         usort($hand, function ($current, $next) {
             return (int)$current['rank'] - (int)$next['rank'];
@@ -27,7 +27,7 @@ class CompareRank
     /**
      * @param array<int<0,max>,array<int|string>> $hand
      */
-    function isRoyalFlush(array $hand, bool $handUnique): bool
+    public function isRoyalFlush(array $hand, bool $handUnique): bool
     {
         return array_sum(array_column($hand, 'rank')) == 60 && $handUnique;
     }
@@ -40,7 +40,7 @@ class CompareRank
     /**
      * @param array<int> $handCount
      */
-    function isFourOfAKind(array $handCount): bool
+    public function isFourOfAKind(array $handCount): bool
     {
         return in_array(4, $handCount);
     }
@@ -48,7 +48,7 @@ class CompareRank
     /**
      * @param array<int> $handCount
      */
-    function isFullHouse(array $handCount): bool
+    public function isFullHouse(array $handCount): bool
     {
         return in_array(3, $handCount) && in_array(2, $handCount);
     }
@@ -56,7 +56,7 @@ class CompareRank
     /**
      * @param array<int> $handCount
      */
-    function isThreeOfAKind(array $handCount): bool
+    public function isThreeOfAKind(array $handCount): bool
     {
         return in_array(3, $handCount);
     }
@@ -64,7 +64,7 @@ class CompareRank
     /**
      * @param array<int> $handCount
      */
-    function isTwoPair(array $handCount): bool
+    public function isTwoPair(array $handCount): bool
     {
         return count(array_keys($handCount, 2)) == 2;
     }
@@ -72,7 +72,7 @@ class CompareRank
     /**
      * @param array<int> $handCount
      */
-    function isOnePair(array $handCount): bool
+    public function isOnePair(array $handCount): bool
     {
         return in_array(2, $handCount);
     }
@@ -81,7 +81,7 @@ class CompareRank
      * @param array<int,int|string> $player
      * @param array<int,int|string> $com
      */
-    function compareHighCard(array $player, array $com): string
+    public function compareHighCard(array $player, array $com): string
     {
         if (max($player) > max($com)) {
             return "Spelaren vann";
@@ -105,7 +105,7 @@ class CompareRank
      * @param array<int> $playerCount
      * @param array<int> $comCount
      */
-    function compareOnePair(array $playerCount, array $comCount): string
+    public function compareOnePair(array $playerCount, array $comCount): string
     {
         if ((int)array_search(2, $playerCount) > (int)array_search(2, $comCount)) {
             return "Spelaren vann";
@@ -135,7 +135,7 @@ class CompareRank
      * @param array<int> $playerCount
      * @param array<int> $comCount
      */
-    function compareTwoPair(array $playerCount, array $comCount): string
+    public function compareTwoPair(array $playerCount, array $comCount): string
     {
         if ((int)array_sum((array)array_search(2, $playerCount)) > (int)array_sum((array)array_search(2, $comCount))) {
             return "Spelaren vann";
@@ -156,7 +156,7 @@ class CompareRank
      * @param array<int> $playerCount
      * @param array<int> $comCount
      */
-    function compareThreeOfAKind(array $playerCount, array $comCount): string
+    public function compareThreeOfAKind(array $playerCount, array $comCount): string
     {
         if (array_search(3, $playerCount) > array_search(3, $comCount)) {
             return "Spelaren vann";
@@ -170,7 +170,7 @@ class CompareRank
      * @param array<int> $playerCount
      * @param array<int> $comCount
      */
-    function compareFullHouse(array $playerCount, array $comCount): string
+    public function compareFullHouse(array $playerCount, array $comCount): string
     {
         if (array_search(3, $playerCount) > array_search(3, $comCount)) {
             return "Spelaren vann";
@@ -191,7 +191,7 @@ class CompareRank
      * @param array<int> $playerCount
      * @param array<int> $comCount
      */
-    function compareFourOfAKind(array $playerCount, array $comCount): string
+    public function compareFourOfAKind(array $playerCount, array $comCount): string
     {
         if (array_search(4, $playerCount) > array_search(4, $comCount)) {
             return "Spelaren vann";
