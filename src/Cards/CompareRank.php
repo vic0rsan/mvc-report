@@ -109,21 +109,25 @@ class CompareRank
     {
         if ((int)array_search(2, $playerCount) > (int)array_search(2, $comCount)) {
             return "Spelaren vann";
-        } elseif ((int)array_search(2, $comCount) > (int)array_search(2, $playerCount)) {
+        } else if ((int)array_search(2, $comCount) > (int)array_search(2, $playerCount)) {
             return "Datorn vann";
         }
 
-        $playerKick = (array)array_search(1, $playerCount);
-        $comKick = (array)array_search(1, $comCount);
+        $playerKick = array_keys(array_filter($playerCount, function($item){
+            return $item == 1;
+        }));
+        $comKick = array_keys(array_filter($comCount, function($item){
+            return $item == 1;
+        }));
 
-        asort($playerKick);
-        asort($comKick);
+        rsort($playerKick);
+        rsort($comKick);
 
         $max = count($playerKick);
         for ($i = 0; $i < $max; $i++) {
-            if ((int)$playerKick[$i] > (int)$comKick[$i]) {
+            if ($playerKick[$i] > $comKick[$i]) {
                 return "Spelaren vann";
-            } elseif ((int)$comKick[$i] > (int)$playerKick[$i]) {
+            } else if ($comKick[$i] > $playerKick[$i]) {
                 return "Datorn vann";
             }
         }

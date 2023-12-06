@@ -244,4 +244,274 @@ class FiveCardPokerTest extends TestCase
 
         $this->assertEquals("Royal Flush", $rank);
     }
+
+    public function testCompareHighCardPlayerWin(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 7, "suit" => "spade"],
+            ["rank" => 8, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "club"],
+            ["rank" => 14, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 5, "suit" => "club"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 13, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Spelaren vann", $msg);
+
+        $player = [
+            ["rank" => 6, "suit" => "spade"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 5, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "club"],
+            ["rank" => 13, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 4, "suit" => "club"],
+            ["rank" => 9, "suit" => "club"],
+            ["rank" => 6, "suit" => "heart"],
+            ["rank" => 13, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Spelaren vann", $msg);
+    }
+
+    public function testCompareHighCardComWin(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 7, "suit" => "spade"],
+            ["rank" => 8, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "club"],
+            ["rank" => 13, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 5, "suit" => "club"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 11, "suit" => "heart"],
+            ["rank" => 14, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Datorn vann", $msg);
+
+        $player = [
+            ["rank" => 8, "suit" => "spade"],
+            ["rank" => 11, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "club"],
+            ["rank" => 14, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 5, "suit" => "club"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 11, "suit" => "heart"],
+            ["rank" => 14, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Datorn vann", $msg);
+    }
+
+    public function testCompareHighCardDraw(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 8, "suit" => "heart"],
+            ["rank" => 5, "suit" => "diamond"],
+            ["rank" => 11, "suit" => "club"],
+            ["rank" => 14, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 5, "suit" => "club"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 11, "suit" => "heart"],
+            ["rank" => 14, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Oavgjort", $msg);
+    }
+
+    public function testCompareOnePairPlayerWin(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 7, "suit" => "diamond"],
+            ["rank" => 7, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "club"],
+            ["rank" => 13, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 4, "suit" => "spade"],
+            ["rank" => 4, "suit" => "club"],
+            ["rank" => 1, "suit" => "spade"],
+            ["rank" => 3, "suit" => "heart"],
+            ["rank" => 12, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Spelaren vann", $msg);
+
+        $player = [
+            ["rank" => 9, "suit" => "spade"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 6, "suit" => "club"],
+            ["rank" => 14, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 9, "suit" => "spade"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 6, "suit" => "club"],
+            ["rank" => 3, "suit" => "heart"],
+            ["rank" => 14, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Spelaren vann", $msg);
+    }
+
+    public function testCompareOnePairComWin(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 7, "suit" => "diamond"],
+            ["rank" => 2, "suit" => "heart"],
+            ["rank" => 4, "suit" => "diamond"],
+            ["rank" => 11, "suit" => "club"],
+            ["rank" => 11, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 1, "suit" => "spade"],
+            ["rank" => 3, "suit" => "club"],
+            ["rank" => 4, "suit" => "spade"],
+            ["rank" => 12, "suit" => "heart"],
+            ["rank" => 12, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Datorn vann", $msg);
+
+        $player = [
+            ["rank" => 8, "suit" => "spade"],
+            ["rank" => 10, "suit" => "heart"],
+            ["rank" => 9, "suit" => "diamond"],
+            ["rank" => 10, "suit" => "club"],
+            ["rank" => 5, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 6, "suit" => "spade"],
+            ["rank" => 10, "suit" => "heart"],
+            ["rank" => 9, "suit" => "club"],
+            ["rank" => 8, "suit" => "heart"],
+            ["rank" => 10, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Datorn vann", $msg);
+    }
+
+    public function testCompareOnePairDraw(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 10, "suit" => "diamond"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 10, "suit" => "diamond"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 7, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 7, "suit" => "spade"],
+            ["rank" => 10, "suit" => "club"],
+            ["rank" => 10, "suit" => "spade"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 8, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Oavgjort", $msg);
+    }
+
+    public function testCompareTwoPairPlayerWin(): void
+    {
+        $poker = new FiveCardPoker();
+        $player = [
+            ["rank" => 12, "suit" => "diamond"],
+            ["rank" => 12, "suit" => "heart"],
+            ["rank" => 11, "suit" => "diamond"],
+            ["rank" => 8, "suit" => "club"],
+            ["rank" => 11, "suit" => "spade"],
+        ];
+
+        $com = [
+            ["rank" => 9, "suit" => "spade"],
+            ["rank" => 10, "suit" => "club"],
+            ["rank" => 10, "suit" => "spade"],
+            ["rank" => 9, "suit" => "heart"],
+            ["rank" => 8, "suit" => "diamond"],
+        ];
+
+        $poker->setPlayerHand($player);
+        $poker->setComHand($com);
+        $msg = $poker->compareHand();
+
+        $this->assertEquals("Spelaren vann", $msg);
+    }
 }

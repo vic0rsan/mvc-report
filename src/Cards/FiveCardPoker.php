@@ -46,25 +46,17 @@ class FiveCardPoker
         $this->com->add($card);
     }
 
+    public function getPlayer(): CardHand
+    {
+        return $this->player;
+    }
+
     /**
      * @return array<Card>
      */
     public function getPlayerHand(): array
     {
         return $this->player->getHand();
-    }
-
-    /**
-     * @return array<Card>
-     */
-    public function getComHand(): array
-    {
-        return $this->com->getHand();
-    }
-
-    public function getPlayer(): CardHand
-    {
-        return $this->player;
     }
 
     public function setPlayerHand(array $card): void
@@ -76,6 +68,25 @@ class FiveCardPoker
             array_push($hand, new Card($card[$i]["suit"], "", $card[$i]["rank"]));
         }
         $this->player->add($hand);
+    }
+
+    /**
+     * @return array<Card>
+     */
+    public function getComHand(): array
+    {
+        return $this->com->getHand();
+    }
+
+    public function setComHand(array $card): void
+    {
+        $this->com = new CardHand();
+        $hand = [];
+        $count = count($card);
+        for ($i = 0; $i < $count; $i++) {
+            array_push($hand, new Card($card[$i]["suit"], "", $card[$i]["rank"]));
+        }
+        $this->com->add($hand);
     }
 
     public function getTurn(): int
@@ -178,8 +189,8 @@ class FiveCardPoker
         $rank = self::getPokerRank($this->player->getHandRank());
         $compare = new CompareRank();
 
-        asort($player);
-        asort($com);
+        rsort($player);
+        rsort($com);
 
         switch ($rank) {
             case "High Card":
