@@ -73,8 +73,8 @@ class FiveCardPoker
     }
 
     /**
-     * @param array<int,array<string,int|string>> $card
-     */
+    * @param array<array{rank:int,suit:string}> $card
+    */
     public function setPlayerHand(array $card): void
     {
         $this->player = new CardHand();
@@ -95,8 +95,8 @@ class FiveCardPoker
     }
 
     /**
-     * @param array<int,array<string,int|string>> $card
-     */
+    * @param array<array{rank:int,suit:string}> $card
+    */
     public function setComHand(array $card): void
     {
         $this->com = new CardHand();
@@ -138,8 +138,8 @@ class FiveCardPoker
     }
 
     /**
-     * @param array<int<0,max>,array<int|string>> $hand
-     */
+    * @param array<array{rank:int,suit:string}> $hand
+    */
     public function getPokerRank(array $hand): string
     {
         $handCount = array_count_values(array_column($hand, 'rank'));
@@ -177,8 +177,8 @@ class FiveCardPoker
     }
 
     /**
-     * @param array<int<0,max>,array<int|string>> $hand
-     */
+    * @param array<array{rank: int, suit: string}> $hand
+    */
     private function getFlush(array $hand): string|bool
     {
         $handUnique = count(array_unique(array_column($hand, 'suit'))) == 1;
@@ -211,23 +211,30 @@ class FiveCardPoker
         rsort($player);
         rsort($com);
 
+        $winner = "";
         switch ($rank) {
             case "High Card":
             case "Straight":
             case "Straight Flush":
             case "Royal Flush":
             case "Flush":
-                return $compare->compareHighCard($player, $com);
+                $winner = $compare->compareHighCard($player, $com);
+                break;
             case "One Pair":
-                return $compare->compareOnePair($playerCount, $comCount);
+                $winner = $compare->compareOnePair($playerCount, $comCount);
+                break;
             case "Two Pair":
-                return $compare->compareTwoPair($playerCount, $comCount);
+                $winner = $compare->compareTwoPair($playerCount, $comCount);
+                break;
             case "Full House":
             case "Three of a Kind":
-                return $compare->compareThreeOfAKind($playerCount, $comCount);
+                $winner = $compare->compareThreeOfAKind($playerCount, $comCount);
+                break;
             case "Four of a Kind":
-                return $compare->compareFourOfAKind($playerCount, $comCount);
+                $winner = $compare->compareFourOfAKind($playerCount, $comCount);
+                break;
         }
+        return $winner;
     }
 
     public function compareHand(): string
@@ -242,7 +249,10 @@ class FiveCardPoker
         return "Datorn vann";
     }
 
-    public function comLogic()
+    /**
+     * @return array<int|null>
+     */
+    public function comLogic(): array
     {
         $hand = $this->com->getHandRank();
         $count = array_count_values(array_column($hand, 'rank'));
