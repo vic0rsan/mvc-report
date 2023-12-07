@@ -19,6 +19,19 @@ class FiveCardPoker
         'Royal Flush' => 10,
     ];
 
+    private const POT = [
+        'High Card' => 50,
+        'One Pair' => 100,
+        'Two Pair' => 150,
+        'Three of a Kind' => 200,
+        'Straight' => 250,
+        'Flush' => 300,
+        'Full House' => 350,
+        'Four of a Kind' => 400,
+        'Straight Flush' => 450,
+        'Royal Flush' => 500,
+    ];
+
     protected CardHand $player;
     protected CardHand $com;
     protected Deck $deck;
@@ -219,10 +232,10 @@ class FiveCardPoker
 
     public function compareHand(): string
     {
-        $rank = self::POKERRANK[self::getPokerRank($this->player->getHandRank())];
-        if ($rank == self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
+        $rank = self::POKERRANK[$this->getPokerRank($this->player->getHandRank())];
+        if ($rank == self::POKERRANK[$this->getPokerRank($this->com->getHandRank())]) {
             return $this->compareRank();
-        } elseif (self::POKERRANK[self::getPokerRank($this->player->getHandRank())] > self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
+        } elseif (self::POKERRANK[$this->getPokerRank($this->player->getHandRank())] > self::POKERRANK[self::getPokerRank($this->com->getHandRank())]) {
             return "Spelaren vann";
         }
 
@@ -231,24 +244,11 @@ class FiveCardPoker
 
     public function comLogic()
     {
-        $pot = [
-            'High Card' => 50,
-            'One Pair' => 100,
-            'Two Pair' => 150,
-            'Three of a Kind' => 200,
-            'Straight' => 250,
-            'Flush' => 300,
-            'Full House' => 350,
-            'Four of a Kind' => 400,
-            'Straight Flush' => 450,
-            'Royal Flush' => 500,
-        ];
-
         $hand = $this->com->getHandRank();
         $count = array_count_values(array_column($hand, 'rank'));
-        $rank = self::getPokerRank($hand);
+        $rank = $this->getPokerRank($hand);
 
-        $this->incPot(rand($pot[$rank], 2 * $pot[$rank]));
+        $this->incPot(rand(self::POT[$rank], 2 * self::POT[$rank]));
 
         $swap = [];
         switch ($rank) {
