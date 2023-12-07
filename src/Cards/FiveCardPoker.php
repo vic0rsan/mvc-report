@@ -59,13 +59,16 @@ class FiveCardPoker
         return $this->player->getHand();
     }
 
+    /**
+     * @param array<int,array<string,int|string>> $card
+     */
     public function setPlayerHand(array $card): void
     {
         $this->player = new CardHand();
         $hand = [];
         $count = count($card);
         for ($i = 0; $i < $count; $i++) {
-            array_push($hand, new Card($card[$i]["suit"], "", $card[$i]["rank"]));
+            array_push($hand, new Card((string)$card[$i]["suit"], "", (int)$card[$i]["rank"]));
         }
         $this->player->add($hand);
     }
@@ -78,13 +81,16 @@ class FiveCardPoker
         return $this->com->getHand();
     }
 
+    /**
+     * @param array<int,array<string,int|string>> $card
+     */
     public function setComHand(array $card): void
     {
         $this->com = new CardHand();
         $hand = [];
         $count = count($card);
         for ($i = 0; $i < $count; $i++) {
-            array_push($hand, new Card($card[$i]["suit"], "", $card[$i]["rank"]));
+            array_push($hand, new Card((string)$card[$i]["suit"], "", (int)$card[$i]["rank"]));
         }
         $this->com->add($hand);
     }
@@ -186,7 +192,7 @@ class FiveCardPoker
         $com = array_column($this->com->getHandRank(), 'rank');
         $playerCount = array_count_values($player);
         $comCount = array_count_values($com);
-        $rank = self::getPokerRank($this->player->getHandRank());
+        $rank = $this->getPokerRank($this->player->getHandRank());
         $compare = new CompareRank();
 
         rsort($player);
@@ -195,21 +201,20 @@ class FiveCardPoker
         switch ($rank) {
             case "High Card":
             case "Straight":
+            case "Straight Flush":
+            case "Royal Flush":
             case "Flush":
                 return $compare->compareHighCard($player, $com);
             case "One Pair":
                 return $compare->compareOnePair($playerCount, $comCount);
             case "Two Pair":
                 return $compare->compareTwoPair($playerCount, $comCount);
+            case "Full House":
             case "Three of a Kind":
                 return $compare->compareThreeOfAKind($playerCount, $comCount);
-            case "Full House":
-                return $compare->compareFullHouse($playerCount, $comCount);
             case "Four of a Kind":
                 return $compare->compareFourOfAKind($playerCount, $comCount);
         }
-
-        return "Oavgjort";
     }
 
     public function compareHand(): string
@@ -224,7 +229,7 @@ class FiveCardPoker
         return "Datorn vann";
     }
 
-    public function comLogic(): void
+    public function comLogic()
     {
         $pot = [
             'High Card' => 50,
@@ -243,29 +248,35 @@ class FiveCardPoker
         $count = array_count_values(array_column($hand, 'rank'));
         $rank = self::getPokerRank($hand);
 
-        self::incPot(rand($pot[$rank], 2 * $pot[$rank]));
+        $this->incPot(rand($pot[$rank], 2 * $pot[$rank]));
 
         $swap = [];
         switch ($rank) {
-            case $rank == "Three of a Kind":
+            case "Three of a Kind":
                 $card = array_search(3, $count);
                 $swap = array_keys(array_filter($hand, function ($item) use ($card) {
-                    return $item !== $card;
+                    return $item['rank'] !== $card;
                 }));
-            case $rank == "One Pair":
+                break;
+            case "One Pair":
                 $card = array_search(2, $count);
                 $swap = array_keys(array_filter($hand, function ($item) use ($card) {
-                    return $item !== $card;
+                    return $item['rank'] !== $card;
                 }));
-            case $rank == "Two Pair":
+                break;
+            case "Two Pair":
                 $card = array_search(1, $count);
                 $swap = array_keys(array_filter($hand, function ($item) use ($card) {
-                    return (int)$item == (int)$card;
+                    return (int)$item['rank'] == (int)$card;
                 }));
-            case $rank == "High Card":
+                break;
+            case "High Card":
                 $swap = [0, 1, 2, 3, 4];
+                break;
         }
         $card = $this->deck->draw(count($swap));
         $this->com->addAtIndex($swap, $card);
+
+        return $swap;
     }
 }

@@ -4,7 +4,6 @@ namespace App\Cards;
 
 class CompareRank
 {
-
     /**
      * @param array<int<0,max>,array<int|string>> $hand
      */
@@ -32,7 +31,7 @@ class CompareRank
         return array_sum(array_column($hand, 'rank')) == 60 && $handUnique;
     }
 
-    function isStraightFlush(bool $isStraight, bool $handUnique): bool
+    public function isStraightFlush(bool $isStraight, bool $handUnique): bool
     {
         return $isStraight && $handUnique;
     }
@@ -109,14 +108,14 @@ class CompareRank
     {
         if ((int)array_search(2, $playerCount) > (int)array_search(2, $comCount)) {
             return "Spelaren vann";
-        } else if ((int)array_search(2, $comCount) > (int)array_search(2, $playerCount)) {
+        } elseif ((int)array_search(2, $comCount) > (int)array_search(2, $playerCount)) {
             return "Datorn vann";
         }
 
-        $playerKick = array_keys(array_filter($playerCount, function($item){
+        $playerKick = array_keys(array_filter($playerCount, function ($item) {
             return $item == 1;
         }));
-        $comKick = array_keys(array_filter($comCount, function($item){
+        $comKick = array_keys(array_filter($comCount, function ($item) {
             return $item == 1;
         }));
 
@@ -127,7 +126,7 @@ class CompareRank
         for ($i = 0; $i < $max; $i++) {
             if ($playerKick[$i] > $comKick[$i]) {
                 return "Spelaren vann";
-            } else if ($comKick[$i] > $playerKick[$i]) {
+            } elseif ($comKick[$i] > $playerKick[$i]) {
                 return "Datorn vann";
             }
         }
@@ -141,9 +140,23 @@ class CompareRank
      */
     public function compareTwoPair(array $playerCount, array $comCount): string
     {
-        if ((int)array_sum((array)array_search(2, $playerCount)) > (int)array_sum((array)array_search(2, $comCount))) {
+        $player = array_keys(array_filter($playerCount, function ($item) {
+            return $item == 2;
+        }));
+
+        $com = array_keys(array_filter($comCount, function ($item) {
+            return $item == 2;
+        }));
+
+        if (max($player) > max($com)) {
             return "Spelaren vann";
-        } elseif ((int)array_sum((array)array_search(2, $comCount)) > (int)array_sum((array)array_search(2, $playerCount))) {
+        } elseif (max($com) > max($player)) {
+            return "Datorn vann";
+        }
+
+        if (min($player) > min($com)) {
+            return "Spelaren vann";
+        } elseif (min($com) > min($player)) {
             return "Datorn vann";
         }
 
@@ -164,31 +177,8 @@ class CompareRank
     {
         if (array_search(3, $playerCount) > array_search(3, $comCount)) {
             return "Spelaren vann";
-        } elseif (array_search(3, $comCount) > array_search(3, $playerCount)) {
-            return "Datorn vann";
         }
-        return "Oavgjort";
-    }
-
-    /**
-     * @param array<int> $playerCount
-     * @param array<int> $comCount
-     */
-    public function compareFullHouse(array $playerCount, array $comCount): string
-    {
-        if (array_search(3, $playerCount) > array_search(3, $comCount)) {
-            return "Spelaren vann";
-        } elseif (array_search(3, $comCount) > array_search(3, $playerCount)) {
-            return "Datorn vann";
-        }
-
-        if (array_search(2, $playerCount) > array_search(2, $comCount)) {
-            return "Spelaren vann";
-        } elseif (array_search(2, $comCount) > array_search(2, $playerCount)) {
-            return "Datorn vann";
-        }
-
-        return "Oavgjort";
+        return "Datorn vann";
     }
 
     /**
@@ -199,10 +189,7 @@ class CompareRank
     {
         if (array_search(4, $playerCount) > array_search(4, $comCount)) {
             return "Spelaren vann";
-        } elseif (array_search(4, $comCount) > array_search(4, $playerCount)) {
-            return "Datorn vann";
         }
-
-        return "Oavgjort";
+        return "Datorn vann";
     }
 }
