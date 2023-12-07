@@ -882,4 +882,22 @@ class FiveCardPokerTest extends TestCase
 
         $this->assertEquals(5, count($newCom));
     }
+
+    public function testComLogicHigherRank(): void
+    {
+        $poker = new FiveCardPoker();
+        $poker->dealHand();
+        $com = [
+            ["rank" => 2, "suit" => "spade"],
+            ["rank" => 3, "suit" => "spade"],
+            ["rank" => 4, "suit" => "spade"],
+            ["rank" => 5, "suit" => "spade"],
+            ["rank" => 6, "suit" => "spade"],
+        ];
+
+        $poker->setComHand($com);
+        $newCom = $poker->comLogic();
+
+        $this->assertEquals(0, count($newCom));
+    }
 }

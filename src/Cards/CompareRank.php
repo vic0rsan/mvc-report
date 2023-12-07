@@ -143,7 +143,6 @@ class CompareRank
         $player = array_keys(array_filter($playerCount, function ($item) {
             return $item == 2;
         }));
-
         $com = array_keys(array_filter($comCount, function ($item) {
             return $item == 2;
         }));

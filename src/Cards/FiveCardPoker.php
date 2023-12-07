@@ -273,6 +273,8 @@ class FiveCardPoker
             case "High Card":
                 $swap = [0, 1, 2, 3, 4];
                 break;
+            default:
+                return $swap;
         }
         $card = $this->deck->draw(count($swap));
         $this->com->addAtIndex($swap, $card);
