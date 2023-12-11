@@ -70,9 +70,20 @@ class FiveCardPokerTest extends TestCase
         $poker->setPlayerHand($swap);
         $this->assertEquals($swap, $poker->getPlayer()->getHandRank());
 
-        $poker->swapCard([4]);
+        $poker->swapCard([4], [new Card("heart", "ace", 14)]);
 
         $this->assertNotEquals($swap[4], $poker->getPlayer()->getHandRank()[4]);
+    }
+
+    public function testSwapCardAll(): void
+    {
+        $poker = new FiveCardPoker();
+        $poker->dealHand();
+
+        $hand = $poker->getPlayerHand();
+        $poker->swapCard([0,1,2,3,4]);
+
+        $this->assertNotEquals($hand, $poker->getPlayerHand());
     }
 
     public function testHighCard(): void
@@ -824,7 +835,7 @@ class FiveCardPokerTest extends TestCase
         ];
 
         $poker->setComHand($com);
-        $newCom = $poker->comLogic();
+        $newCom = $poker->comLogic(400);
 
         $this->assertEquals(2, count($newCom));
     }
@@ -842,7 +853,7 @@ class FiveCardPokerTest extends TestCase
         ];
 
         $poker->setComHand($com);
-        $newCom = $poker->comLogic();
+        $newCom = $poker->comLogic(250);
 
         $this->assertEquals(3, count($newCom));
     }
@@ -860,7 +871,7 @@ class FiveCardPokerTest extends TestCase
         ];
 
         $poker->setComHand($com);
-        $newCom = $poker->comLogic();
+        $newCom = $poker->comLogic(150);
 
         $this->assertEquals(1, count($newCom));
     }
@@ -878,7 +889,7 @@ class FiveCardPokerTest extends TestCase
         ];
 
         $poker->setComHand($com);
-        $newCom = $poker->comLogic();
+        $newCom = $poker->comLogic(100);
 
         $this->assertEquals(5, count($newCom));
     }
@@ -896,8 +907,29 @@ class FiveCardPokerTest extends TestCase
         ];
 
         $poker->setComHand($com);
-        $newCom = $poker->comLogic();
+        $newCom = $poker->comLogic(0);
 
         $this->assertEquals(0, count($newCom));
+    }
+
+    public function testComLogicRaise(): void
+    {
+        $poker = new FiveCardPoker();
+        $poker->dealHand();
+        $poker->incPot(100);
+        $poker->comLogic(0, 1);
+
+        $this->assertNotEquals(100, $poker->getPot());
+    }
+
+    public function testComLogicCall(): void
+    {
+        $poker = new FiveCardPoker();
+        $poker->dealHand();
+        $playerPot = 100;
+        $poker->incPot($playerPot);
+        $poker->comLogic($playerPot, 2);
+
+        $this->assertEquals(200, $poker->getPot());
     }
 }

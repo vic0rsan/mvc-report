@@ -19,19 +19,6 @@ class FiveCardPoker
         'Royal Flush' => 10,
     ];
 
-    private const POT = [
-        'High Card' => 50,
-        'One Pair' => 100,
-        'Two Pair' => 150,
-        'Three of a Kind' => 200,
-        'Straight' => 250,
-        'Flush' => 300,
-        'Full House' => 350,
-        'Four of a Kind' => 400,
-        'Straight Flush' => 450,
-        'Royal Flush' => 500,
-    ];
-
     protected CardHand $player;
     protected CardHand $com;
     protected Deck $deck;
@@ -130,9 +117,14 @@ class FiveCardPoker
 
     /**
      * @param array<int> $swap
+     * @param array<Card> $test
      */
-    public function swapCard(array $swap): void
+    public function swapCard(array $swap = [], array $test = []): void
     {
+        if ($test) {
+            $this->player->addAtIndex($swap, $test);
+            return;
+        }
         $card = $this->deck->draw(count($swap));
         $this->player->addAtIndex($swap, $card);
     }
@@ -177,7 +169,7 @@ class FiveCardPoker
     }
 
     /**
-    * @param array<array{rank: int, suit: string}> $hand
+    * @param array<array{rank:int,suit:string}> $hand
     */
     private function getFlush(array $hand): string|bool
     {
@@ -252,13 +244,21 @@ class FiveCardPoker
     /**
      * @return array<int|null>
      */
-    public function comLogic(): array
+    public function comLogic(int $playerPot, int $raise = null): array
     {
         $hand = $this->com->getHandRank();
         $count = array_count_values(array_column($hand, 'rank'));
         $rank = $this->getPokerRank($hand);
 
-        $this->incPot(rand(self::POT[$rank], 2 * self::POT[$rank]));
+        if (!$raise) {
+            $raise = rand(1, 2);
+        }
+
+        if ($raise == 1) {
+            $this->incPot($playerPot + rand(50, 200));
+        } elseif ($raise == 2) {
+            $this->incPot($playerPot);
+        }
 
         $swap = [];
         switch ($rank) {

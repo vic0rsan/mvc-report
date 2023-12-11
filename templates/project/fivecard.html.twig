@@ -27,18 +27,18 @@
         </div>
     {% endfor %}
     </div>
-    {% if gameover == false %}
+    {% if gameover == false or bet == false %}
         {% if bet == false %}
         <div class="poker-input">
-            <input class="poker-button" type="submit" value="Byt">
+            <input class="poker-button swap-button" type="submit" value="Byt">
         </div>
         {% endif %}
     {% endif %}
 </form>
-{% if bet == true and gameover == false %}
+{% if bet == true and gameover == false and round < 4 %}
     <form class="poker" action="/proj/game/pot" method="POST">
         <input class="poker-button" type="submit" value="Sätt in">
-        <input class="pot" type="number" name="pot" min="50" max="1000" value="50">
+        <input class="pot" type="number" name="pot" min={{minPot}} max="1000" value={{minPot}}>
     </form>
 {% endif %}
 {% if gameover == true %}

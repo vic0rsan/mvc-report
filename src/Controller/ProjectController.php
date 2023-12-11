@@ -27,6 +27,8 @@ class ProjectController extends AbstractController
             $game = new FiveCardPoker();
             $game->dealHand();
             $session->set("game", $game);
+            $session->set("minPot", 0);
+            $session->set("bet", true);
         }
 
         return $this->render('project/fivecard.html.twig', [
@@ -36,6 +38,7 @@ class ProjectController extends AbstractController
             "round" => $game->getTurn(),
             "bet" => $session->get("bet"),
             "pot" => $game->getPot(),
+            "minPot" => $session->get("minPot"),
             "gameover" => $session->get("gameover"),
             "status" => $session->get("status")
         ]);
@@ -48,8 +51,14 @@ class ProjectController extends AbstractController
         $swap = $body->request->all();
 
         $game->swapCard($swap);
-        $game->comLogic();
         $session->set("bet", true);
+
+        $game->incTurn();
+
+        if ($game->getTurn() == 4) {
+            $session->set("status", $game->compareHand());
+            $session->set("gameover", true);
+        }
 
         return $this->redirectToRoute("project_game");
     }
@@ -60,13 +69,9 @@ class ProjectController extends AbstractController
         $game = $session->get("game");
         $pot = $body->request->get('pot');
         $game->incPot($pot);
+        $game->comLogic($pot);
+        $session->set("minPot", $game->getPot() - $pot);
         $session->set("bet", false);
-        $game->incTurn();
-
-        if ($game->getTurn() == 4) {
-            $session->set("status", $game->compareHand());
-            $session->set("gameover", true);
-        }
 
         return $this->redirectToRoute("project_game");
     }

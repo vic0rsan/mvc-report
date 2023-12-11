@@ -16,7 +16,7 @@ header, footer {
 }
 
 article {
-    min-height: 800px;
+    min-height: 950px;
     background-color: #fff;
 }
 
@@ -88,8 +88,8 @@ strong {
 }
 
 .card {
-    font-size: 23vh;
-    height: 18vh;
+    font-size: 25vh;
+    height: 20vh;
 }
 
 input[type=checkbox] {
@@ -110,6 +110,7 @@ input[type=checkbox] {
     width: 60%;
     margin: 0 auto;
 }
+
 .cover-card {
     color: darkcyan;
 }
@@ -135,6 +136,7 @@ input[type=checkbox] {
     cursor: pointer;
     padding: 1rem;
     width: 25%;
+    margin-top: 1em;
 }
 
 .game-button {
