@@ -616,40 +616,230 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/App-Controller-ApiLibraryController.html#method_jsonOneBook"
         },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker",
+            "name": "FiveCardPoker",
+            "summary": "Klassen\u0020f\u00F6r\u0020att\u0020skapa\u0020en\u0020omg\u00E5ng\u0020av\u0020Femkorts\u0020poker.",
+            "url": "classes/App-Cards-FiveCardPoker.html"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method___construct"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AdealHand\u0028\u0029",
+            "name": "dealHand",
+            "summary": "Metoden\u0020skapar\u0020en\u0020ny\u0020upps\u00E4ttning\u0020av\u0020en\u0020kortlek\u0020och\u0020delar\u0020sedan\u0020ut\n5\u0020kort\u0020vardera\u0020till\u0020spelaren\u0020och\u0020datorn.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_dealHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetPlayer\u0028\u0029",
+            "name": "getPlayer",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getPlayer"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetPlayerHand\u0028\u0029",
+            "name": "getPlayerHand",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getPlayerHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AsetPlayerHand\u0028\u0029",
+            "name": "setPlayerHand",
+            "summary": "Metoden\u0020anv\u00E4nds\u0020enbart\u0020vid\u0020testande\u0020d\u00E5\u0020man\u0020vill\u0020definera\u0020en\u0020hand\u0020f\u00F6r\u0020spelaren.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_setPlayerHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetComHand\u0028\u0029",
+            "name": "getComHand",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getComHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AsetComHand\u0028\u0029",
+            "name": "setComHand",
+            "summary": "Metoden\u0020anv\u00E4nds\u0020enbart\u0020vid\u0020testande\u0020d\u00E5\u0020man\u0020vill\u0020definera\u0020en\u0020hand\u0020f\u00F6r\u0020Datorn.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_setComHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetTurn\u0028\u0029",
+            "name": "getTurn",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getTurn"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetPot\u0028\u0029",
+            "name": "getPot",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getPot"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AincPot\u0028\u0029",
+            "name": "incPot",
+            "summary": "En\u0020setter\u0020metod\u0020f\u00F6r\u0020att\u0020\u00F6ka\u0020den\u0020totala\u0020spelpotten",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_incPot"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AincTurn\u0028\u0029",
+            "name": "incTurn",
+            "summary": "En\u0020setter\u0020metod\u0020f\u00F6r\u0020att\u0020\u00F6ka\u0020den\u0020nuvarande\u0020spel\u002Drundan",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_incTurn"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AswapCard\u0028\u0029",
+            "name": "swapCard",
+            "summary": "Metoden\u0020f\u00F6r\u0020att\u0020byta\u0020kort\u0020utvalda\u0020kort.\u0020Metoden\u0020har\u0020tv\u00E5\u0020parametrar\u003A\nen\u0020\u0024swap\u0020som\u0020\u00E4r\u0020en\u0020array\u0020d\u00E4r\u0020det\u0020inneh\u00E5ller\u0020index\u0020f\u00F6r\u0020kort\/korten\u0020som\u0020skall\u0020bytas\u0020ut.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_swapCard"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetPokerRank\u0028\u0029",
+            "name": "getPokerRank",
+            "summary": "Metoden\u0020r\u00E4knar\u0020ut\u0020vilken\u0020kortrank\u0020som\u0020en\u0020hand\u0020har\u0020inom\u0020femkorts\u0020poker.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getPokerRank"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AgetFlush\u0028\u0029",
+            "name": "getFlush",
+            "summary": "Metod\u0020f\u00F6r\u0020att\u0020r\u00E4nka\u0020ut\u0020vilken\u0020typ\u0020av\u0020Flush\u0020som\u0020spelaren\u0020har.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_getFlush"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AcompareRank\u0028\u0029",
+            "name": "compareRank",
+            "summary": "Metoden\u0020avg\u00F6r\u0020vem\u0020av\u0020spelarna\u0020som\u0020har\u0020h\u00F6gst\u0020hand\u0020om\u0020rankerna\u0020\u00E4r\u0020samma.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_compareRank"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AcompareHand\u0028\u0029",
+            "name": "compareHand",
+            "summary": "Metoden\u0020r\u00E4nknar\u0020ut\u0020v\u00E4rdena\u0020f\u00F6r\u0020spelarnas\u0020h\u00E4nder\u0020och\u0020avg\u00F6r\u0020vinnaren\/f\u00F6rloraren.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_compareHand"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003AcomLogic\u0028\u0029",
+            "name": "comLogic",
+            "summary": "F\u00F6ljande\u0020metod\u0020ansvarar\u0020f\u00F6r\u0020datorns\u0020innrelogik\u0020d\u00E4r\u0020bland\u0020annat\navg\u00F6rs\u0020vilka\u0020kort\u0020ska\u0020bytas\u0020ut\u0020eller\u0020inte\u0020samt\u0020om\u0020datorn\u0020vill\u0020\u0022raise\u0022\u0020eller\u0020\u0022call\u0022\u0020spelarens\u0020pott.",
+            "url": "classes/App-Cards-FiveCardPoker.html#method_comLogic"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003APOKERRANK",
+            "name": "POKERRANK",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#constant_POKERRANK"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A\u0024player",
+            "name": "player",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#property_player"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A\u0024com",
+            "name": "com",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#property_com"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A\u0024deck",
+            "name": "deck",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#property_deck"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A\u0024turn",
+            "name": "turn",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#property_turn"
+        },                {
+            "fqsen": "\\App\\Cards\\FiveCardPoker\u003A\u003A\u0024pot",
+            "name": "pot",
+            "summary": "",
+            "url": "classes/App-Cards-FiveCardPoker.html#property_pot"
+        },                {
             "fqsen": "\\App\\Controller\\ProjectController",
             "name": "ProjectController",
-            "summary": "",
+            "summary": "Controller\u0020klassen\u0020f\u00F6r\u0020FiveCardPoker\u0020projektet\u0020med\u0020samtliga\u0020undersidor.",
             "url": "classes/App-Controller-ProjectController.html"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectIndex\u0028\u0029",
             "name": "projectIndex",
-            "summary": "",
+            "summary": "Routen\u0020f\u00F6r\u0020landingssidan\u0020f\u00F6r\u0020projektet",
             "url": "classes/App-Controller-ProjectController.html#method_projectIndex"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectGame\u0028\u0029",
             "name": "projectGame",
-            "summary": "",
+            "summary": "Routen\u0020f\u00F6r\u0020sj\u00E4lvaste\u0020spelet.",
             "url": "classes/App-Controller-ProjectController.html#method_projectGame"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AswapCard\u0028\u0029",
             "name": "swapCard",
-            "summary": "",
+            "summary": "Routen\u0020f\u00F6r\u0020knappen\u0020\u0022Byt\u0022\u0020som\u0020byter\u0020det\u0020utvalda\u0020kortens\u0020markerade\u0020checkbox.",
             "url": "classes/App-Controller-ProjectController.html#method_swapCard"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AaddPot\u0028\u0029",
             "name": "addPot",
-            "summary": "",
+            "summary": "Routen\u0020f\u00F6r\u0020att\u0020s\u00E4tta\u0020in\u0020sin\u0020pott\u0020inf\u00F6r\u0020varje\u0020runda.",
             "url": "classes/App-Controller-ProjectController.html#method_addPot"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AgameReset\u0028\u0029",
             "name": "gameReset",
-            "summary": "",
+            "summary": "Routen\u0020som\u0020nollst\u00E4ller\u0020spelet\u0020efter\u0020en\u0020avslutad\u0020omg\u00E5ng.",
             "url": "classes/App-Controller-ProjectController.html#method_gameReset"
         },                {
             "fqsen": "\\App\\Controller\\ProjectController\u003A\u003AprojectAbout\u0028\u0029",
             "name": "projectAbout",
-            "summary": "",
+            "summary": "Routen\u0020f\u00F6r\u0020projektets\u0020om\u002Dsida.",
             "url": "classes/App-Controller-ProjectController.html#method_projectAbout"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank",
+            "name": "CompareRank",
+            "summary": "Klassen\u0020inneh\u00E5ller\u0020metoder\u0020f\u00F6r\u0020att\u0020avg\u00F6ra\u0020om\u0020korthanden\u0020ing\u00E5r\u0020i\u0020en\u0020specifierad\u0020rank\noch\u0020vem\u0020som\u0020har\u0020h\u00F6gst\u0020rank\u0020om\u0020spelaren\/datorn\u0020skulle\u0020ha\u0020identisk\u0020rank\u0020f\u00F6r\u0020dess\u0020korthand.",
+            "url": "classes/App-Cards-CompareRank.html"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisStraight\u0028\u0029",
+            "name": "isStraight",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isStraight"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisRoyalFlush\u0028\u0029",
+            "name": "isRoyalFlush",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isRoyalFlush"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisStraightFlush\u0028\u0029",
+            "name": "isStraightFlush",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isStraightFlush"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisFourOfAKind\u0028\u0029",
+            "name": "isFourOfAKind",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isFourOfAKind"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisFullHouse\u0028\u0029",
+            "name": "isFullHouse",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isFullHouse"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisThreeOfAKind\u0028\u0029",
+            "name": "isThreeOfAKind",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isThreeOfAKind"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisTwoPair\u0028\u0029",
+            "name": "isTwoPair",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isTwoPair"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AisOnePair\u0028\u0029",
+            "name": "isOnePair",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_isOnePair"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AcompareHighCard\u0028\u0029",
+            "name": "compareHighCard",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_compareHighCard"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AcompareOnePair\u0028\u0029",
+            "name": "compareOnePair",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_compareOnePair"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AcompareTwoPair\u0028\u0029",
+            "name": "compareTwoPair",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_compareTwoPair"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AcompareThreeOfAKind\u0028\u0029",
+            "name": "compareThreeOfAKind",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_compareThreeOfAKind"
+        },                {
+            "fqsen": "\\App\\Cards\\CompareRank\u003A\u003AcompareFourOfAKind\u0028\u0029",
+            "name": "compareFourOfAKind",
+            "summary": "",
+            "url": "classes/App-Cards-CompareRank.html#method_compareFourOfAKind"
         },                {
             "fqsen": "\\",
             "name": "\\",

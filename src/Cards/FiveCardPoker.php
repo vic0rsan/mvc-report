@@ -4,6 +4,9 @@ namespace App\Cards;
 
 use App\Cards\CompareRank;
 
+/**
+ * Klassen för att skapa en omgång av Femkorts poker.
+ */
 class FiveCardPoker
 {
     private const POKERRANK = [
@@ -34,6 +37,10 @@ class FiveCardPoker
         $this->pot = 0;
     }
 
+    /**
+     * Metoden skapar en ny uppsättning av en kortlek och delar sedan ut
+     * 5 kort vardera till spelaren och datorn.
+     */
     public function dealHand(): void
     {
         $this->deck->createDeck();
@@ -60,6 +67,7 @@ class FiveCardPoker
     }
 
     /**
+    * Metoden används enbart vid testande då man vill definera en hand för spelaren.
     * @param array<array{rank:int,suit:string}> $card
     */
     public function setPlayerHand(array $card): void
@@ -82,6 +90,7 @@ class FiveCardPoker
     }
 
     /**
+    * Metoden används enbart vid testande då man vill definera en hand för Datorn.
     * @param array<array{rank:int,suit:string}> $card
     */
     public function setComHand(array $card): void
@@ -105,17 +114,26 @@ class FiveCardPoker
         return $this->pot;
     }
 
+    /**
+     * En setter metod för att öka den totala spelpotten
+     */
     public function incPot(int $pot): void
     {
         $this->pot += $pot;
     }
 
+    /**
+     * En setter metod för att öka den nuvarande spel-rundan
+     */
     public function incTurn(): void
     {
         $this->turn += 1;
     }
 
     /**
+     * Metoden för att byta kort utvalda kort. Metoden har två parametrar:
+     * en $swap som är en array där det innehåller index för kort/korten som skall bytas ut.
+     * en $test som innehåller definerade kort-objekt, används enbart vid enhetstester.
      * @param array<int> $swap
      * @param array<Card> $test
      */
@@ -130,6 +148,8 @@ class FiveCardPoker
     }
 
     /**
+    * Metoden räknar ut vilken kortrank som en hand har inom femkorts poker.
+    * Metoden returnerar ranken som en string.
     * @param array<array{rank:int,suit:string}> $hand
     */
     public function getPokerRank(array $hand): string
@@ -169,6 +189,7 @@ class FiveCardPoker
     }
 
     /**
+    * Metod för att ränka ut vilken typ av Flush som spelaren har.
     * @param array<array{rank:int,suit:string}> $hand
     */
     private function getFlush(array $hand): string|bool
@@ -191,6 +212,9 @@ class FiveCardPoker
         return false;
     }
 
+    /**
+     * Metoden avgör vem av spelarna som har högst hand om rankerna är samma.
+     */
     private function compareRank(): string
     {
         $player = array_column($this->player->getHandRank(), 'rank');
@@ -229,6 +253,9 @@ class FiveCardPoker
         return $winner;
     }
 
+    /**
+     * Metoden ränknar ut värdena för spelarnas händer och avgör vinnaren/förloraren.
+     */
     public function compareHand(): string
     {
         $rank = self::POKERRANK[$this->getPokerRank($this->player->getHandRank())];
@@ -242,15 +269,17 @@ class FiveCardPoker
     }
 
     /**
+     * Följande metod ansvarar för datorns innrelogik där bland annat
+     * avgörs vilka kort ska bytas ut eller inte samt om datorn vill "raise" eller "call" spelarens pott.
      * @return array<int|null>
      */
-    public function comLogic(int $playerPot, int $raise = null): array
+    public function comLogic(int $playerPot, int $raise = 0): array
     {
         $hand = $this->com->getHandRank();
         $count = array_count_values(array_column($hand, 'rank'));
         $rank = $this->getPokerRank($hand);
 
-        if (!$raise) {
+        if ($raise == 0) {
             $raise = rand(1, 2);
         }
 

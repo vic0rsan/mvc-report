@@ -2,10 +2,15 @@
 
 namespace App\Cards;
 
+/**
+ * Klassen innehåller metoder för att avgöra om korthanden ingår i en specifierad rank
+ * och vem som har högst rank om spelaren/datorn skulle ha identisk rank för dess korthand.
+ */
+
 class CompareRank
 {
     /**
-     * @param array<int<0,max>,array<int|string>> $hand
+     * @param array<array{rank:int,suit:string}> $hand
      */
     public function isStraight(array $hand): bool
     {
@@ -24,7 +29,7 @@ class CompareRank
     }
 
     /**
-     * @param array<int<0,max>,array<int|string>> $hand
+     * @param array<array{rank:int,suit:string}> $hand
      */
     public function isRoyalFlush(array $hand, bool $handUnique): bool
     {
