@@ -101,7 +101,7 @@
             <h2 id="kmom06">Kmom06</h2>
             <p>
                 Jag tycker PHPMetrics är ett bra verktyg även om det kunde vara överväldigade i början med alla dess mätvärden och hur man skall tolka dem. Det var en del enheter jag hade svårigheter över vad det ger uttryck för. Det jag gillade med PHPMetrics var några grafer, 
-                bland annat klass kod komplexiteten  som redovisades som en spiral cirklar i olika färger för graden av komplexiteten. Det fanns även en graf där man kunde se kopplingar för samtliga klasser, vilket gav en tydliga överblick över klassrelationerna. 
+                bland annat klass kod komplexiteten som redovisades som en spiral cirklar i olika färger för graden av komplexiteten. Det fanns även en graf där man kunde se kopplingar för samtliga klasser, vilket gav en tydliga överblick över klassrelationerna. 
             </p>
             <p>
                 Det gick bra att komma igång med Scrutinizer, det fungerade felfritt direkt efter kopplingen. Jag tycker Scrutinizer har ett tydligt och simpelt gränssnitt vid presentation av data.  Tycker Badges är ett bra sätt att presentera projektets kodkvalitet. 
@@ -114,6 +114,46 @@
             </p>
             <p>
                 Min TIL handlar om hur man kan jobba med automatiserade kodvalidatorer för att förbättra kvalitén för sitt projekt. Samt att det finns ett brett spektrum av aspekter som tillsammans bidrar till det huvudsakliga kodkvaliten för ett projekt.
+            </p>
+
+            <h2 id="kmom10">Kmom10</h2>
+            <h3>Krav 1-3</h3>
+            <h4>Innehåll och utseende</h4>
+            <p>
+                Jag valde att utföra alternativet "five card poker" som min inriktning för slutprojekt då det ansågs vara tillräckligt utmanande att utföra samt intressant och lärorik. I följande spel kommer man köra en omgång poker mot datorn.
+                Jag började med att skapa template-sidorna enligt projektets kravlista. Sedan skapade jag en ny kontroller (ProjectController.php) som skapar routes för samtliga projekt-sidor. Routen /proj tar sig till en landningssida som ger kortfattad information om projektet, 
+                /proj/game tar sig till självaste kortspelet där man kan se två rader med fem kort samt en input för potten. Övre radens kort som är synliga tillhör spelaren och den nedre som är dolda tillhör datorn. Slutligen, finns routen /proj/about som ger mer information om projektet som dess syfte. Utöver routes för undersidorna finns även POST-routes för knapparna för de olika åtgärderna i spelet som byta kort, 
+                sätt in pott och starta om spelet när man har spelat klart. Spelkorten som finns på planen är unicode-karaktärer som har stylats med CSS för att få rätt storlek samt färg. För att få fram ett specifikt tex för hjärter 7, så används klass-metoden "getCardRep" för kort-objektet som returnerar de avsedda unicode-karaktären för det angivna kortet.
+            </p>
+            <p>
+                När användaren landar på /proj/game sidan så initieras spelobjektet "FiveCardPoker" från klassen i "Cards/FiveCardPoker.php" som har attributen "player" och "com" som motsvarar spelarens och datorns korthand. Övriga instansattribut är "deck" som lagrar kortleken för pågende spel, "turn" som lagrar antalet rundor som har passerats och slutligen "pot" som innehåller potten för spelets rundor. Innan spelaren kan gå vidare till det första bytet av kort så måste den placera en valfri summa där i början av spelet går det bra med summan 0. 
+                När potten har satts in så kan spelaren börja byta kort. Man väljer bort korten genom att fylla i motsvarande checkbox placerad över kortet och trycker sedan på knappen "Byt" för att bekräfta valet. Byt-knappen är kopplad till POST-routen /proj/game/swap och vid kallelse skickas kortens plats/index (0-4 i ordning) som ska bytas ut genom ett tillhörande formulär för checkboxarna. 
+                Formulär datat skickas som en inparameter för klassmetoden "swapCard" i "FiveCardPoker" som sedan kallar på klassmetoden "addAtIndex" i "CardHand" mot spelarens/datorns hand. Metoden "swapCard" börjar med att dra nya kort enligt antal som skall bytas ut och lagras som en lista i en variabel "card". Klassmetoden "addAtIndex" kallas tillsammans med "card" och index-listan för att sedans itereras igenom och ersätter det markerade korten med den nya omdefinering av värdet från index-adressen.
+            </p>
+            <p>
+                För att göra spelet utmanande så har datorn en algoritm för att byta kort istället för att det sker på slumpen. Datorns algoritm utgörs av klassmetoden "comLogic" som innehåller en switch-satts för ett urval av olika kortranker; Triss, Ett par, Tvåpar, Högsta kort för att avögra vilka åtgärder som skall tas. Tex vid Ett par, Två par och Triss byts resterande kort som ej matchar, för Högsta kortet byts samtliga kort och om datorn skulle ha en högre kortrank än det som finns definerad i switch-sattsen så behåller datorn sin nuvarande hand tills spelet har passerat det sista bytet. 
+                När värdet för antalet rundar har nått "4" så inaktiveras spel-knapparna och ett statusmeddelande om vem som vann samt med vilken hand träder fram. Detta görs via en if-satts som jämför värdet för nuvarande runda och om den skulle bli lika med 4 så sätts spel-variabel gameover till "true" och på så sätts inaktiveras inmatning och datorns kort avsjöljas. 
+                Detta beror på att inmatningarna på template-sidan befinner sig inom en if-else satts som visas/döljs genom true/false från variablen "gameover" och "bet". För att avgöra vilken hand som vägger mest används klassmetoderna "compareHand" och "getPokerRank". "compareHand"-metoden har utfall för spelaren har en högre rank, datorn har högre rank och spelarna har en jämlik rank. 
+                "getPokerRank"-metoden kallas i början av "compareHand" och har som syfte att avgöra vilken rank en hand tillhör. I början av "getPokerRank" initieras ett nytt objekt av klassen "CompareRank" som innehåller samtliga metoder som avgör om korthanden tillhör den ranken eller ej. "getPokerRank" fungerar likt en wrapper funktion där man kallar på samtliga metoder som avgör vilken rank korthanden tillhör och få utt ranken i text-form. 
+                Jag valde att dela ut samtliga rankers vilkor i separata moduler för att göra det enklare att läsa och vilket i sitt led minskar den totala cyklomatiska kodkomplixten i "FiveCardPoker"-klassen. 
+                Några exmpel för hur man kan lösa utt en handsrank programmatiskt som för Ettpar, Triss och Fyrpar kan man ta sig hjälp av de inbyggda funktioner array_count_values där den räknar ut frekvensen av värden i handen samt in_array för att avgör om den efterfrågade antalet finns med eller ej. Tex efterfrågas en frekvens på "4" om handen skall vara ett fyrpar eller "3" för Triss osv. 
+                Värdet av "getPokerRank" i "compareRank"-metoden används mot en lista som finns globalt i "fivecardpoker"-klassen. 
+                I listan finns samtliga ranker som nycklar och en tillhörande värde i relation till rankens position. På så sätt kan utföra jämförlesen i vilkoret för if-else sattsen. Slutligen returnerar "compareRank" vem som vann i ett textmeddelande som sedan försvidare till Projekt-kontroller och renderas på template-sidan. Om spelarna skulle få samma slutgitliga rank på korten finns ännu en metod, "compareRank" som fungerar likt "getPokerRank" fast där man även kontroller övriga korts värde och rank för att få fram vilken hand som är högre.
+            </p>
+            <p>
+                Designändringarna för projeksidorna är relativt lika från de förgående kursmoment. Den största skillnaden är färgtemat som har fått en mer färgglad och varmare palette. Grundfärgerna fick jag insperation från hur ett klassiskt poker-bord brukar se ut i casinon där det finns grönt från bordsyttan, rött från marker samt guld för markörerna på spelplanen. Andra ändringar är av brödtexten där den nya fonten är Google fonts "Montserrat" som är en sans-serif font. 
+                Jag ändrade även storleken och margin för fonten för header/footer en aning för att passa den nya fonttypen. Bakgrunden och färgerna för korten är däremot orörd då jag ansåg att färgerna ger redan en god kontrast.
+            </p>
+            <h3>Reflektion om projekten</h3>
+            <p>
+                Projektet har gått bra att genomföra även om det uppstod några komplikationer. Självaste utmaningen för projektet var att täcka alla möjligt utfall för hur en vinst/förlust kunde ske beroende korthänderna. En annan svårighet var att få ihop en godtagbar algoritm/svårighetsgrad för datorn så spelet blev någorlunda utmanande och icke-slumpad. Jag byggde successtivt upp samtliga utfall genom att testa samtliga rankar och se utmatning om vilken aktör som vann/förlorade. 
+                När jag kom till testnings stadiet så upptäcktes nya fall där datorn/spelaren vann felaktigt. Detta bekräftade innebörden av att skriva testfall som berör samtliga utfall i en applikation då det är lätt hänt att överse fall inom implementations stadiet. 
+                Jag gjorde datorns algoritm relativt enkel men anser ändå att vara tillräckligt utmanande. Jag definerade endast utfall för Högsta kort upp till Triss då man kan ej riskera att förlora ranken om man byter bort ett eller flera kort. Tex kan man med Triss byta två kort men ändå behålla sina tre matchande kort. Det blir en säker taktik som datorn kör med. Jag tycker projektet har varit både roligt och utmanande. Jag skulle definitvt säga att momentet kändes rimligt som kursens slutexaminerade arbete.
+            </p>
+            <h3>Tankar om kursen</h3>
+            <p>
+                Tycker kursen har varit bra och lärorik. Det ger en god introduktion för objektorienterad programmering inom sammanhanget av webben. Det moment som jag anser vara mest intressant var om tester och hur man kan tolka värdena för att optimera sin applikation. Det är lätt hänt att man slänger ihop en lösning som fungerar inom praktiken men kan i andra omständigheter bli jobbigt att underhålla och funktionlitet kanske ej fungerar om man exempelvist skulle bygga ut på en metod. 
+                Med tanke på detta så har verktygen för att mätta kodkvalitet varit av stort intresse. Jag skulle sammanfatta kursens betyg som en 7:a och kan rekommendera kursen för den som vill komma igång med objektorienterad programmering för webbapplikation.
             </p>
         </section>
     </article>

@@ -10,7 +10,7 @@
 {% endif %}
 <h2>Pott: {{ pot }} SEK</h2>
 <h2>{{ status }}</h2>
-<form class="poker" action="/proj/game/swap" method="POST">
+<form class="poker" action="{{ url("swap_card") }}" method="POST">
     <div class="card-grid">
     {% for key, card in player %}
         <div>
@@ -36,13 +36,13 @@
     {% endif %}
 </form>
 {% if bet == true and gameover == false and round < 4 %}
-    <form class="poker" action="/proj/game/pot" method="POST">
+    <form class="poker" action="{{ url("add_pot") }}" method="POST">
         <input class="poker-button" type="submit" value="Sätt in">
         <input class="pot" type="number" name="pot" min={{minPot}} max="1000" value={{minPot}}>
     </form>
 {% endif %}
 {% if gameover == true %}
-    <form class="poker" action="/proj/game/reset" method="POST">
+    <form class="poker" action="{{ url("game_reset") }}" method="POST">
         <input class="poker-button" type="submit" value="Nytt">
     </form>
 {% endif %}
