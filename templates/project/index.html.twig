@@ -3,13 +3,15 @@
 {% block title %}Project{% endblock %}
 
 {% block body %}
-<nav class="project-nav">
-    <a href="{{ url("project_index") }}">Hem</a> | <a href="{{ url("project_game") }}">Spelet</a> | <a href="{{ path("project_about") }}">Om</a>
-</nav>
-<h1>Projekt - Femkortspoker</h1>
-<p>
-    Femkortspoker (Five card poker) är bland den enklaste variant poker som man kan spela 
-    och är en grund för "Video Poker" för spelautomater. Med tanke på detta så är även denna variant poplär bland nybörjare.
-    Denna poker förekommer dock sällan på Casion eller poker turneringar men i hemmet.
-</p>
+
+{% include 'project/nav.html.twig' %}
+<h1 class="proj-header">Projekt - Femkortspoker</h1>
+<div class="proj-content proj-start">
+    <div class="banner"></div>
+    <p>
+        Femkortspoker (Five card poker) är bland den enklaste variant poker som man kan spela 
+        och är en grund för "Video Poker" för spelautomater. Med tanke på detta så är även denna variant poplär bland nybörjare.
+        Denna poker förekommer dock sällan på Casion eller poker turneringar men i hemmet.
+    </p>
+</div>
 {% endblock %}

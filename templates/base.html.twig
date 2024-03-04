@@ -7,18 +7,26 @@
        
     </head>
     <body>
-        <header>
-            <h1>MVC - OOPHP</h1>
-            <nav>
-                <a href="{{ url("home") }}">Hem</a> | <a href="{{ path("report") }}">Redovisning</a> | <a href="{{ path("card") }}">Kort</a> | <a href="{{ path("game_index") }}">Game</a> | <a href="{{ path("api") }}">API</a> | <a href="{{ path("library_index") }}">Bibliotek</a> | <a href="{{ path("metrics") }}">Metrics</a> | <a href="{{ path("project_index") }}">Projekt</a> | <a href="{{ path("about") }}">Om</a>
-            </nav>
-            
-        </header>
+        <nav class="main-nav">
+            <a class="logo" href="{{ url("home") }}">MVC</a> 
+            <div class="container">
+                <ul class="links">
+                    <li><a href="{{ path("report") }}">Redovisning</a></li>
+                    <li><a href="{{ path("card") }}">Kort</a></li>
+                    <li><a href="{{ path("game_index") }}">Game</a></li>
+                    <li><a href="{{ path("api") }}">API</a></li>
+                    <li><a href="{{ path("library_index") }}">Bibliotek</a></li>
+                    <li><a href="{{ path("metrics") }}">Metrics</a></li>
+                    <li><a href="{{ path("project_index") }}">Projekt</a></li>
+                    <li><a href="{{ path("about") }}">Om</a></li>
+                </ul>
+            </div>
+        </nav>
         <article>
             {% block body %}{% endblock %}
         </article>
     </body>
     <footer>
-        <strong>gusu20 @VT23 </strong>
+        <p>gusu20 @VT23</p>
     </footer>
 </html>

@@ -1,10 +1,8 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<nav class="project-nav">
-    <a href="{{ url("project_index") }}">Hem</a> | <a href="{{ url("project_game") }}">Spelet</a> | <a href="{{ path("project_about") }}">Om</a>
-</nav>
-<h1>{{ title }}</h1>
+{% include 'project/nav.html.twig' %}
+<h1 class="proj-header">{{ title }}</h1>
 {% if gameover == false %}
     <h2>Runda: {{ round }}</h2>
 {% endif %}
