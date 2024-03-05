@@ -2,67 +2,69 @@
 
 {% block body %}
 {% include 'project/nav.html.twig' %}
-<h1 class="proj-header">{{ title }}</h1>
-{% if gameover == false %}
-    <h2>Runda: {{ round }}</h2>
-{% endif %}
-<h2>Pott: {{ pot }} SEK</h2>
-<h2>{{ status }}</h2>
-<form class="poker" action="{{ url("swap_card") }}" method="POST">
-    <div class="card-grid">
-    {% for key, card in player %}
-        <div>
-            {% if card.suite == "heart" or card.suite == "diamond" %}
-                <div class="card red-card">{{card.getCardRep}}</div>
-            {% else %}
-                <div class="card black-card">{{card.getCardRep}}</div>
-            {% endif %}
-            {% if gameover == false %}
-                {% if bet == false %}
-                    <input type="checkbox" name={{key}} value={{key}}>
-                {% endif %}
-            {% endif %}
-        </div>
-    {% endfor %}
-    </div>
-    {% if gameover == false or bet == false %}
-        {% if bet == false %}
-        <div class="poker-input">
-            <input class="poker-button swap-button" type="submit" value="Byt">
-        </div>
-        {% endif %}
+<div class="poker-field">
+    <h1 class="proj-header">{{ title }}</h1>
+    {% if gameover == false %}
+        <h2>Runda: {{ round }}</h2>
     {% endif %}
-</form>
-{% if bet == true and gameover == false and round < 4 %}
-    <form class="poker" action="{{ url("add_pot") }}" method="POST">
-        <input class="poker-button" type="submit" value="Sätt in">
-        <input class="pot" type="number" name="pot" min={{minPot}} max="1000" value={{minPot}}>
-    </form>
-{% endif %}
-{% if gameover == true %}
-    <form class="poker" action="{{ url("game_reset") }}" method="POST">
-        <input class="poker-button" type="submit" value="Nytt">
-    </form>
-{% endif %}
-<div class="poker">
-    <div class="card-grid">
-        {% if gameover == false %}
-            {% for card in com %}
-                <div class="card cover-card">🂠</div>
-            {% endfor %}
-        {% else %}
-            {% for card in com %}
-                {% if card.suite == "heart" or card.suite == "diamond" %}
-                    <div>
-                        <div class="card red-card">{{card.getCardRep}}</div>
-                    </div>
-                {% else %}
-                    <div>
-                        <div class="card black-card">{{card.getCardRep}}</div>
-                    </div>
+    <h2>Pott: {{ pot }} SEK</h2>
+    <h2>{{ status }}</h2>
+    <form class="poker" action="{{ url("swap_card") }}" method="POST">
+        <div class="card-grid">
+        {% for key, card in player %}
+            <label class="card-tile">
+                {% if gameover == false %}
+                    {% if bet == false %}
+                        <input type="checkbox" class="card-select" name={{key}} value={{key}}>
+                    {% endif %}
                 {% endif %}
-            {% endfor %}
+                {% if card.suite == "heart" or card.suite == "diamond" %}
+                    <div class="card player red-card">{{card.getCardRep}}</div>
+                {% else %}
+                    <div class="card player black-card">{{card.getCardRep}}</div>
+                {% endif %}
+            </label>
+        {% endfor %}
+        </div>
+        {% if gameover == false or bet == false %}
+            {% if bet == false %}
+            <div class="poker-input">
+                <input class="poker-button swap-button" type="submit" value="Byt">
+            </div>
+            {% endif %}
         {% endif %}
+    </form>
+    {% if bet == true and gameover == false and round < 4 %}
+        <form class="poker-input" action="{{ url("add_pot") }}" method="POST">
+            <input class="poker-button" type="submit" value="Sätt in">
+            <input class="pot" type="number" name="pot" min={{minPot}} max="1000" value={{minPot}}>
+        </form>
+    {% endif %}
+    {% if gameover == true %}
+        <form class="poker-input" action="{{ url("game_reset") }}" method="POST">
+            <input class="poker-button" type="submit" value="Nytt">
+        </form>
+    {% endif %}
+    <div class="poker">
+        <div class="card-grid">
+            {% if gameover == false %}
+                {% for card in com %}
+                    <div class="card cover-card">🂠</div>
+                {% endfor %}
+            {% else %}
+                {% for card in com %}
+                    {% if card.suite == "heart" or card.suite == "diamond" %}
+                        <div>
+                            <div class="card red-card">{{card.getCardRep}}</div>
+                        </div>
+                    {% else %}
+                        <div>
+                            <div class="card black-card">{{card.getCardRep}}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

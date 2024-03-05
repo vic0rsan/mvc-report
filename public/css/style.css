@@ -70,11 +70,8 @@ h1 {
     font-size: 3em;
 }
 
-.proj-nav {
-    margin-top: 2em;
-}
-
 .proj-header {
+    font-size: 2em;
     color: orange;
     margin-top: 0;
 }
@@ -174,31 +171,47 @@ ul.navUL li a:hover {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.card-wrap {
-    background-color: white;
-}
-
-.card-wrap h2 {
-    color: black;
+.poker-field {
+    width: 70%;
+    margin: 0 auto;
 }
 
 .card-grid {
-    color: #fff;
     display: grid;
-    text-align: center;
-    grid-template-columns: repeat(8, 1fr);
-    padding-bottom: 6vh;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.card-select {
+    display: none;
+}
+
+.card-select:hover + .player {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.card-select:checked + .player {
+    color: darkcyan;
 }
 
 .card {
-    font-size: 25vh;
-    height: 20vh;
+    height: 1.3em;
 }
 
-input[type=checkbox] {
-    height: 25px;
-    width: 25px;
-    margin: 0;
+@media screen and (min-height: 1600px) {
+    .card {
+        font-size: 18vh;
+    }
+}
+
+@media screen and (max-height: 1600px) {
+    .card {
+        font-size: 22vh;
+    } 
+}
+
+.card-select {
+    margin: 0 auto;
 }
 
 .black-card {
@@ -209,11 +222,6 @@ input[type=checkbox] {
     color: red;
 }
 
-.poker {
-    width: 60%;
-    margin: 0 auto;
-}
-
 .cover-card {
     color: darkcyan;
 }
@@ -221,10 +229,6 @@ input[type=checkbox] {
 .pot {
     height: 2em;
     border: 5px solid gold;
-}
-
-.poker-input input {
-    margin-inline: 1em;
 }
 
 .poker-button {
@@ -238,8 +242,7 @@ input[type=checkbox] {
     color: #fff;
     cursor: pointer;
     padding: 1rem;
-    width: 25%;
-    margin-top: 1em;
+    width: 10rem;
 }
 
 .game-button {
